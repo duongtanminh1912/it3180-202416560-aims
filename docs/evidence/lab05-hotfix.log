@@ -1,0 +1,2695 @@
+
+$ git diff --stat
+ README.md | 2 ++
+ 1 file changed, 2 insertions(+)
+
+[exit 0]
+
+$ git restore README.md
+
+[exit 0]
+
+$ git diff --exit-code
+
+[exit 0]
+
+$ git add docs/amend-practice.txt
+
+[exit 0]
+
+$ git restore --staged docs/amend-practice.txt
+
+[exit 0]
+
+$ git status --short
+?? docs/
+
+[exit 0]
+
+$ git add docs/amend-practice.txt
+
+[exit 0]
+
+$ git commit -m docs: add unpublished amend exercise
+[refactor/apply-release-flow e8d9e60] docs: add unpublished amend exercise
+ 1 file changed, 1 insertion(+)
+ create mode 100644 docs/amend-practice.txt
+
+[exit 0]
+
+$ git log -1 --format=%H %s
+e8d9e604be0fe0ddaac59c77457952111bb77c68 docs: add unpublished amend exercise
+
+[exit 0]
+
+$ git commit --amend -m docs: clarify unpublished amend exercise
+[refactor/apply-release-flow 0495cea] docs: clarify unpublished amend exercise
+ Date: Thu Nov 5 22:41:16 2026 +0700
+ 1 file changed, 1 insertion(+)
+ create mode 100644 docs/amend-practice.txt
+
+[exit 0]
+
+$ git log -1 --format=%H %s
+0495cea018f18d853b9174feaf6adf4192022aa6 docs: clarify unpublished amend exercise
+
+[exit 0]
+
+$ git rm docs/amend-practice.txt
+rm 'docs/amend-practice.txt'
+
+[exit 0]
+
+$ git commit -m docs: remove temporary amend exercise
+[refactor/apply-release-flow 7f45c2f] docs: remove temporary amend exercise
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 docs/amend-practice.txt
+
+[exit 0]
+
+$ git show master:dvd.py
+class DigitalVideoDisc:
+    """Một đĩa DVD trong cửa hàng AIMS."""
+
+    def __init__(self, title, category="", director="", length=0, cost=0.0):
+        self.title = title
+        self.category = category
+        self.director = director
+        self.length = length
+        self.cost = cost
+
+    def __str__(self):
+        return (f"DVD - {self.title} - {self.category} - "
+                f"{self.director} - {self.length}: {self.cost:.2f} $")
+
+[exit 0]
+
+$ git show master:cart.py
+MAX_NUMBERS_ORDERED = 20
+
+
+class Cart:
+    """Giỏ hàng chứa tối đa MAX_NUMBERS_ORDERED đĩa DVD."""
+
+    def __init__(self):
+        self.items = []
+
+    def add_dvd(self, dvd):
+        if len(self.items) > MAX_NUMBERS_ORDERED:
+            print("The cart is almost full")
+            return False
+        self.items.append(dvd)
+        print("The disc has been added")
+        return True
+
+    def remove_dvd(self, dvd):
+        if dvd in self.items:
+            self.items.remove(dvd)
+            print("The disc has been removed")
+            return True
+        print("The disc is not in the cart")
+        return False
+
+    def total_cost(self):
+        return sum(item.cost for item in self.items)
+
+[exit 0]
+
+$ git show master:main.py
+from dvd import DigitalVideoDisc
+from cart import Cart
+
+
+def main():
+    cart = Cart()
+    cart.add_dvd(DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95))
+    cart.add_dvd(DigitalVideoDisc("Star Wars", "Science Fiction", "George Lucas", 87, 24.95))
+    cart.add_dvd(DigitalVideoDisc("Aladdin", "Animation", cost=18.99))
+    print(f"Total cost: {cart.total_cost():.2f} $")
+
+
+if __name__ == "__main__":
+    main()
+
+[exit 0]
+
+$ python3.12 /var/folders/0x/0l87j59d7ysgv39lnvmrxs680000gn/T/it3180-initial-1282rfsi/main.py
+The disc has been added
+The disc has been added
+The disc has been added
+Total cost: 63.89 $
+
+[exit 0]
+
+$ python3.12 main.py
+The disc has been added
+The disc has been added
+The disc has been added
+Total cost: 63.89 $
+
+[exit 0]
+
+$ git log --follow --oneline -- aims/cart.py
+ac1efb7 refactor: move DVD and cart modules into aims package
+fbf6f8d feat: add initial DVD cart demo with intentional limit bug
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m docs: record Lab 01 answers and real command evidence
+[refactor/apply-release-flow 4a4a882] docs: record Lab 01 answers and real command evidence
+ 4 files changed, 186 insertions(+)
+ create mode 100644 docs/answers-lab01.md
+ create mode 100644 docs/evidence/lab01.log
+ create mode 100644 docs/github-todo.md
+ create mode 100644 docs/submission-checklist.md
+
+[exit 0]
+
+$ git branch --show-current
+refactor/apply-release-flow
+
+[exit 0]
+
+$ git push -u origin refactor/apply-release-flow
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+   698ea2f..4a4a882  refactor/apply-release-flow -> refactor/apply-release-flow
+branch 'refactor/apply-release-flow' set up to track 'origin/refactor/apply-release-flow'.
+
+[exit 0]
+
+$ gh pr create --base master --head refactor/apply-release-flow --title refactor: đóng gói aims và hoàn thành tài liệu Lab 01 --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/1
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/1 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   fbf6f8d..eb8c64e  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating fbf6f8d..eb8c64e
+Fast-forward
+ aims/__init__.py             |   0
+ cart.py => aims/cart.py      |   0
+ dvd.py => aims/dvd.py        |   0
+ docs/answers-lab01.md        |  17 +++++
+ docs/evidence/lab01.log      | 156 +++++++++++++++++++++++++++++++++++++++++++
+ docs/github-todo.md          |   5 ++
+ docs/submission-checklist.md |   8 +++
+ main.py                      |   4 +-
+ 8 files changed, 188 insertions(+), 2 deletions(-)
+ create mode 100644 aims/__init__.py
+ rename cart.py => aims/cart.py (100%)
+ rename dvd.py => aims/dvd.py (100%)
+ create mode 100644 docs/answers-lab01.md
+ create mode 100644 docs/evidence/lab01.log
+ create mode 100644 docs/github-todo.md
+ create mode 100644 docs/submission-checklist.md
+
+[exit 0]
+
+$ git branch release/lab01
+
+[exit 0]
+
+$ git push origin release/lab01
+remote: 
+remote: Create a pull request for 'release/lab01' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/release/lab01        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      release/lab01 -> release/lab01
+
+[exit 0]
+
+$ git branch -d refactor/apply-release-flow
+Deleted branch refactor/apply-release-flow (was 4a4a882).
+
+[exit 0]
+
+$ git push origin --delete refactor/apply-release-flow
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ - [deleted]         refactor/apply-release-flow
+
+[exit 0]
+
+$ gh repo edit --visibility public --accept-visibility-change-consequences
+
+[exit 0]
+
+$ gh api --method PUT repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection --input /private/tmp/it3180-protection.json
+{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection","required_pull_request_reviews":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection/required_pull_request_reviews","dismiss_stale_reviews":true,"require_code_owner_reviews":false,"require_last_push_approval":false,"required_approving_review_count":0},"required_signatures":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection/required_signatures","enabled":false},"enforce_admins":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection/enforce_admins","enabled":true},"required_linear_history":{"enabled":false},"allow_force_pushes":{"enabled":false},"allow_deletions":{"enabled":false},"block_creations":{"enabled":false},"required_conversation_resolution":{"enabled":false},"lock_branch":{"enabled":false},"allow_fork_syncing":{"enabled":false}}
+[exit 0]
+
+$ git switch -c topic/pr-template
+Switched to a new branch 'topic/pr-template'
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m docs: add Vietnamese pull request template
+[topic/pr-template b08771a] docs: add Vietnamese pull request template
+ 1 file changed, 11 insertions(+)
+ create mode 100644 .github/pull_request_template.md
+
+[exit 0]
+
+$ git branch --show-current
+topic/pr-template
+
+[exit 0]
+
+$ git push -u origin topic/pr-template
+remote: Your repository is disabled.
+remote: Please see https://github.com/duongtanminh1912/it3180-202416560-aims for more information.
+fatal: unable to access 'https://github.com/duongtanminh1912/it3180-202416560-aims.git/': The requested URL returned error: 403
+
+[exit 128]
+
+$ git branch --show-current
+topic/pr-template
+
+[exit 0]
+
+$ git push -u origin topic/pr-template
+remote: 
+remote: Create a pull request for 'topic/pr-template' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/topic/pr-template        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      topic/pr-template -> topic/pr-template
+branch 'topic/pr-template' set up to track 'origin/topic/pr-template'.
+
+[exit 0]
+
+$ gh pr create --base master --head topic/pr-template --title docs: thêm template pull request --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/2
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/2 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   eb8c64e..bb191c7  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating eb8c64e..bb191c7
+Fast-forward
+ .github/pull_request_template.md | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+ create mode 100644 .github/pull_request_template.md
+
+[exit 0]
+
+$ git branch feature/search-by-title
+
+[exit 0]
+
+$ git switch -c feature/cart-print
+Switched to a new branch 'feature/cart-print'
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m feat: print cart contents and handle empty cart
+[feature/cart-print 7788d0d] feat: print cart contents and handle empty cart
+ 1 file changed, 8 insertions(+)
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m feat: display demo through Cart.print_cart
+[feature/cart-print 5fa7ce5] feat: display demo through Cart.print_cart
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+[exit 0]
+
+$ python3.12 main.py
+The disc has been added
+The disc has been added
+The disc has been added
+1. DVD - The Lion King - Animation - Roger Allers - 87: 19.95 $
+2. DVD - Star Wars - Science Fiction - George Lucas - 87: 24.95 $
+3. DVD - Aladdin - Animation -  - 0: 18.99 $
+Total cost: 63.89 $
+
+[exit 0]
+
+$ python3.12 -c from aims.cart import Cart; Cart().print_cart()
+The cart is empty.
+
+[exit 0]
+
+$ git branch --show-current
+feature/cart-print
+
+[exit 0]
+
+$ git push -u origin feature/cart-print
+remote: 
+remote: Create a pull request for 'feature/cart-print' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/feature/cart-print        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      feature/cart-print -> feature/cart-print
+branch 'feature/cart-print' set up to track 'origin/feature/cart-print'.
+
+[exit 0]
+
+$ gh pr create --base master --head feature/cart-print --title feat: hiển thị giỏ hàng và tổng tiền --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/3
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/3 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   bb191c7..42f9ef3  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating bb191c7..42f9ef3
+Fast-forward
+ aims/cart.py | 8 ++++++++
+ main.py      | 2 +-
+ 2 files changed, 9 insertions(+), 1 deletion(-)
+
+[exit 0]
+
+$ git switch feature/search-by-title
+Switched to branch 'feature/search-by-title'
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m feat: add case-sensitive title search for Lab 02
+[feature/search-by-title e2b08b9] feat: add case-sensitive title search for Lab 02
+ 1 file changed, 3 insertions(+)
+ create mode 100644 aims/search.py
+
+[exit 0]
+
+$ git fetch origin
+
+[exit 0]
+
+$ git merge origin/master -m merge: synchronize master before title search PR
+Merge made by the 'ort' strategy.
+ aims/cart.py | 8 ++++++++
+ main.py      | 2 +-
+ 2 files changed, 9 insertions(+), 1 deletion(-)
+
+[exit 0]
+
+$ python3.12 main.py
+The disc has been added
+The disc has been added
+The disc has been added
+1. DVD - The Lion King - Animation - Roger Allers - 87: 19.95 $
+2. DVD - Star Wars - Science Fiction - George Lucas - 87: 24.95 $
+3. DVD - Aladdin - Animation -  - 0: 18.99 $
+Total cost: 63.89 $
+
+[exit 0]
+
+$ python3.12 -c from aims.search import search_by_title; from aims.dvd import DigitalVideoDisc; assert len(search_by_title([DigitalVideoDisc("The Lion King")], "Lion")) == 1; assert search_by_title([DigitalVideoDisc("The Lion King")], "lion") == []
+
+[exit 0]
+
+$ git branch --show-current
+feature/search-by-title
+
+[exit 0]
+
+$ git push -u origin feature/search-by-title
+remote: 
+remote: Create a pull request for 'feature/search-by-title' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/feature/search-by-title        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      feature/search-by-title -> feature/search-by-title
+branch 'feature/search-by-title' set up to track 'origin/feature/search-by-title'.
+
+[exit 0]
+
+$ gh pr create --base master --head feature/search-by-title --title feat: tìm kiếm DVD theo tên --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/4
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/4 --squash
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   42f9ef3..76cc231  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating 42f9ef3..76cc231
+Fast-forward
+ aims/search.py | 3 +++
+ 1 file changed, 3 insertions(+)
+ create mode 100644 aims/search.py
+
+[exit 0]
+
+$ git switch -c topic/use-case-diagram
+Switched to a new branch 'topic/use-case-diagram'
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m docs: describe AIMS use cases with Mermaid
+[topic/use-case-diagram 2bc22b4] docs: describe AIMS use cases with Mermaid
+ 1 file changed, 18 insertions(+)
+ create mode 100644 docs/use-case.md
+
+[exit 0]
+
+$ git branch --show-current
+topic/use-case-diagram
+
+[exit 0]
+
+$ git push -u origin topic/use-case-diagram
+remote: 
+remote: Create a pull request for 'topic/use-case-diagram' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/topic/use-case-diagram        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      topic/use-case-diagram -> topic/use-case-diagram
+branch 'topic/use-case-diagram' set up to track 'origin/topic/use-case-diagram'.
+
+[exit 0]
+
+$ gh pr create --base master --head topic/use-case-diagram --title docs: sơ đồ use case AIMS-mini --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/5
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/5 --rebase
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   76cc231..fb4c620  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating 76cc231..fb4c620
+Fast-forward
+ docs/use-case.md | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+ create mode 100644 docs/use-case.md
+
+[exit 0]
+
+$ git switch -c topic/lab02-answers
+Switched to a new branch 'topic/lab02-answers'
+
+[exit 0]
+
+$ gh pr list --state merged --limit 100 --json number,url,mergeCommit,title
+[{"mergeCommit":{"oid":"fb4c6207366eba5db639e23a1eec9118c0c04ba7"},"number":5,"title":"docs: sơ đồ use case AIMS-mini","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/5"},{"mergeCommit":{"oid":"76cc23130955e2c42395f28554a80f61ef4770e2"},"number":4,"title":"feat: tìm kiếm DVD theo tên","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/4"},{"mergeCommit":{"oid":"42f9ef3078c5d7e760084df09f9828964560ed23"},"number":3,"title":"feat: hiển thị giỏ hàng và tổng tiền","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/3"},{"mergeCommit":{"oid":"bb191c78ad263e13a6ba7be0858a439dfdf1a44f"},"number":2,"title":"docs: thêm template pull request","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/2"},{"mergeCommit":{"oid":"eb8c64edaf40949178573c8f950ff7437afc1c6f"},"number":1,"title":"refactor: đóng gói aims và hoàn thành tài liệu Lab 01","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/1"}]
+
+[exit 0]
+
+$ git log --graph --oneline --all -30
+* fb4c620 docs: describe AIMS use cases with Mermaid
+| * 2bc22b4 docs: describe AIMS use cases with Mermaid
+|/  
+* 76cc231 feat: add case-sensitive title search for Lab 02 (#4)
+| *   2ee5cd3 merge: synchronize master before title search PR
+| |\  
+| |/  
+|/|   
+* |   42f9ef3 Merge pull request #3 from duongtanminh1912/feature/cart-print
+|\ \  
+| * | 5fa7ce5 feat: display demo through Cart.print_cart
+| * | 7788d0d feat: print cart contents and handle empty cart
+|/ /  
+| * e2b08b9 feat: add case-sensitive title search for Lab 02
+|/  
+*   bb191c7 Merge pull request #2 from duongtanminh1912/topic/pr-template
+|\  
+| * b08771a docs: add Vietnamese pull request template
+|/  
+*   eb8c64e Merge pull request #1 from duongtanminh1912/refactor/apply-release-flow
+|\  
+| * 4a4a882 docs: record Lab 01 answers and real command evidence
+| * 7f45c2f docs: remove temporary amend exercise
+| * 0495cea docs: clarify unpublished amend exercise
+| * 698ea2f refactor: update demo imports for aims package
+| * ac1efb7 refactor: move DVD and cart modules into aims package
+|/  
+* fbf6f8d feat: add initial DVD cart demo with intentional limit bug
+* 9e936e1 chore: initialize IT3180 AIMS-mini repository
+
+[exit 0]
+
+$ git switch -c topic/protection-probe
+Switched to a new branch 'topic/protection-probe'
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m test: attempt actual protected branch update
+[topic/protection-probe a4e8629] test: attempt actual protected branch update
+ 1 file changed, 1 insertion(+)
+ create mode 100644 docs/protection-probe.txt
+
+[exit 0]
+
+$ git push origin HEAD:master
+remote: error: GH006: Protected branch update failed for refs/heads/master.        
+remote: 
+remote: - Changes must be made through a pull request.        
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ ! [remote rejected] HEAD -> master (protected branch hook declined)
+error: failed to push some refs to 'https://github.com/duongtanminh1912/it3180-202416560-aims.git'
+
+[exit 1]
+
+$ git switch topic/lab02-answers
+Switched to branch 'topic/lab02-answers'
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m docs: answer Lab 02 and record merge and protection evidence
+[topic/lab02-answers 5741c61] docs: answer Lab 02 and record merge and protection evidence
+ 2 files changed, 659 insertions(+)
+ create mode 100644 docs/answers-lab02.md
+ create mode 100644 docs/evidence/lab02.log
+
+[exit 0]
+
+$ git branch --show-current
+topic/lab02-answers
+
+[exit 0]
+
+$ git push -u origin topic/lab02-answers
+remote: 
+remote: Create a pull request for 'topic/lab02-answers' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/topic/lab02-answers        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      topic/lab02-answers -> topic/lab02-answers
+branch 'topic/lab02-answers' set up to track 'origin/topic/lab02-answers'.
+
+[exit 0]
+
+$ gh pr create --base master --head topic/lab02-answers --title docs: tổng kết Lab 02 và chứng minh bảo vệ nhánh --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/6
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/6 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   fb4c620..92531fb  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating fb4c620..92531fb
+Fast-forward
+ docs/answers-lab02.md   |  16 ++
+ docs/evidence/lab02.log | 643 ++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 659 insertions(+)
+ create mode 100644 docs/answers-lab02.md
+ create mode 100644 docs/evidence/lab02.log
+
+[exit 0]
+
+$ git branch release/lab02
+
+[exit 0]
+
+$ git push origin release/lab02
+remote: 
+remote: Create a pull request for 'release/lab02' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/release/lab02        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      release/lab02 -> release/lab02
+
+[exit 0]
+
+$ gh issue create --title bug: giỏ nhận DVD thứ 21 dù giới hạn 20 --body Tái hiện: thêm 21 DVD; điều kiện > cho phép phần tử thứ 21. Mong đợi DVD thứ 21 trả False, len vẫn 20.
+https://github.com/duongtanminh1912/it3180-202416560-aims/issues/7
+
+[exit 0]
+
+$ git switch -c bugfix/cart-limit-off-by-one
+Switched to a new branch 'bugfix/cart-limit-off-by-one'
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... FAIL
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+
+======================================================================
+FAIL: test_limit_twenty (test_cart.CartTests.test_limit_twenty)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duongtanminh/Downloads/aims-mini-starter/tests/test_cart.py", line 14, in test_limit_twenty
+    self.assertFalse(cart.add_dvd(DigitalVideoDisc("21")))
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+FAILED (failures=1)
+
+[exit 1]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m test: reproduce cart accepting the twenty-first DVD
+[bugfix/cart-limit-off-by-one c4570aa] test: reproduce cart accepting the twenty-first DVD
+ 2 files changed, 47 insertions(+)
+ create mode 100644 docs/evidence/lab03-limit-fail.log
+ create mode 100644 tests/test_cart.py
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m fix: reject DVD above cart limit (#7)
+[bugfix/cart-limit-off-by-one d1dd599] fix: reject DVD above cart limit (#7)
+ 2 files changed, 9 insertions(+), 1 deletion(-)
+ create mode 100644 docs/evidence/lab03-limit-pass.log
+
+[exit 0]
+
+$ git branch --show-current
+bugfix/cart-limit-off-by-one
+
+[exit 0]
+
+$ git push -u origin bugfix/cart-limit-off-by-one
+remote: 
+remote: Create a pull request for 'bugfix/cart-limit-off-by-one' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/bugfix/cart-limit-off-by-one        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      bugfix/cart-limit-off-by-one -> bugfix/cart-limit-off-by-one
+branch 'bugfix/cart-limit-off-by-one' set up to track 'origin/bugfix/cart-limit-off-by-one'.
+
+[exit 0]
+
+$ gh pr create --base master --head bugfix/cart-limit-off-by-one --title fix: sửa lỗi giới hạn giỏ --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/8
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/8 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   92531fb..8378fef  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating 92531fb..8378fef
+Fast-forward
+ aims/cart.py                       |  2 +-
+ docs/evidence/lab03-limit-fail.log | 16 ++++++++++++++++
+ docs/evidence/lab03-limit-pass.log |  8 ++++++++
+ tests/test_cart.py                 | 31 +++++++++++++++++++++++++++++++
+ 4 files changed, 56 insertions(+), 1 deletion(-)
+ create mode 100644 docs/evidence/lab03-limit-fail.log
+ create mode 100644 docs/evidence/lab03-limit-pass.log
+ create mode 100644 tests/test_cart.py
+
+[exit 0]
+
+$ gh issue view 7 --json state,closedAt,url
+{"closedAt":"2026-11-05T15:45:57Z","state":"CLOSED","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/issues/7"}
+
+[exit 0]
+
+$ git switch -c feature/discount
+Switched to a new branch 'feature/discount'
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m feat: introduce intentionally incorrect discount calculation
+[feature/discount ec180c9] feat: introduce intentionally incorrect discount calculation
+ 1 file changed, 3 insertions(+)
+
+[exit 0]
+
+$ git push -u origin feature/discount
+remote: 
+remote: Create a pull request for 'feature/discount' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/feature/discount        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      feature/discount -> feature/discount
+branch 'feature/discount' set up to track 'origin/feature/discount'.
+
+[exit 0]
+
+$ git switch -c bugfix/discount-calculation
+Switched to a new branch 'bugfix/discount-calculation'
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... FAIL
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+
+======================================================================
+FAIL: test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duongtanminh/Downloads/aims-mini-starter/tests/test_cart.py", line 36, in test_discount_and_bounds
+    self.assertAlmostEqual(cart.total_cost_with_discount(20), 80)
+AssertionError: 20.0 != 80 within 7 places (60.0 difference)
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+FAILED (failures=1)
+
+[exit 1]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m test: reproduce incorrect discount and invalid bounds
+[bugfix/discount-calculation 03efc9c] test: reproduce incorrect discount and invalid bounds
+ 1 file changed, 10 insertions(+)
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m fix: calculate discounted total and validate percent
+[bugfix/discount-calculation c932503] fix: calculate discounted total and validate percent
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+[exit 0]
+
+$ git branch --show-current
+bugfix/discount-calculation
+
+[exit 0]
+
+$ git push -u origin bugfix/discount-calculation
+remote: 
+remote: Create a pull request for 'bugfix/discount-calculation' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/bugfix/discount-calculation        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      bugfix/discount-calculation -> bugfix/discount-calculation
+branch 'bugfix/discount-calculation' set up to track 'origin/bugfix/discount-calculation'.
+
+[exit 0]
+
+$ gh pr create --base feature/discount --head bugfix/discount-calculation --title fix: sửa công thức giảm giá trên feature --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/9
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/9 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   ec180c9..57824fd  feature/discount -> origin/feature/discount
+
+[exit 0]
+
+$ git switch feature/discount
+Switched to branch 'feature/discount'
+Your branch is behind 'origin/feature/discount' by 3 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+[exit 0]
+
+$ git merge --ff-only origin/feature/discount
+Updating ec180c9..57824fd
+Fast-forward
+ aims/cart.py       |  4 +++-
+ tests/test_cart.py | 10 ++++++++++
+ 2 files changed, 13 insertions(+), 1 deletion(-)
+
+[exit 0]
+
+$ git branch --show-current
+feature/discount
+
+[exit 0]
+
+$ git push -u origin feature/discount
+Everything up-to-date
+branch 'feature/discount' set up to track 'origin/feature/discount'.
+
+[exit 0]
+
+$ gh pr create --base master --head feature/discount --title feat: tính tổng sau giảm giá --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/10
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/10 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   8378fef..8ff4e1e  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating 8378fef..8ff4e1e
+Fast-forward
+ aims/cart.py       |  5 +++++
+ tests/test_cart.py | 10 ++++++++++
+ 2 files changed, 15 insertions(+)
+
+[exit 0]
+
+$ git branch feature/show-added-title
+
+[exit 0]
+
+$ git switch -c feature/vietnamese-messages
+Switched to a new branch 'feature/vietnamese-messages'
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m feat: translate added DVD message to Vietnamese
+[feature/vietnamese-messages 0d45c1d] feat: translate added DVD message to Vietnamese
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+[exit 0]
+
+$ git branch --show-current
+feature/vietnamese-messages
+
+[exit 0]
+
+$ git push -u origin feature/vietnamese-messages
+remote: 
+remote: Create a pull request for 'feature/vietnamese-messages' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/feature/vietnamese-messages        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      feature/vietnamese-messages -> feature/vietnamese-messages
+branch 'feature/vietnamese-messages' set up to track 'origin/feature/vietnamese-messages'.
+
+[exit 0]
+
+$ gh pr create --base master --head feature/vietnamese-messages --title feat: Việt hóa thông báo thêm DVD --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/11
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/11 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   8ff4e1e..ba3ca5e  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating 8ff4e1e..ba3ca5e
+Fast-forward
+ aims/cart.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+[exit 0]
+
+$ git switch feature/show-added-title
+Switched to branch 'feature/show-added-title'
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m feat: include DVD title in added message
+[feature/show-added-title c658b90] feat: include DVD title in added message
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+[exit 0]
+
+$ git fetch origin
+
+[exit 0]
+
+$ git merge origin/master -m merge: synchronize Vietnamese message before PR
+Auto-merging aims/cart.py
+CONFLICT (content): Merge conflict in aims/cart.py
+Automatic merge failed; fix conflicts and then commit the result.
+
+[exit 1]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m merge: resolve conflict by combining language and DVD title
+[feature/show-added-title 698a815] merge: resolve conflict by combining language and DVD title
+
+[exit 0]
+
+$ git branch --show-current
+feature/show-added-title
+
+[exit 0]
+
+$ git push -u origin feature/show-added-title
+remote: 
+remote: Create a pull request for 'feature/show-added-title' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/feature/show-added-title        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      feature/show-added-title -> feature/show-added-title
+branch 'feature/show-added-title' set up to track 'origin/feature/show-added-title'.
+
+[exit 0]
+
+$ gh pr create --base master --head feature/show-added-title --title feat: kết hợp thông báo tiếng Việt và tên DVD --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/12
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/12 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   ba3ca5e..833c51b  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating ba3ca5e..833c51b
+Fast-forward
+ aims/cart.py                     |  2 +-
+ docs/evidence/lab03-conflict.log | 47 ++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 48 insertions(+), 1 deletion(-)
+ create mode 100644 docs/evidence/lab03-conflict.log
+
+[exit 0]
+
+$ git rev-parse HEAD
+833c51bef5a92c4418ff420b6347015cf4e30ea3
+
+[exit 0]
+
+$ git switch -c topic/undo-practice
+Switched to a new branch 'topic/undo-practice'
+
+[exit 0]
+
+$ git rev-parse HEAD
+833c51bef5a92c4418ff420b6347015cf4e30ea3
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m test: disposable commit for reset --soft
+[topic/undo-practice 2ce884f] test: disposable commit for reset --soft
+ 1 file changed, 1 insertion(+)
+ create mode 100644 docs/undo-practice.txt
+
+[exit 0]
+
+$ git rev-parse HEAD
+2ce884f45552930e89d92060dfc23fbe3a227d33
+
+[exit 0]
+
+$ git reset --soft 833c51bef5a92c4418ff420b6347015cf4e30ea3
+
+[exit 0]
+
+$ git status --short
+A  docs/undo-practice.txt
+
+[exit 0]
+
+$ git reflog -4
+833c51b HEAD@{0}: reset: moving to 833c51bef5a92c4418ff420b6347015cf4e30ea3
+2ce884f HEAD@{1}: commit: test: disposable commit for reset --soft
+833c51b HEAD@{2}: checkout: moving from master to topic/undo-practice
+833c51b HEAD@{3}: merge origin/master: Fast-forward
+
+[exit 0]
+
+$ git branch rescue/reset-soft 2ce884f45552930e89d92060dfc23fbe3a227d33
+
+[exit 0]
+
+$ git restore --staged docs/undo-practice.txt
+
+[exit 0]
+
+$ git show rescue/reset-soft:docs/undo-practice.txt
+Tạm cho reset --soft
+
+[exit 0]
+
+$ git rev-parse HEAD
+833c51bef5a92c4418ff420b6347015cf4e30ea3
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m test: disposable commit for reset --mixed
+[topic/undo-practice 4404d45] test: disposable commit for reset --mixed
+ 1 file changed, 1 insertion(+)
+ create mode 100644 docs/undo-practice.txt
+
+[exit 0]
+
+$ git rev-parse HEAD
+4404d4562e368d5c0938930f0e9a9f795910a3c3
+
+[exit 0]
+
+$ git reset --mixed 833c51bef5a92c4418ff420b6347015cf4e30ea3
+
+[exit 0]
+
+$ git status --short
+?? docs/undo-practice.txt
+
+[exit 0]
+
+$ git reflog -4
+833c51b HEAD@{0}: reset: moving to 833c51bef5a92c4418ff420b6347015cf4e30ea3
+4404d45 HEAD@{1}: commit: test: disposable commit for reset --mixed
+833c51b HEAD@{2}: reset: moving to 833c51bef5a92c4418ff420b6347015cf4e30ea3
+2ce884f HEAD@{3}: commit: test: disposable commit for reset --soft
+
+[exit 0]
+
+$ git branch rescue/reset-mixed 4404d4562e368d5c0938930f0e9a9f795910a3c3
+
+[exit 0]
+
+$ git show rescue/reset-mixed:docs/undo-practice.txt
+Tạm cho reset --mixed
+
+[exit 0]
+
+$ git rev-parse HEAD
+833c51bef5a92c4418ff420b6347015cf4e30ea3
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m test: disposable commit for reset --hard
+[topic/undo-practice 6b3938a] test: disposable commit for reset --hard
+ 1 file changed, 1 insertion(+)
+ create mode 100644 docs/undo-practice.txt
+
+[exit 0]
+
+$ git rev-parse HEAD
+6b3938a76c123838361505d76086829084b98a70
+
+[exit 0]
+
+$ git reset --hard 833c51bef5a92c4418ff420b6347015cf4e30ea3
+HEAD is now at 833c51b Merge pull request #12 from duongtanminh1912/feature/show-added-title
+
+[exit 0]
+
+$ git status --short
+
+[exit 0]
+
+$ git reflog -4
+833c51b HEAD@{0}: reset: moving to 833c51bef5a92c4418ff420b6347015cf4e30ea3
+6b3938a HEAD@{1}: commit: test: disposable commit for reset --hard
+833c51b HEAD@{2}: reset: moving to 833c51bef5a92c4418ff420b6347015cf4e30ea3
+4404d45 HEAD@{3}: commit: test: disposable commit for reset --mixed
+
+[exit 0]
+
+$ git branch rescue/reset-hard 6b3938a76c123838361505d76086829084b98a70
+
+[exit 0]
+
+$ git show rescue/reset-hard:docs/undo-practice.txt
+Tạm cho reset --hard
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git switch -c bugfix/revert-show-added-title
+Switched to a new branch 'bugfix/revert-show-added-title'
+
+[exit 0]
+
+$ git revert -m 1 833c51bef5a92c4418ff420b6347015cf4e30ea3 --no-edit
+[bugfix/revert-show-added-title 3fc6cab] Revert "Merge pull request #12 from duongtanminh1912/feature/show-added-title"
+ Date: Thu Nov 5 22:46:45 2026 +0700
+ 2 files changed, 1 insertion(+), 48 deletions(-)
+ delete mode 100644 docs/evidence/lab03-conflict.log
+
+[exit 0]
+
+$ python3.12 main.py
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+1. DVD - The Lion King - Animation - Roger Allers - 87: 19.95 $
+2. DVD - Star Wars - Science Fiction - George Lucas - 87: 24.95 $
+3. DVD - Aladdin - Animation -  - 0: 18.99 $
+Total cost: 63.89 $
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ git branch --show-current
+bugfix/revert-show-added-title
+
+[exit 0]
+
+$ git push -u origin bugfix/revert-show-added-title
+remote: 
+remote: Create a pull request for 'bugfix/revert-show-added-title' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/bugfix/revert-show-added-title        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      bugfix/revert-show-added-title -> bugfix/revert-show-added-title
+branch 'bugfix/revert-show-added-title' set up to track 'origin/bugfix/revert-show-added-title'.
+
+[exit 0]
+
+$ gh pr create --base master --head bugfix/revert-show-added-title --title fix: thực hành revert merge hiển thị tên DVD --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/13
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/13 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   833c51b..248fee6  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating 833c51b..248fee6
+Fast-forward
+ aims/cart.py                     |  2 +-
+ docs/evidence/lab03-conflict.log | 47 ----------------------------------------
+ 2 files changed, 1 insertion(+), 48 deletions(-)
+ delete mode 100644 docs/evidence/lab03-conflict.log
+
+[exit 0]
+
+$ git switch -c topic/lab03-answers
+Switched to a new branch 'topic/lab03-answers'
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m docs: explain Lab 03 bugs conflict reset reflog and revert
+[topic/lab03-answers e274189] docs: explain Lab 03 bugs conflict reset reflog and revert
+ 2 files changed, 1427 insertions(+)
+ create mode 100644 docs/answers-lab03.md
+ create mode 100644 docs/evidence/lab03.log
+
+[exit 0]
+
+$ git branch --show-current
+topic/lab03-answers
+
+[exit 0]
+
+$ git push -u origin topic/lab03-answers
+remote: 
+remote: Create a pull request for 'topic/lab03-answers' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/topic/lab03-answers        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      topic/lab03-answers -> topic/lab03-answers
+branch 'topic/lab03-answers' set up to track 'origin/topic/lab03-answers'.
+
+[exit 0]
+
+$ gh pr create --base master --head topic/lab03-answers --title docs: tổng kết Lab 03 và bằng chứng thực hành --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/14
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/14 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   248fee6..e60daa5  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating 248fee6..e60daa5
+Fast-forward
+ docs/answers-lab03.md   |   13 +
+ docs/evidence/lab03.log | 1414 +++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 1427 insertions(+)
+ create mode 100644 docs/answers-lab03.md
+ create mode 100644 docs/evidence/lab03.log
+
+[exit 0]
+
+$ git branch release/lab03
+
+[exit 0]
+
+$ git push origin release/lab03
+remote: 
+remote: Create a pull request for 'release/lab03' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/release/lab03        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      release/lab03 -> release/lab03
+
+[exit 0]
+
+$ git switch -c topic/prepare-release-1.0.0
+Switched to a new branch 'topic/prepare-release-1.0.0'
+
+[exit 0]
+
+$ python3.12 main.py
+AIMS-mini v1.0.0
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+1. DVD - The Lion King - Animation - Roger Allers - 87: 19.95 $
+2. DVD - Star Wars - Science Fiction - George Lucas - 87: 24.95 $
+3. DVD - Aladdin - Animation -  - 0: 18.99 $
+Total cost: 63.89 $
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m chore: prepare version 1.0.0 with changelog and Lab 04 answers
+[topic/prepare-release-1.0.0 6012750] chore: prepare version 1.0.0 with changelog and Lab 04 answers
+ 5 files changed, 44 insertions(+)
+ create mode 100644 CHANGELOG.md
+ create mode 100644 docs/answers-lab04.md
+ create mode 100644 tests/test_search.py
+
+[exit 0]
+
+$ git branch --show-current
+topic/prepare-release-1.0.0
+
+[exit 0]
+
+$ git push -u origin topic/prepare-release-1.0.0
+remote: 
+remote: Create a pull request for 'topic/prepare-release-1.0.0' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/topic/prepare-release-1.0.0        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      topic/prepare-release-1.0.0 -> topic/prepare-release-1.0.0
+branch 'topic/prepare-release-1.0.0' set up to track 'origin/topic/prepare-release-1.0.0'.
+
+[exit 0]
+
+$ gh pr create --base master --head topic/prepare-release-1.0.0 --title chore: chuẩn bị baseline 1.0.0 --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/15
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/15 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   e60daa5..146e3cc  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating e60daa5..146e3cc
+Fast-forward
+ CHANGELOG.md          | 18 ++++++++++++++++++
+ aims/__init__.py      |  1 +
+ docs/answers-lab04.md | 10 ++++++++++
+ main.py               |  2 ++
+ tests/test_search.py  | 13 +++++++++++++
+ 5 files changed, 44 insertions(+)
+ create mode 100644 CHANGELOG.md
+ create mode 100644 docs/answers-lab04.md
+ create mode 100644 tests/test_search.py
+
+[exit 0]
+
+$ git branch release/lab04
+
+[exit 0]
+
+$ git push origin release/lab04
+remote: 
+remote: Create a pull request for 'release/lab04' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/release/lab04        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      release/lab04 -> release/lab04
+
+[exit 0]
+
+$ gh api graphql -f query=query { repository(owner:"duongtanminh1912",name:"it3180-202416560-aims") { id } } --jq .data.repository.id
+R_kgDOVkJPRQ
+
+[exit 0]
+
+$ gh api graphql -f query=mutation($id:ID!){createBranchProtectionRule(input:{repositoryId:$id,pattern:"release/*",requiresApprovingReviews:true,requiredApprovingReviewCount:0,dismissesStaleReviews:true,isAdminEnforced:true,allowsForcePushes:false,allowsDeletions:false}){branchProtectionRule{id pattern}}} -f id=R_kgDOVkJPRQ
+{"data":{"createBranchProtectionRule":{"branchProtectionRule":{"id":"BPR_kwDOVkJPRc4FHkZB","pattern":"release/*"}}}}
+[exit 0]
+
+$ git tag -a v0.1.0 release/lab01 -m AIMS-mini v0.1.0 — baseline IT3180
+
+[exit 0]
+
+$ git push origin refs/tags/v0.1.0
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new tag]         v0.1.0 -> v0.1.0
+
+[exit 0]
+
+$ git tag -a v0.2.0 release/lab02 -m AIMS-mini v0.2.0 — baseline IT3180
+
+[exit 0]
+
+$ git push origin refs/tags/v0.2.0
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new tag]         v0.2.0 -> v0.2.0
+
+[exit 0]
+
+$ git tag -a v0.3.0 release/lab03 -m AIMS-mini v0.3.0 — baseline IT3180
+
+[exit 0]
+
+$ git push origin refs/tags/v0.3.0
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new tag]         v0.3.0 -> v0.3.0
+
+[exit 0]
+
+$ git tag -a v1.0.0 release/lab04 -m AIMS-mini v1.0.0 — baseline IT3180
+
+[exit 0]
+
+$ git push origin refs/tags/v1.0.0
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new tag]         v1.0.0 -> v1.0.0
+
+[exit 0]
+
+$ gh release create v1.0.0 --verify-tag --title AIMS-mini 1.0.0 --notes-file /private/tmp/it3180-release-notes.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/releases/tag/v1.0.0
+
+[exit 0]
+
+$ git switch -c feature/sort-cart
+Switched to a new branch 'feature/sort-cart'
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_sort_by_cost_in_place_and_stable (test_cart.CartTests.test_sort_by_cost_in_place_and_stable) ... ok
+test_sort_by_title_in_place (test_cart.CartTests.test_sort_by_title_in_place) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m feat: sort cart in place by title and cost with tests
+[feature/sort-cart 024a04e] feat: sort cart in place by title and cost with tests
+ 3 files changed, 33 insertions(+)
+
+[exit 0]
+
+$ git branch --show-current
+feature/sort-cart
+
+[exit 0]
+
+$ git push -u origin feature/sort-cart
+remote: 
+remote: Create a pull request for 'feature/sort-cart' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/feature/sort-cart        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      feature/sort-cart -> feature/sort-cart
+branch 'feature/sort-cart' set up to track 'origin/feature/sort-cart'.
+
+[exit 0]
+
+$ gh pr create --base master --head feature/sort-cart --title feat: sắp xếp giỏ hàng cho dòng phát triển tiếp --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/16
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/16 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   146e3cc..b40152b  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating 146e3cc..b40152b
+Fast-forward
+ CHANGELOG.md       |  3 +++
+ aims/cart.py       |  8 ++++++++
+ tests/test_cart.py | 22 ++++++++++++++++++++++
+ 3 files changed, 33 insertions(+)
+
+[exit 0]
+
+$ git switch -c topic/lab04-audit
+Switched to a new branch 'topic/lab04-audit'
+
+[exit 0]
+
+$ git log --oneline release/lab04..master
+b40152b Merge pull request #16 from duongtanminh1912/feature/sort-cart
+024a04e feat: sort cart in place by title and cost with tests
+
+[exit 0]
+
+$ git log --oneline master..release/lab04
+
+[exit 0]
+
+$ git diff --stat v0.3.0 v1.0.0
+ CHANGELOG.md          | 18 ++++++++++++++++++
+ aims/__init__.py      |  1 +
+ docs/answers-lab04.md | 10 ++++++++++
+ main.py               |  2 ++
+ tests/test_search.py  | 13 +++++++++++++
+ 5 files changed, 44 insertions(+)
+
+[exit 0]
+
+$ git diff --stat v1.0.0 master
+ CHANGELOG.md       |  3 +++
+ aims/cart.py       |  8 ++++++++
+ tests/test_cart.py | 22 ++++++++++++++++++++++
+ 3 files changed, 33 insertions(+)
+
+[exit 0]
+
+$ git describe --tags
+v1.0.0-2-gb40152b
+
+[exit 0]
+
+$ git worktree add --detach /private/tmp/it3180-v1.0.0 v1.0.0
+Preparing worktree (detached HEAD 146e3cc)
+HEAD is now at 146e3cc Merge pull request #15 from duongtanminh1912/topic/prepare-release-1.0.0
+
+[exit 0]
+
+$ python3.12 /private/tmp/it3180-v1.0.0/main.py
+AIMS-mini v1.0.0
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+1. DVD - The Lion King - Animation - Roger Allers - 87: 19.95 $
+2. DVD - Star Wars - Science Fiction - George Lucas - 87: 24.95 $
+3. DVD - Aladdin - Animation -  - 0: 18.99 $
+Total cost: 63.89 $
+
+[exit 0]
+
+$ python3.12 -c import os,sys,unittest; os.chdir('/private/tmp/it3180-v1.0.0'); sys.path.insert(0,os.getcwd()); import aims; from aims.cart import Cart; print("version", aims.__version__); assert aims.__version__ == "1.0.0"; assert not hasattr(Cart,"sort_by_title"); assert not hasattr(Cart,"sort_by_cost"); result=unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.discover("tests")); sys.exit(not result.wasSuccessful())
+version 1.0.0
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ git ls-tree -r --name-only v1.0.0
+.gitattributes
+.github/pull_request_template.md
+.gitignore
+CHANGELOG.md
+README.md
+aims/__init__.py
+aims/cart.py
+aims/dvd.py
+aims/search.py
+docs/answers-lab01.md
+docs/answers-lab02.md
+docs/answers-lab03.md
+docs/answers-lab04.md
+docs/evidence/lab01.log
+docs/evidence/lab02.log
+docs/evidence/lab03-limit-fail.log
+docs/evidence/lab03-limit-pass.log
+docs/evidence/lab03.log
+docs/github-todo.md
+docs/submission-checklist.md
+docs/use-case.md
+main.py
+tests/test_cart.py
+tests/test_search.py
+
+[exit 0]
+
+$ git show v1.0.0:CHANGELOG.md
+# Changelog
+
+Theo Keep a Changelog; phiên bản tuân theo SemVer. Ngày theo Asia/Ho_Chi_Minh.
+
+## [Unreleased]
+
+## [1.0.0] - 2026-11-05
+
+### Added
+- Mô hình DVD, giỏ hàng, thêm/xóa, tính tổng và hiển thị giỏ.
+- Tìm kiếm theo tên (phân biệt hoa thường ở baseline này).
+- Tính tổng sau giảm giá với kiểm tra phần trăm 0–100.
+- Đóng gói aims, sơ đồ use case, tài liệu và kiểm thử unittest.
+
+### Fixed
+- Từ chối DVD thứ 21, giữ giới hạn 20 DVD.
+- Công thức giảm giá trả số tiền còn lại, kiểm tra phần trăm ngoài giới hạn.
+- Kết hợp xung đột thông báo, sau đó revert phần hiển thị tên DVD để thực hành; giữ thông báo tiếng Việt.
+
+[exit 0]
+
+$ python3.12 -c from aims.cart import Cart; assert hasattr(Cart,"sort_by_title"); assert hasattr(Cart,"sort_by_cost"); print("master has sorting, v1.0.0 does not")
+master has sorting, v1.0.0 does not
+
+[exit 0]
+
+$ git archive --format=tar.gz --prefix=aims-mini-1.0.0/ --output=/private/tmp/aims-mini-1.0.0.tar.gz v1.0.0
+
+[exit 0]
+
+$ gh release upload v1.0.0 /private/tmp/aims-mini-1.0.0.tar.gz
+
+[exit 0]
+
+$ git cat-file -t v1.0.0
+tag
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m docs: audit 1.0.0 worktree archive and release divergence before hotfix
+[topic/lab04-audit 60e7c5c] docs: audit 1.0.0 worktree archive and release divergence before hotfix
+ 1 file changed, 1868 insertions(+)
+ create mode 100644 docs/evidence/lab04.log
+
+[exit 0]
+
+$ git branch --show-current
+topic/lab04-audit
+
+[exit 0]
+
+$ git push -u origin topic/lab04-audit
+remote: 
+remote: Create a pull request for 'topic/lab04-audit' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/topic/lab04-audit        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      topic/lab04-audit -> topic/lab04-audit
+branch 'topic/lab04-audit' set up to track 'origin/topic/lab04-audit'.
+
+[exit 0]
+
+$ gh pr create --base master --head topic/lab04-audit --title docs: bằng chứng audit Lab 04 trước hotfix --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/17
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/17 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   b40152b..c0ac12a  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating b40152b..c0ac12a
+Fast-forward
+ docs/evidence/lab04.log | 1868 +++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 1868 insertions(+)
+ create mode 100644 docs/evidence/lab04.log
+
+[exit 0]
+
+$ git switch -c feature/search-by-category
+Switched to a new branch 'feature/search-by-category'
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_sort_by_cost_in_place_and_stable (test_cart.CartTests.test_sort_by_cost_in_place_and_stable) ... ok
+test_sort_by_title_in_place (test_cart.CartTests.test_sort_by_title_in_place) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_category_exact_case_insensitive (test_search.CategorySearchTests.test_category_exact_case_insensitive) ... ok
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m feat: search DVDs by category with regression tests
+[feature/search-by-category 2d430c6] feat: search DVDs by category with regression tests
+ 3 files changed, 16 insertions(+), 1 deletion(-)
+
+[exit 0]
+
+$ git branch --show-current
+feature/search-by-category
+
+[exit 0]
+
+$ git push -u origin feature/search-by-category
+remote: 
+remote: Create a pull request for 'feature/search-by-category' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/feature/search-by-category        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      feature/search-by-category -> feature/search-by-category
+branch 'feature/search-by-category' set up to track 'origin/feature/search-by-category'.
+
+[exit 0]
+
+$ gh pr create --base master --head feature/search-by-category --title feat: tìm DVD theo thể loại --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/18
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/18 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   c0ac12a..bc64112  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating c0ac12a..bc64112
+Fast-forward
+ CHANGELOG.md         |  1 +
+ aims/search.py       |  5 +++++
+ tests/test_search.py | 11 ++++++++++-
+ 3 files changed, 16 insertions(+), 1 deletion(-)
+
+[exit 0]
+
+$ git switch -c topic/prepare-release-1.1.0
+Switched to a new branch 'topic/prepare-release-1.1.0'
+
+[exit 0]
+
+$ python3.12 main.py
+AIMS-mini v1.1.0
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+1. DVD - The Lion King - Animation - Roger Allers - 87: 19.95 $
+2. DVD - Star Wars - Science Fiction - George Lucas - 87: 24.95 $
+3. DVD - Aladdin - Animation -  - 0: 18.99 $
+Total cost: 63.89 $
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_sort_by_cost_in_place_and_stable (test_cart.CartTests.test_sort_by_cost_in_place_and_stable) ... ok
+test_sort_by_title_in_place (test_cart.CartTests.test_sort_by_title_in_place) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_category_exact_case_insensitive (test_search.CategorySearchTests.test_category_exact_case_insensitive) ... ok
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m chore: prepare version 1.1.0 and Lab 05 maintenance answers
+[topic/prepare-release-1.1.0 5250ea2] chore: prepare version 1.1.0 and Lab 05 maintenance answers
+ 3 files changed, 16 insertions(+), 1 deletion(-)
+ create mode 100644 docs/answers-lab05.md
+
+[exit 0]
+
+$ git branch --show-current
+topic/prepare-release-1.1.0
+
+[exit 0]
+
+$ git push -u origin topic/prepare-release-1.1.0
+remote: 
+remote: Create a pull request for 'topic/prepare-release-1.1.0' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/topic/prepare-release-1.1.0        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      topic/prepare-release-1.1.0 -> topic/prepare-release-1.1.0
+branch 'topic/prepare-release-1.1.0' set up to track 'origin/topic/prepare-release-1.1.0'.
+
+[exit 0]
+
+$ gh pr create --base master --head topic/prepare-release-1.1.0 --title chore: chuẩn bị release 1.1.0 và tài liệu Lab 05 --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/19
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/19 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   bc64112..d413a5f  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating bc64112..d413a5f
+Fast-forward
+ CHANGELOG.md          |  2 ++
+ aims/__init__.py      |  2 +-
+ docs/answers-lab05.md | 13 +++++++++++++
+ 3 files changed, 16 insertions(+), 1 deletion(-)
+ create mode 100644 docs/answers-lab05.md
+
+[exit 0]
+
+$ git branch release/lab05
+
+[exit 0]
+
+$ git push origin release/lab05
+remote: 
+remote: Create a pull request for 'release/lab05' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/release/lab05        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      release/lab05 -> release/lab05
+
+[exit 0]
+
+$ gh issue create --title bug: tìm lion không thấy The Lion King tại 1.0.0 --body search_by_title phân biệt hoa thường. v1.0.0, master, release/lab04, release/lab05 bị ảnh hưởng. Mong đợi tìm lion trả đúng The Lion King.
+https://github.com/duongtanminh1912/it3180-202416560-aims/issues/20
+
+[exit 0]
+
+$ git worktree add --detach /private/tmp/it3180-before-v1-0-0 v1.0.0
+Preparing worktree (detached HEAD 146e3cc)
+HEAD is now at 146e3cc Merge pull request #15 from duongtanminh1912/topic/prepare-release-1.0.0
+
+[exit 0]
+
+$ python3.12 -c import os,sys; os.chdir('/private/tmp/it3180-before-v1-0-0'); sys.path.insert(0,os.getcwd()); from aims.search import search_by_title; from aims.dvd import DigitalVideoDisc; result=search_by_title([DigitalVideoDisc("The Lion King")],"lion"); print('v1.0.0', result); assert result == []
+v1.0.0 []
+
+[exit 0]
+
+$ git worktree add --detach /private/tmp/it3180-before-master master
+Preparing worktree (detached HEAD d413a5f)
+HEAD is now at d413a5f Merge pull request #19 from duongtanminh1912/topic/prepare-release-1.1.0
+
+[exit 0]
+
+$ python3.12 -c import os,sys; os.chdir('/private/tmp/it3180-before-master'); sys.path.insert(0,os.getcwd()); from aims.search import search_by_title; from aims.dvd import DigitalVideoDisc; result=search_by_title([DigitalVideoDisc("The Lion King")],"lion"); print('master', result); assert result == []
+master []
+
+[exit 0]
+
+$ git worktree add --detach /private/tmp/it3180-before-release-lab04 release/lab04
+Preparing worktree (detached HEAD 146e3cc)
+HEAD is now at 146e3cc Merge pull request #15 from duongtanminh1912/topic/prepare-release-1.0.0
+
+[exit 0]
+
+$ python3.12 -c import os,sys; os.chdir('/private/tmp/it3180-before-release-lab04'); sys.path.insert(0,os.getcwd()); from aims.search import search_by_title; from aims.dvd import DigitalVideoDisc; result=search_by_title([DigitalVideoDisc("The Lion King")],"lion"); print('release/lab04', result); assert result == []
+release/lab04 []
+
+[exit 0]
+
+$ git worktree add --detach /private/tmp/it3180-before-release-lab05 release/lab05
+Preparing worktree (detached HEAD d413a5f)
+HEAD is now at d413a5f Merge pull request #19 from duongtanminh1912/topic/prepare-release-1.1.0
+
+[exit 0]
+
+$ python3.12 -c import os,sys; os.chdir('/private/tmp/it3180-before-release-lab05'); sys.path.insert(0,os.getcwd()); from aims.search import search_by_title; from aims.dvd import DigitalVideoDisc; result=search_by_title([DigitalVideoDisc("The Lion King")],"lion"); print('release/lab05', result); assert result == []
+release/lab05 []
+
+[exit 0]
+
+$ git switch -c hotfix/search-case-insensitive release/lab04
+Switched to a new branch 'hotfix/search-case-insensitive'
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_lowercase_keyword_matches_title (test_search.TitleSearchTests.test_lowercase_keyword_matches_title) ... FAIL
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+======================================================================
+FAIL: test_lowercase_keyword_matches_title (test_search.TitleSearchTests.test_lowercase_keyword_matches_title)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duongtanminh/Downloads/aims-mini-starter/tests/test_search.py", line 17, in test_lowercase_keyword_matches_title
+    self.assertEqual(search_by_title([dvd], "lion"), [dvd])
+AssertionError: Lists differ: [] != [<aims.dvd.DigitalVideoDisc object at 0x10a11fe60>]
+
+Second list contains 1 additional elements.
+First extra element 0:
+<aims.dvd.DigitalVideoDisc object at 0x10a11fe60>
+
+- []
++ [<aims.dvd.DigitalVideoDisc object at 0x10a11fe60>]
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.001s
+
+FAILED (failures=1)
+
+[exit 1]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_lowercase_keyword_matches_title (test_search.TitleSearchTests.test_lowercase_keyword_matches_title) ... ok
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m fix: make title search case insensitive with regression test
+[hotfix/search-case-insensitive e8a185b] fix: make title search case insensitive with regression test
+ 2 files changed, 7 insertions(+), 2 deletions(-)
+
+[exit 0]
+
+$ git rev-parse HEAD
+e8a185b82f140029cd2cfc4dcba9ac79cca2b743
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m chore: release patch version 1.0.1
+[hotfix/search-case-insensitive 2e0b434] chore: release patch version 1.0.1
+ 2 files changed, 6 insertions(+), 1 deletion(-)
+
+[exit 0]
+
+$ git branch --show-current
+hotfix/search-case-insensitive
+
+[exit 0]
+
+$ git push -u origin hotfix/search-case-insensitive
+remote: 
+remote: Create a pull request for 'hotfix/search-case-insensitive' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/hotfix/search-case-insensitive        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      hotfix/search-case-insensitive -> hotfix/search-case-insensitive
+branch 'hotfix/search-case-insensitive' set up to track 'origin/hotfix/search-case-insensitive'.
+
+[exit 0]
+
+$ gh pr create --base release/lab04 --head hotfix/search-case-insensitive --title fix: vá tìm kiếm cho dòng 1.0.x --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/21
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/21 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   146e3cc..c15ec06  release/lab04 -> origin/release/lab04
+
+[exit 0]
+
+$ git switch release/lab04
+Switched to branch 'release/lab04'
+
+[exit 0]
+
+$ git merge --ff-only origin/release/lab04
+Updating 146e3cc..c15ec06
+Fast-forward
+ CHANGELOG.md         | 5 +++++
+ aims/__init__.py     | 2 +-
+ aims/search.py       | 4 ++--
+ tests/test_search.py | 5 +++++
+ 4 files changed, 13 insertions(+), 3 deletions(-)
+
+[exit 0]
+
+$ git diff --name-only v1.0.0 release/lab04
+CHANGELOG.md
+aims/__init__.py
+aims/search.py
+tests/test_search.py
+
+[exit 0]
+
+$ git tag -a v1.0.1 release/lab04 -m AIMS-mini 1.0.1 — case-insensitive search hotfix
+
+[exit 0]
+
+$ git push origin refs/tags/v1.0.1
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new tag]         v1.0.1 -> v1.0.1
+
+[exit 0]
+
+$ gh release create v1.0.1 --verify-tag --title AIMS-mini 1.0.1 --notes-file /private/tmp/it3180-patch-notes.md --latest=false
+https://github.com/duongtanminh1912/it3180-202416560-aims/releases/tag/v1.0.1
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git switch -c hotfix/search-case-insensitive-master
+Switched to a new branch 'hotfix/search-case-insensitive-master'
+
+[exit 0]
+
+$ git cherry-pick -x e8a185b82f140029cd2cfc4dcba9ac79cca2b743
+Auto-merging aims/search.py
+Auto-merging tests/test_search.py
+[hotfix/search-case-insensitive-master 6604524] fix: make title search case insensitive with regression test
+ Date: Thu Nov 5 22:49:57 2026 +0700
+ 2 files changed, 7 insertions(+), 2 deletions(-)
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m docs: record forward-ported 1.0.1 patch without changing 1.1.0 version
+[hotfix/search-case-insensitive-master f181751] docs: record forward-ported 1.0.1 patch without changing 1.1.0 version
+ 1 file changed, 8 insertions(+)
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_sort_by_cost_in_place_and_stable (test_cart.CartTests.test_sort_by_cost_in_place_and_stable) ... ok
+test_sort_by_title_in_place (test_cart.CartTests.test_sort_by_title_in_place) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_category_exact_case_insensitive (test_search.CategorySearchTests.test_category_exact_case_insensitive) ... ok
+test_lowercase_keyword_matches_title (test_search.TitleSearchTests.test_lowercase_keyword_matches_title) ... ok
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ git branch --show-current
+hotfix/search-case-insensitive-master
+
+[exit 0]
+
+$ git push -u origin hotfix/search-case-insensitive-master
+remote: 
+remote: Create a pull request for 'hotfix/search-case-insensitive-master' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/hotfix/search-case-insensitive-master        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      hotfix/search-case-insensitive-master -> hotfix/search-case-insensitive-master
+branch 'hotfix/search-case-insensitive-master' set up to track 'origin/hotfix/search-case-insensitive-master'.
+
+[exit 0]
+
+$ gh pr create --base master --head hotfix/search-case-insensitive-master --title fix: chuyển bản vá tìm kiếm lên master --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/22
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/22 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   d413a5f..eaa7613  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating d413a5f..eaa7613
+Fast-forward
+ CHANGELOG.md         | 8 ++++++++
+ aims/search.py       | 4 ++--
+ tests/test_search.py | 5 +++++
+ 3 files changed, 15 insertions(+), 2 deletions(-)
+
+[exit 0]
+
+$ gh issue view 20 --json state,closedAt,url
+{"closedAt":null,"state":"OPEN","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/issues/20"}
+
+[exit 0]
+
+$ git switch -c hotfix/search-case-insensitive-lab05 release/lab05
+Switched to a new branch 'hotfix/search-case-insensitive-lab05'
+
+[exit 0]
+
+$ git cherry-pick -x e8a185b82f140029cd2cfc4dcba9ac79cca2b743
+Auto-merging aims/search.py
+Auto-merging tests/test_search.py
+[hotfix/search-case-insensitive-lab05 df7abd3] fix: make title search case insensitive with regression test
+ Date: Thu Nov 5 22:49:57 2026 +0700
+ 2 files changed, 7 insertions(+), 2 deletions(-)
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m docs: record title search patch in 1.1.0 release changelog
+[hotfix/search-case-insensitive-lab05 65ed8dc] docs: record title search patch in 1.1.0 release changelog
+ 1 file changed, 4 insertions(+)
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_sort_by_cost_in_place_and_stable (test_cart.CartTests.test_sort_by_cost_in_place_and_stable) ... ok
+test_sort_by_title_in_place (test_cart.CartTests.test_sort_by_title_in_place) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_category_exact_case_insensitive (test_search.CategorySearchTests.test_category_exact_case_insensitive) ... ok
+test_lowercase_keyword_matches_title (test_search.TitleSearchTests.test_lowercase_keyword_matches_title) ... ok
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ git branch --show-current
+hotfix/search-case-insensitive-lab05
+
+[exit 0]
+
+$ git push -u origin hotfix/search-case-insensitive-lab05
+remote: 
+remote: Create a pull request for 'hotfix/search-case-insensitive-lab05' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/hotfix/search-case-insensitive-lab05        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      hotfix/search-case-insensitive-lab05 -> hotfix/search-case-insensitive-lab05
+branch 'hotfix/search-case-insensitive-lab05' set up to track 'origin/hotfix/search-case-insensitive-lab05'.
+
+[exit 0]
+
+$ gh pr create --base release/lab05 --head hotfix/search-case-insensitive-lab05 --title fix: chuyển bản vá tìm kiếm sang release/lab05 --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/23
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/23 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   d413a5f..dd0a56c  release/lab05 -> origin/release/lab05
+
+[exit 0]
+
+$ git switch release/lab05
+Switched to branch 'release/lab05'
+
+[exit 0]
+
+$ git merge --ff-only origin/release/lab05
+Updating d413a5f..dd0a56c
+Fast-forward
+ CHANGELOG.md         | 4 ++++
+ aims/search.py       | 4 ++--
+ tests/test_search.py | 5 +++++
+ 3 files changed, 11 insertions(+), 2 deletions(-)
+
+[exit 0]
+
+$ git tag -a v1.1.0 release/lab05 -m AIMS-mini 1.1.0 — sorting category and search fix
+
+[exit 0]
+
+$ git push origin refs/tags/v1.1.0
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new tag]         v1.1.0 -> v1.1.0
+
+[exit 0]
+
+$ gh release create v1.1.0 --verify-tag --title AIMS-mini 1.1.0 --notes-file /private/tmp/it3180-1.1-notes.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/releases/tag/v1.1.0
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git switch -c topic/hotfix-audit
+Switched to a new branch 'topic/hotfix-audit'
+
+[exit 0]
+
+$ git log --all --oneline --grep=cherry picked from commit
+df7abd3 fix: make title search case insensitive with regression test
+6604524 fix: make title search case insensitive with regression test
+
+[exit 0]
+
+$ git tag --contains e8a185b82f140029cd2cfc4dcba9ac79cca2b743
+v1.0.1
+
+[exit 0]
+
+$ git cherry -v master release/lab04
+- e8a185b82f140029cd2cfc4dcba9ac79cca2b743 fix: make title search case insensitive with regression test
++ 2e0b4342d319e1c65d180cfe6a6d6c89e4ba0a0a chore: release patch version 1.0.1
+
+[exit 0]
+
+$ git worktree add --detach /private/tmp/it3180-final-v1-0-1 v1.0.1
+Preparing worktree (detached HEAD c15ec06)
+HEAD is now at c15ec06 Merge pull request #21 from duongtanminh1912/hotfix/search-case-insensitive
+
+[exit 0]
+
+$ python3.12 -c import os,sys,unittest
+os.chdir('/private/tmp/it3180-final-v1-0-1');sys.path.insert(0,os.getcwd())
+import aims
+from aims.cart import Cart
+from aims.dvd import DigitalVideoDisc
+from aims.search import search_by_title
+import aims.search as search
+print('v1.0.1', "version", aims.__version__)
+assert aims.__version__=='1.0.1'
+result=search_by_title([DigitalVideoDisc("The Lion King")],"lion")
+print("lion:", [dvd.title for dvd in result]);assert len(result)==1
+assert hasattr(Cart,"sort_by_title")==('1.0.1'=="1.1.0")
+assert hasattr(search,"search_by_category")==('1.0.1'=="1.1.0")
+suite=unittest.defaultTestLoader.discover("tests");print("tests",suite.countTestCases());result=unittest.TextTestRunner(verbosity=2).run(suite);sys.exit(not result.wasSuccessful())
+
+v1.0.1 version 1.0.1
+lion: ['The Lion King']
+tests 7
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_lowercase_keyword_matches_title (test_search.TitleSearchTests.test_lowercase_keyword_matches_title) ... ok
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ python3.12 /private/tmp/it3180-final-v1-0-1/main.py
+AIMS-mini v1.0.1
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+1. DVD - The Lion King - Animation - Roger Allers - 87: 19.95 $
+2. DVD - Star Wars - Science Fiction - George Lucas - 87: 24.95 $
+3. DVD - Aladdin - Animation -  - 0: 18.99 $
+Total cost: 63.89 $
+
+[exit 0]
+
+$ git worktree add --detach /private/tmp/it3180-final-v1-1-0 v1.1.0
+Preparing worktree (detached HEAD dd0a56c)
+HEAD is now at dd0a56c Merge pull request #23 from duongtanminh1912/hotfix/search-case-insensitive-lab05
+
+[exit 0]
+
+$ python3.12 -c import os,sys,unittest
+os.chdir('/private/tmp/it3180-final-v1-1-0');sys.path.insert(0,os.getcwd())
+import aims
+from aims.cart import Cart
+from aims.dvd import DigitalVideoDisc
+from aims.search import search_by_title
+import aims.search as search
+print('v1.1.0', "version", aims.__version__)
+assert aims.__version__=='1.1.0'
+result=search_by_title([DigitalVideoDisc("The Lion King")],"lion")
+print("lion:", [dvd.title for dvd in result]);assert len(result)==1
+assert hasattr(Cart,"sort_by_title")==('1.1.0'=="1.1.0")
+assert hasattr(search,"search_by_category")==('1.1.0'=="1.1.0")
+suite=unittest.defaultTestLoader.discover("tests");print("tests",suite.countTestCases());result=unittest.TextTestRunner(verbosity=2).run(suite);sys.exit(not result.wasSuccessful())
+
+v1.1.0 version 1.1.0
+lion: ['The Lion King']
+tests 10
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_sort_by_cost_in_place_and_stable (test_cart.CartTests.test_sort_by_cost_in_place_and_stable) ... ok
+test_sort_by_title_in_place (test_cart.CartTests.test_sort_by_title_in_place) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_category_exact_case_insensitive (test_search.CategorySearchTests.test_category_exact_case_insensitive) ... ok
+test_lowercase_keyword_matches_title (test_search.TitleSearchTests.test_lowercase_keyword_matches_title) ... ok
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ python3.12 /private/tmp/it3180-final-v1-1-0/main.py
+AIMS-mini v1.1.0
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+1. DVD - The Lion King - Animation - Roger Allers - 87: 19.95 $
+2. DVD - Star Wars - Science Fiction - George Lucas - 87: 24.95 $
+3. DVD - Aladdin - Animation -  - 0: 18.99 $
+Total cost: 63.89 $
+
+[exit 0]
+
+$ git worktree add --detach /private/tmp/it3180-final-master master
+Preparing worktree (detached HEAD eaa7613)
+HEAD is now at eaa7613 Merge pull request #22 from duongtanminh1912/hotfix/search-case-insensitive-master
+
+[exit 0]
+
+$ python3.12 -c import os,sys,unittest
+os.chdir('/private/tmp/it3180-final-master');sys.path.insert(0,os.getcwd())
+import aims
+from aims.cart import Cart
+from aims.dvd import DigitalVideoDisc
+from aims.search import search_by_title
+import aims.search as search
+print('master', "version", aims.__version__)
+assert aims.__version__=='1.1.0'
+result=search_by_title([DigitalVideoDisc("The Lion King")],"lion")
+print("lion:", [dvd.title for dvd in result]);assert len(result)==1
+assert hasattr(Cart,"sort_by_title")==('1.1.0'=="1.1.0")
+assert hasattr(search,"search_by_category")==('1.1.0'=="1.1.0")
+suite=unittest.defaultTestLoader.discover("tests");print("tests",suite.countTestCases());result=unittest.TextTestRunner(verbosity=2).run(suite);sys.exit(not result.wasSuccessful())
+
+master version 1.1.0
+lion: ['The Lion King']
+tests 10
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_sort_by_cost_in_place_and_stable (test_cart.CartTests.test_sort_by_cost_in_place_and_stable) ... ok
+test_sort_by_title_in_place (test_cart.CartTests.test_sort_by_title_in_place) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_category_exact_case_insensitive (test_search.CategorySearchTests.test_category_exact_case_insensitive) ... ok
+test_lowercase_keyword_matches_title (test_search.TitleSearchTests.test_lowercase_keyword_matches_title) ... ok
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ python3.12 /private/tmp/it3180-final-master/main.py
+AIMS-mini v1.1.0
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+1. DVD - The Lion King - Animation - Roger Allers - 87: 19.95 $
+2. DVD - Star Wars - Science Fiction - George Lucas - 87: 24.95 $
+3. DVD - Aladdin - Animation -  - 0: 18.99 $
+Total cost: 63.89 $
+
+[exit 0]
