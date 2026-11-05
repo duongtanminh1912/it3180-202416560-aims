@@ -29,3 +29,13 @@ class CartTests(unittest.TestCase):
         with contextlib.redirect_stdout(output):
             Cart().print_cart()
         self.assertEqual(output.getvalue(), "The cart is empty.\n")
+
+    def test_discount_and_bounds(self):
+        cart = Cart()
+        cart.items = [DigitalVideoDisc("A", cost=100)]
+        self.assertAlmostEqual(cart.total_cost_with_discount(20), 80)
+        self.assertAlmostEqual(cart.total_cost_with_discount(0), 100)
+        self.assertAlmostEqual(cart.total_cost_with_discount(100), 0)
+        for percent in (-1, 101):
+            with self.assertRaises(ValueError):
+                cart.total_cost_with_discount(percent)
