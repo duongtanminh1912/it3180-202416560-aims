@@ -39,3 +39,25 @@ class CartTests(unittest.TestCase):
         for percent in (-1, 101):
             with self.assertRaises(ValueError):
                 cart.total_cost_with_discount(percent)
+
+    def test_sort_by_title_in_place(self):
+        cart = Cart()
+        a, b = DigitalVideoDisc("A", cost=20), DigitalVideoDisc("B", cost=10)
+        cart.items = [b, a]
+        items = cart.items
+        cart.sort_by_title()
+        self.assertIs(cart.items, items)
+        self.assertEqual(cart.items, [a, b])
+
+    def test_sort_by_cost_in_place_and_stable(self):
+        cart = Cart()
+        a, b, c = (DigitalVideoDisc("A", cost=20), DigitalVideoDisc("B", cost=10), DigitalVideoDisc("C", cost=10))
+        cart.items = [a, b, c]
+        items = cart.items
+        cart.sort_by_cost()
+        self.assertIs(cart.items, items)
+        self.assertEqual(cart.items, [b, c, a])
+        empty = Cart()
+        empty.sort_by_title()
+        empty.sort_by_cost()
+        self.assertEqual(empty.items, [])
