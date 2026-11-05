@@ -4,5 +4,5 @@ def search_by_category(items, category):
 
 
 def search_by_title(items, keyword):
-    """Tìm theo chuỗi con; phân biệt hoa thường ở baseline Lab 02."""
-    return [dvd for dvd in items if keyword in dvd.title]
+    """Tìm theo chuỗi con, không phân biệt hoa thường."""
+    return [dvd for dvd in items if keyword.lower() in dvd.title.lower()]
