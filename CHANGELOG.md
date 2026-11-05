@@ -6,6 +6,10 @@ Theo Keep a Changelog; phiên bản tuân theo SemVer. Ngày theo Asia/Ho_Chi_Mi
 
 ## [1.1.0] - 2026-11-05
 
+### Fixed
+- Tích hợp bản vá 1.0.1: tìm tên không phân biệt hoa thường.
+
+
 ### Added
 - Tìm kiếm category chính xác, không phân biệt hoa thường.
 - Sắp giỏ tăng dần theo tên hoặc giá, thay đổi items tại chỗ.
