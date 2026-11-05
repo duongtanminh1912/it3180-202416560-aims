@@ -4,6 +4,11 @@ Theo Keep a Changelog; phiên bản tuân theo SemVer. Ngày theo Asia/Ho_Chi_Mi
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-11-05
+
+### Fixed
+- Tìm tên DVD không phân biệt hoa thường, gồm từ khóa lion.
+
 ## [1.0.0] - 2026-11-05
 
 ### Added
