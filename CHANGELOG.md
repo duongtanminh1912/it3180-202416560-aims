@@ -4,6 +4,9 @@ Theo Keep a Changelog; phiên bản tuân theo SemVer. Ngày theo Asia/Ho_Chi_Mi
 
 ## [Unreleased]
 
+### Added
+- Sắp giỏ tăng dần theo tên hoặc giá, thay đổi items tại chỗ.
+
 ## [1.0.0] - 2026-11-05
 
 ### Added
