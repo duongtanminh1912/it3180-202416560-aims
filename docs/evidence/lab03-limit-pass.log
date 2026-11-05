@@ -1,0 +1,8 @@
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
