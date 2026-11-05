@@ -1,0 +1,156 @@
+
+$ git diff --stat
+ README.md | 2 ++
+ 1 file changed, 2 insertions(+)
+
+[exit 0]
+
+$ git restore README.md
+
+[exit 0]
+
+$ git diff --exit-code
+
+[exit 0]
+
+$ git add docs/amend-practice.txt
+
+[exit 0]
+
+$ git restore --staged docs/amend-practice.txt
+
+[exit 0]
+
+$ git status --short
+?? docs/
+
+[exit 0]
+
+$ git add docs/amend-practice.txt
+
+[exit 0]
+
+$ git commit -m docs: add unpublished amend exercise
+[refactor/apply-release-flow e8d9e60] docs: add unpublished amend exercise
+ 1 file changed, 1 insertion(+)
+ create mode 100644 docs/amend-practice.txt
+
+[exit 0]
+
+$ git log -1 --format=%H %s
+e8d9e604be0fe0ddaac59c77457952111bb77c68 docs: add unpublished amend exercise
+
+[exit 0]
+
+$ git commit --amend -m docs: clarify unpublished amend exercise
+[refactor/apply-release-flow 0495cea] docs: clarify unpublished amend exercise
+ Date: Thu Nov 5 22:41:16 2026 +0700
+ 1 file changed, 1 insertion(+)
+ create mode 100644 docs/amend-practice.txt
+
+[exit 0]
+
+$ git log -1 --format=%H %s
+0495cea018f18d853b9174feaf6adf4192022aa6 docs: clarify unpublished amend exercise
+
+[exit 0]
+
+$ git rm docs/amend-practice.txt
+rm 'docs/amend-practice.txt'
+
+[exit 0]
+
+$ git commit -m docs: remove temporary amend exercise
+[refactor/apply-release-flow 7f45c2f] docs: remove temporary amend exercise
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 docs/amend-practice.txt
+
+[exit 0]
+
+$ git show master:dvd.py
+class DigitalVideoDisc:
+    """Một đĩa DVD trong cửa hàng AIMS."""
+
+    def __init__(self, title, category="", director="", length=0, cost=0.0):
+        self.title = title
+        self.category = category
+        self.director = director
+        self.length = length
+        self.cost = cost
+
+    def __str__(self):
+        return (f"DVD - {self.title} - {self.category} - "
+                f"{self.director} - {self.length}: {self.cost:.2f} $")
+
+[exit 0]
+
+$ git show master:cart.py
+MAX_NUMBERS_ORDERED = 20
+
+
+class Cart:
+    """Giỏ hàng chứa tối đa MAX_NUMBERS_ORDERED đĩa DVD."""
+
+    def __init__(self):
+        self.items = []
+
+    def add_dvd(self, dvd):
+        if len(self.items) > MAX_NUMBERS_ORDERED:
+            print("The cart is almost full")
+            return False
+        self.items.append(dvd)
+        print("The disc has been added")
+        return True
+
+    def remove_dvd(self, dvd):
+        if dvd in self.items:
+            self.items.remove(dvd)
+            print("The disc has been removed")
+            return True
+        print("The disc is not in the cart")
+        return False
+
+    def total_cost(self):
+        return sum(item.cost for item in self.items)
+
+[exit 0]
+
+$ git show master:main.py
+from dvd import DigitalVideoDisc
+from cart import Cart
+
+
+def main():
+    cart = Cart()
+    cart.add_dvd(DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95))
+    cart.add_dvd(DigitalVideoDisc("Star Wars", "Science Fiction", "George Lucas", 87, 24.95))
+    cart.add_dvd(DigitalVideoDisc("Aladdin", "Animation", cost=18.99))
+    print(f"Total cost: {cart.total_cost():.2f} $")
+
+
+if __name__ == "__main__":
+    main()
+
+[exit 0]
+
+$ python3.12 /var/folders/0x/0l87j59d7ysgv39lnvmrxs680000gn/T/it3180-initial-1282rfsi/main.py
+The disc has been added
+The disc has been added
+The disc has been added
+Total cost: 63.89 $
+
+[exit 0]
+
+$ python3.12 main.py
+The disc has been added
+The disc has been added
+The disc has been added
+Total cost: 63.89 $
+
+[exit 0]
+
+$ git log --follow --oneline -- aims/cart.py
+ac1efb7 refactor: move DVD and cart modules into aims package
+fbf6f8d feat: add initial DVD cart demo with intentional limit bug
+
+[exit 0]
