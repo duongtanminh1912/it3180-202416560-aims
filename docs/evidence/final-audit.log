@@ -1,0 +1,3755 @@
+
+$ git diff --stat
+ README.md | 2 ++
+ 1 file changed, 2 insertions(+)
+
+[exit 0]
+
+$ git restore README.md
+
+[exit 0]
+
+$ git diff --exit-code
+
+[exit 0]
+
+$ git add docs/amend-practice.txt
+
+[exit 0]
+
+$ git restore --staged docs/amend-practice.txt
+
+[exit 0]
+
+$ git status --short
+?? docs/
+
+[exit 0]
+
+$ git add docs/amend-practice.txt
+
+[exit 0]
+
+$ git commit -m docs: add unpublished amend exercise
+[refactor/apply-release-flow e8d9e60] docs: add unpublished amend exercise
+ 1 file changed, 1 insertion(+)
+ create mode 100644 docs/amend-practice.txt
+
+[exit 0]
+
+$ git log -1 --format=%H %s
+e8d9e604be0fe0ddaac59c77457952111bb77c68 docs: add unpublished amend exercise
+
+[exit 0]
+
+$ git commit --amend -m docs: clarify unpublished amend exercise
+[refactor/apply-release-flow 0495cea] docs: clarify unpublished amend exercise
+ Date: Thu Nov 5 22:41:16 2026 +0700
+ 1 file changed, 1 insertion(+)
+ create mode 100644 docs/amend-practice.txt
+
+[exit 0]
+
+$ git log -1 --format=%H %s
+0495cea018f18d853b9174feaf6adf4192022aa6 docs: clarify unpublished amend exercise
+
+[exit 0]
+
+$ git rm docs/amend-practice.txt
+rm 'docs/amend-practice.txt'
+
+[exit 0]
+
+$ git commit -m docs: remove temporary amend exercise
+[refactor/apply-release-flow 7f45c2f] docs: remove temporary amend exercise
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 docs/amend-practice.txt
+
+[exit 0]
+
+$ git show master:dvd.py
+class DigitalVideoDisc:
+    """Một đĩa DVD trong cửa hàng AIMS."""
+
+    def __init__(self, title, category="", director="", length=0, cost=0.0):
+        self.title = title
+        self.category = category
+        self.director = director
+        self.length = length
+        self.cost = cost
+
+    def __str__(self):
+        return (f"DVD - {self.title} - {self.category} - "
+                f"{self.director} - {self.length}: {self.cost:.2f} $")
+
+[exit 0]
+
+$ git show master:cart.py
+MAX_NUMBERS_ORDERED = 20
+
+
+class Cart:
+    """Giỏ hàng chứa tối đa MAX_NUMBERS_ORDERED đĩa DVD."""
+
+    def __init__(self):
+        self.items = []
+
+    def add_dvd(self, dvd):
+        if len(self.items) > MAX_NUMBERS_ORDERED:
+            print("The cart is almost full")
+            return False
+        self.items.append(dvd)
+        print("The disc has been added")
+        return True
+
+    def remove_dvd(self, dvd):
+        if dvd in self.items:
+            self.items.remove(dvd)
+            print("The disc has been removed")
+            return True
+        print("The disc is not in the cart")
+        return False
+
+    def total_cost(self):
+        return sum(item.cost for item in self.items)
+
+[exit 0]
+
+$ git show master:main.py
+from dvd import DigitalVideoDisc
+from cart import Cart
+
+
+def main():
+    cart = Cart()
+    cart.add_dvd(DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95))
+    cart.add_dvd(DigitalVideoDisc("Star Wars", "Science Fiction", "George Lucas", 87, 24.95))
+    cart.add_dvd(DigitalVideoDisc("Aladdin", "Animation", cost=18.99))
+    print(f"Total cost: {cart.total_cost():.2f} $")
+
+
+if __name__ == "__main__":
+    main()
+
+[exit 0]
+
+$ python3.12 /var/folders/0x/0l87j59d7ysgv39lnvmrxs680000gn/T/it3180-initial-1282rfsi/main.py
+The disc has been added
+The disc has been added
+The disc has been added
+Total cost: 63.89 $
+
+[exit 0]
+
+$ python3.12 main.py
+The disc has been added
+The disc has been added
+The disc has been added
+Total cost: 63.89 $
+
+[exit 0]
+
+$ git log --follow --oneline -- aims/cart.py
+ac1efb7 refactor: move DVD and cart modules into aims package
+fbf6f8d feat: add initial DVD cart demo with intentional limit bug
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m docs: record Lab 01 answers and real command evidence
+[refactor/apply-release-flow 4a4a882] docs: record Lab 01 answers and real command evidence
+ 4 files changed, 186 insertions(+)
+ create mode 100644 docs/answers-lab01.md
+ create mode 100644 docs/evidence/lab01.log
+ create mode 100644 docs/github-todo.md
+ create mode 100644 docs/submission-checklist.md
+
+[exit 0]
+
+$ git branch --show-current
+refactor/apply-release-flow
+
+[exit 0]
+
+$ git push -u origin refactor/apply-release-flow
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+   698ea2f..4a4a882  refactor/apply-release-flow -> refactor/apply-release-flow
+branch 'refactor/apply-release-flow' set up to track 'origin/refactor/apply-release-flow'.
+
+[exit 0]
+
+$ gh pr create --base master --head refactor/apply-release-flow --title refactor: đóng gói aims và hoàn thành tài liệu Lab 01 --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/1
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/1 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   fbf6f8d..eb8c64e  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating fbf6f8d..eb8c64e
+Fast-forward
+ aims/__init__.py             |   0
+ cart.py => aims/cart.py      |   0
+ dvd.py => aims/dvd.py        |   0
+ docs/answers-lab01.md        |  17 +++++
+ docs/evidence/lab01.log      | 156 +++++++++++++++++++++++++++++++++++++++++++
+ docs/github-todo.md          |   5 ++
+ docs/submission-checklist.md |   8 +++
+ main.py                      |   4 +-
+ 8 files changed, 188 insertions(+), 2 deletions(-)
+ create mode 100644 aims/__init__.py
+ rename cart.py => aims/cart.py (100%)
+ rename dvd.py => aims/dvd.py (100%)
+ create mode 100644 docs/answers-lab01.md
+ create mode 100644 docs/evidence/lab01.log
+ create mode 100644 docs/github-todo.md
+ create mode 100644 docs/submission-checklist.md
+
+[exit 0]
+
+$ git branch release/lab01
+
+[exit 0]
+
+$ git push origin release/lab01
+remote: 
+remote: Create a pull request for 'release/lab01' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/release/lab01        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      release/lab01 -> release/lab01
+
+[exit 0]
+
+$ git branch -d refactor/apply-release-flow
+Deleted branch refactor/apply-release-flow (was 4a4a882).
+
+[exit 0]
+
+$ git push origin --delete refactor/apply-release-flow
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ - [deleted]         refactor/apply-release-flow
+
+[exit 0]
+
+$ gh repo edit --visibility public --accept-visibility-change-consequences
+
+[exit 0]
+
+$ gh api --method PUT repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection --input /private/tmp/it3180-protection.json
+{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection","required_pull_request_reviews":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection/required_pull_request_reviews","dismiss_stale_reviews":true,"require_code_owner_reviews":false,"require_last_push_approval":false,"required_approving_review_count":0},"required_signatures":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection/required_signatures","enabled":false},"enforce_admins":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection/enforce_admins","enabled":true},"required_linear_history":{"enabled":false},"allow_force_pushes":{"enabled":false},"allow_deletions":{"enabled":false},"block_creations":{"enabled":false},"required_conversation_resolution":{"enabled":false},"lock_branch":{"enabled":false},"allow_fork_syncing":{"enabled":false}}
+[exit 0]
+
+$ git switch -c topic/pr-template
+Switched to a new branch 'topic/pr-template'
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m docs: add Vietnamese pull request template
+[topic/pr-template b08771a] docs: add Vietnamese pull request template
+ 1 file changed, 11 insertions(+)
+ create mode 100644 .github/pull_request_template.md
+
+[exit 0]
+
+$ git branch --show-current
+topic/pr-template
+
+[exit 0]
+
+$ git push -u origin topic/pr-template
+remote: Your repository is disabled.
+remote: Please see https://github.com/duongtanminh1912/it3180-202416560-aims for more information.
+fatal: unable to access 'https://github.com/duongtanminh1912/it3180-202416560-aims.git/': The requested URL returned error: 403
+
+[exit 128]
+
+$ git branch --show-current
+topic/pr-template
+
+[exit 0]
+
+$ git push -u origin topic/pr-template
+remote: 
+remote: Create a pull request for 'topic/pr-template' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/topic/pr-template        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      topic/pr-template -> topic/pr-template
+branch 'topic/pr-template' set up to track 'origin/topic/pr-template'.
+
+[exit 0]
+
+$ gh pr create --base master --head topic/pr-template --title docs: thêm template pull request --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/2
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/2 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   eb8c64e..bb191c7  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating eb8c64e..bb191c7
+Fast-forward
+ .github/pull_request_template.md | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+ create mode 100644 .github/pull_request_template.md
+
+[exit 0]
+
+$ git branch feature/search-by-title
+
+[exit 0]
+
+$ git switch -c feature/cart-print
+Switched to a new branch 'feature/cart-print'
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m feat: print cart contents and handle empty cart
+[feature/cart-print 7788d0d] feat: print cart contents and handle empty cart
+ 1 file changed, 8 insertions(+)
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m feat: display demo through Cart.print_cart
+[feature/cart-print 5fa7ce5] feat: display demo through Cart.print_cart
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+[exit 0]
+
+$ python3.12 main.py
+The disc has been added
+The disc has been added
+The disc has been added
+1. DVD - The Lion King - Animation - Roger Allers - 87: 19.95 $
+2. DVD - Star Wars - Science Fiction - George Lucas - 87: 24.95 $
+3. DVD - Aladdin - Animation -  - 0: 18.99 $
+Total cost: 63.89 $
+
+[exit 0]
+
+$ python3.12 -c from aims.cart import Cart; Cart().print_cart()
+The cart is empty.
+
+[exit 0]
+
+$ git branch --show-current
+feature/cart-print
+
+[exit 0]
+
+$ git push -u origin feature/cart-print
+remote: 
+remote: Create a pull request for 'feature/cart-print' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/feature/cart-print        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      feature/cart-print -> feature/cart-print
+branch 'feature/cart-print' set up to track 'origin/feature/cart-print'.
+
+[exit 0]
+
+$ gh pr create --base master --head feature/cart-print --title feat: hiển thị giỏ hàng và tổng tiền --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/3
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/3 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   bb191c7..42f9ef3  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating bb191c7..42f9ef3
+Fast-forward
+ aims/cart.py | 8 ++++++++
+ main.py      | 2 +-
+ 2 files changed, 9 insertions(+), 1 deletion(-)
+
+[exit 0]
+
+$ git switch feature/search-by-title
+Switched to branch 'feature/search-by-title'
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m feat: add case-sensitive title search for Lab 02
+[feature/search-by-title e2b08b9] feat: add case-sensitive title search for Lab 02
+ 1 file changed, 3 insertions(+)
+ create mode 100644 aims/search.py
+
+[exit 0]
+
+$ git fetch origin
+
+[exit 0]
+
+$ git merge origin/master -m merge: synchronize master before title search PR
+Merge made by the 'ort' strategy.
+ aims/cart.py | 8 ++++++++
+ main.py      | 2 +-
+ 2 files changed, 9 insertions(+), 1 deletion(-)
+
+[exit 0]
+
+$ python3.12 main.py
+The disc has been added
+The disc has been added
+The disc has been added
+1. DVD - The Lion King - Animation - Roger Allers - 87: 19.95 $
+2. DVD - Star Wars - Science Fiction - George Lucas - 87: 24.95 $
+3. DVD - Aladdin - Animation -  - 0: 18.99 $
+Total cost: 63.89 $
+
+[exit 0]
+
+$ python3.12 -c from aims.search import search_by_title; from aims.dvd import DigitalVideoDisc; assert len(search_by_title([DigitalVideoDisc("The Lion King")], "Lion")) == 1; assert search_by_title([DigitalVideoDisc("The Lion King")], "lion") == []
+
+[exit 0]
+
+$ git branch --show-current
+feature/search-by-title
+
+[exit 0]
+
+$ git push -u origin feature/search-by-title
+remote: 
+remote: Create a pull request for 'feature/search-by-title' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/feature/search-by-title        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      feature/search-by-title -> feature/search-by-title
+branch 'feature/search-by-title' set up to track 'origin/feature/search-by-title'.
+
+[exit 0]
+
+$ gh pr create --base master --head feature/search-by-title --title feat: tìm kiếm DVD theo tên --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/4
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/4 --squash
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   42f9ef3..76cc231  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating 42f9ef3..76cc231
+Fast-forward
+ aims/search.py | 3 +++
+ 1 file changed, 3 insertions(+)
+ create mode 100644 aims/search.py
+
+[exit 0]
+
+$ git switch -c topic/use-case-diagram
+Switched to a new branch 'topic/use-case-diagram'
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m docs: describe AIMS use cases with Mermaid
+[topic/use-case-diagram 2bc22b4] docs: describe AIMS use cases with Mermaid
+ 1 file changed, 18 insertions(+)
+ create mode 100644 docs/use-case.md
+
+[exit 0]
+
+$ git branch --show-current
+topic/use-case-diagram
+
+[exit 0]
+
+$ git push -u origin topic/use-case-diagram
+remote: 
+remote: Create a pull request for 'topic/use-case-diagram' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/topic/use-case-diagram        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      topic/use-case-diagram -> topic/use-case-diagram
+branch 'topic/use-case-diagram' set up to track 'origin/topic/use-case-diagram'.
+
+[exit 0]
+
+$ gh pr create --base master --head topic/use-case-diagram --title docs: sơ đồ use case AIMS-mini --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/5
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/5 --rebase
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   76cc231..fb4c620  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating 76cc231..fb4c620
+Fast-forward
+ docs/use-case.md | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+ create mode 100644 docs/use-case.md
+
+[exit 0]
+
+$ git switch -c topic/lab02-answers
+Switched to a new branch 'topic/lab02-answers'
+
+[exit 0]
+
+$ gh pr list --state merged --limit 100 --json number,url,mergeCommit,title
+[{"mergeCommit":{"oid":"fb4c6207366eba5db639e23a1eec9118c0c04ba7"},"number":5,"title":"docs: sơ đồ use case AIMS-mini","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/5"},{"mergeCommit":{"oid":"76cc23130955e2c42395f28554a80f61ef4770e2"},"number":4,"title":"feat: tìm kiếm DVD theo tên","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/4"},{"mergeCommit":{"oid":"42f9ef3078c5d7e760084df09f9828964560ed23"},"number":3,"title":"feat: hiển thị giỏ hàng và tổng tiền","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/3"},{"mergeCommit":{"oid":"bb191c78ad263e13a6ba7be0858a439dfdf1a44f"},"number":2,"title":"docs: thêm template pull request","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/2"},{"mergeCommit":{"oid":"eb8c64edaf40949178573c8f950ff7437afc1c6f"},"number":1,"title":"refactor: đóng gói aims và hoàn thành tài liệu Lab 01","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/1"}]
+
+[exit 0]
+
+$ git log --graph --oneline --all -30
+* fb4c620 docs: describe AIMS use cases with Mermaid
+| * 2bc22b4 docs: describe AIMS use cases with Mermaid
+|/  
+* 76cc231 feat: add case-sensitive title search for Lab 02 (#4)
+| *   2ee5cd3 merge: synchronize master before title search PR
+| |\  
+| |/  
+|/|   
+* |   42f9ef3 Merge pull request #3 from duongtanminh1912/feature/cart-print
+|\ \  
+| * | 5fa7ce5 feat: display demo through Cart.print_cart
+| * | 7788d0d feat: print cart contents and handle empty cart
+|/ /  
+| * e2b08b9 feat: add case-sensitive title search for Lab 02
+|/  
+*   bb191c7 Merge pull request #2 from duongtanminh1912/topic/pr-template
+|\  
+| * b08771a docs: add Vietnamese pull request template
+|/  
+*   eb8c64e Merge pull request #1 from duongtanminh1912/refactor/apply-release-flow
+|\  
+| * 4a4a882 docs: record Lab 01 answers and real command evidence
+| * 7f45c2f docs: remove temporary amend exercise
+| * 0495cea docs: clarify unpublished amend exercise
+| * 698ea2f refactor: update demo imports for aims package
+| * ac1efb7 refactor: move DVD and cart modules into aims package
+|/  
+* fbf6f8d feat: add initial DVD cart demo with intentional limit bug
+* 9e936e1 chore: initialize IT3180 AIMS-mini repository
+
+[exit 0]
+
+$ git switch -c topic/protection-probe
+Switched to a new branch 'topic/protection-probe'
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m test: attempt actual protected branch update
+[topic/protection-probe a4e8629] test: attempt actual protected branch update
+ 1 file changed, 1 insertion(+)
+ create mode 100644 docs/protection-probe.txt
+
+[exit 0]
+
+$ git push origin HEAD:master
+remote: error: GH006: Protected branch update failed for refs/heads/master.        
+remote: 
+remote: - Changes must be made through a pull request.        
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ ! [remote rejected] HEAD -> master (protected branch hook declined)
+error: failed to push some refs to 'https://github.com/duongtanminh1912/it3180-202416560-aims.git'
+
+[exit 1]
+
+$ git switch topic/lab02-answers
+Switched to branch 'topic/lab02-answers'
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m docs: answer Lab 02 and record merge and protection evidence
+[topic/lab02-answers 5741c61] docs: answer Lab 02 and record merge and protection evidence
+ 2 files changed, 659 insertions(+)
+ create mode 100644 docs/answers-lab02.md
+ create mode 100644 docs/evidence/lab02.log
+
+[exit 0]
+
+$ git branch --show-current
+topic/lab02-answers
+
+[exit 0]
+
+$ git push -u origin topic/lab02-answers
+remote: 
+remote: Create a pull request for 'topic/lab02-answers' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/topic/lab02-answers        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      topic/lab02-answers -> topic/lab02-answers
+branch 'topic/lab02-answers' set up to track 'origin/topic/lab02-answers'.
+
+[exit 0]
+
+$ gh pr create --base master --head topic/lab02-answers --title docs: tổng kết Lab 02 và chứng minh bảo vệ nhánh --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/6
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/6 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   fb4c620..92531fb  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating fb4c620..92531fb
+Fast-forward
+ docs/answers-lab02.md   |  16 ++
+ docs/evidence/lab02.log | 643 ++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 659 insertions(+)
+ create mode 100644 docs/answers-lab02.md
+ create mode 100644 docs/evidence/lab02.log
+
+[exit 0]
+
+$ git branch release/lab02
+
+[exit 0]
+
+$ git push origin release/lab02
+remote: 
+remote: Create a pull request for 'release/lab02' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/release/lab02        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      release/lab02 -> release/lab02
+
+[exit 0]
+
+$ gh issue create --title bug: giỏ nhận DVD thứ 21 dù giới hạn 20 --body Tái hiện: thêm 21 DVD; điều kiện > cho phép phần tử thứ 21. Mong đợi DVD thứ 21 trả False, len vẫn 20.
+https://github.com/duongtanminh1912/it3180-202416560-aims/issues/7
+
+[exit 0]
+
+$ git switch -c bugfix/cart-limit-off-by-one
+Switched to a new branch 'bugfix/cart-limit-off-by-one'
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... FAIL
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+
+======================================================================
+FAIL: test_limit_twenty (test_cart.CartTests.test_limit_twenty)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duongtanminh/Downloads/aims-mini-starter/tests/test_cart.py", line 14, in test_limit_twenty
+    self.assertFalse(cart.add_dvd(DigitalVideoDisc("21")))
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+FAILED (failures=1)
+
+[exit 1]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m test: reproduce cart accepting the twenty-first DVD
+[bugfix/cart-limit-off-by-one c4570aa] test: reproduce cart accepting the twenty-first DVD
+ 2 files changed, 47 insertions(+)
+ create mode 100644 docs/evidence/lab03-limit-fail.log
+ create mode 100644 tests/test_cart.py
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m fix: reject DVD above cart limit (#7)
+[bugfix/cart-limit-off-by-one d1dd599] fix: reject DVD above cart limit (#7)
+ 2 files changed, 9 insertions(+), 1 deletion(-)
+ create mode 100644 docs/evidence/lab03-limit-pass.log
+
+[exit 0]
+
+$ git branch --show-current
+bugfix/cart-limit-off-by-one
+
+[exit 0]
+
+$ git push -u origin bugfix/cart-limit-off-by-one
+remote: 
+remote: Create a pull request for 'bugfix/cart-limit-off-by-one' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/bugfix/cart-limit-off-by-one        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      bugfix/cart-limit-off-by-one -> bugfix/cart-limit-off-by-one
+branch 'bugfix/cart-limit-off-by-one' set up to track 'origin/bugfix/cart-limit-off-by-one'.
+
+[exit 0]
+
+$ gh pr create --base master --head bugfix/cart-limit-off-by-one --title fix: sửa lỗi giới hạn giỏ --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/8
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/8 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   92531fb..8378fef  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating 92531fb..8378fef
+Fast-forward
+ aims/cart.py                       |  2 +-
+ docs/evidence/lab03-limit-fail.log | 16 ++++++++++++++++
+ docs/evidence/lab03-limit-pass.log |  8 ++++++++
+ tests/test_cart.py                 | 31 +++++++++++++++++++++++++++++++
+ 4 files changed, 56 insertions(+), 1 deletion(-)
+ create mode 100644 docs/evidence/lab03-limit-fail.log
+ create mode 100644 docs/evidence/lab03-limit-pass.log
+ create mode 100644 tests/test_cart.py
+
+[exit 0]
+
+$ gh issue view 7 --json state,closedAt,url
+{"closedAt":"2026-11-05T15:45:57Z","state":"CLOSED","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/issues/7"}
+
+[exit 0]
+
+$ git switch -c feature/discount
+Switched to a new branch 'feature/discount'
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m feat: introduce intentionally incorrect discount calculation
+[feature/discount ec180c9] feat: introduce intentionally incorrect discount calculation
+ 1 file changed, 3 insertions(+)
+
+[exit 0]
+
+$ git push -u origin feature/discount
+remote: 
+remote: Create a pull request for 'feature/discount' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/feature/discount        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      feature/discount -> feature/discount
+branch 'feature/discount' set up to track 'origin/feature/discount'.
+
+[exit 0]
+
+$ git switch -c bugfix/discount-calculation
+Switched to a new branch 'bugfix/discount-calculation'
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... FAIL
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+
+======================================================================
+FAIL: test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duongtanminh/Downloads/aims-mini-starter/tests/test_cart.py", line 36, in test_discount_and_bounds
+    self.assertAlmostEqual(cart.total_cost_with_discount(20), 80)
+AssertionError: 20.0 != 80 within 7 places (60.0 difference)
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+FAILED (failures=1)
+
+[exit 1]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m test: reproduce incorrect discount and invalid bounds
+[bugfix/discount-calculation 03efc9c] test: reproduce incorrect discount and invalid bounds
+ 1 file changed, 10 insertions(+)
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m fix: calculate discounted total and validate percent
+[bugfix/discount-calculation c932503] fix: calculate discounted total and validate percent
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+[exit 0]
+
+$ git branch --show-current
+bugfix/discount-calculation
+
+[exit 0]
+
+$ git push -u origin bugfix/discount-calculation
+remote: 
+remote: Create a pull request for 'bugfix/discount-calculation' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/bugfix/discount-calculation        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      bugfix/discount-calculation -> bugfix/discount-calculation
+branch 'bugfix/discount-calculation' set up to track 'origin/bugfix/discount-calculation'.
+
+[exit 0]
+
+$ gh pr create --base feature/discount --head bugfix/discount-calculation --title fix: sửa công thức giảm giá trên feature --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/9
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/9 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   ec180c9..57824fd  feature/discount -> origin/feature/discount
+
+[exit 0]
+
+$ git switch feature/discount
+Switched to branch 'feature/discount'
+Your branch is behind 'origin/feature/discount' by 3 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+[exit 0]
+
+$ git merge --ff-only origin/feature/discount
+Updating ec180c9..57824fd
+Fast-forward
+ aims/cart.py       |  4 +++-
+ tests/test_cart.py | 10 ++++++++++
+ 2 files changed, 13 insertions(+), 1 deletion(-)
+
+[exit 0]
+
+$ git branch --show-current
+feature/discount
+
+[exit 0]
+
+$ git push -u origin feature/discount
+Everything up-to-date
+branch 'feature/discount' set up to track 'origin/feature/discount'.
+
+[exit 0]
+
+$ gh pr create --base master --head feature/discount --title feat: tính tổng sau giảm giá --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/10
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/10 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   8378fef..8ff4e1e  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating 8378fef..8ff4e1e
+Fast-forward
+ aims/cart.py       |  5 +++++
+ tests/test_cart.py | 10 ++++++++++
+ 2 files changed, 15 insertions(+)
+
+[exit 0]
+
+$ git branch feature/show-added-title
+
+[exit 0]
+
+$ git switch -c feature/vietnamese-messages
+Switched to a new branch 'feature/vietnamese-messages'
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m feat: translate added DVD message to Vietnamese
+[feature/vietnamese-messages 0d45c1d] feat: translate added DVD message to Vietnamese
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+[exit 0]
+
+$ git branch --show-current
+feature/vietnamese-messages
+
+[exit 0]
+
+$ git push -u origin feature/vietnamese-messages
+remote: 
+remote: Create a pull request for 'feature/vietnamese-messages' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/feature/vietnamese-messages        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      feature/vietnamese-messages -> feature/vietnamese-messages
+branch 'feature/vietnamese-messages' set up to track 'origin/feature/vietnamese-messages'.
+
+[exit 0]
+
+$ gh pr create --base master --head feature/vietnamese-messages --title feat: Việt hóa thông báo thêm DVD --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/11
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/11 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   8ff4e1e..ba3ca5e  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating 8ff4e1e..ba3ca5e
+Fast-forward
+ aims/cart.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+[exit 0]
+
+$ git switch feature/show-added-title
+Switched to branch 'feature/show-added-title'
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m feat: include DVD title in added message
+[feature/show-added-title c658b90] feat: include DVD title in added message
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+[exit 0]
+
+$ git fetch origin
+
+[exit 0]
+
+$ git merge origin/master -m merge: synchronize Vietnamese message before PR
+Auto-merging aims/cart.py
+CONFLICT (content): Merge conflict in aims/cart.py
+Automatic merge failed; fix conflicts and then commit the result.
+
+[exit 1]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m merge: resolve conflict by combining language and DVD title
+[feature/show-added-title 698a815] merge: resolve conflict by combining language and DVD title
+
+[exit 0]
+
+$ git branch --show-current
+feature/show-added-title
+
+[exit 0]
+
+$ git push -u origin feature/show-added-title
+remote: 
+remote: Create a pull request for 'feature/show-added-title' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/feature/show-added-title        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      feature/show-added-title -> feature/show-added-title
+branch 'feature/show-added-title' set up to track 'origin/feature/show-added-title'.
+
+[exit 0]
+
+$ gh pr create --base master --head feature/show-added-title --title feat: kết hợp thông báo tiếng Việt và tên DVD --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/12
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/12 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   ba3ca5e..833c51b  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating ba3ca5e..833c51b
+Fast-forward
+ aims/cart.py                     |  2 +-
+ docs/evidence/lab03-conflict.log | 47 ++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 48 insertions(+), 1 deletion(-)
+ create mode 100644 docs/evidence/lab03-conflict.log
+
+[exit 0]
+
+$ git rev-parse HEAD
+833c51bef5a92c4418ff420b6347015cf4e30ea3
+
+[exit 0]
+
+$ git switch -c topic/undo-practice
+Switched to a new branch 'topic/undo-practice'
+
+[exit 0]
+
+$ git rev-parse HEAD
+833c51bef5a92c4418ff420b6347015cf4e30ea3
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m test: disposable commit for reset --soft
+[topic/undo-practice 2ce884f] test: disposable commit for reset --soft
+ 1 file changed, 1 insertion(+)
+ create mode 100644 docs/undo-practice.txt
+
+[exit 0]
+
+$ git rev-parse HEAD
+2ce884f45552930e89d92060dfc23fbe3a227d33
+
+[exit 0]
+
+$ git reset --soft 833c51bef5a92c4418ff420b6347015cf4e30ea3
+
+[exit 0]
+
+$ git status --short
+A  docs/undo-practice.txt
+
+[exit 0]
+
+$ git reflog -4
+833c51b HEAD@{0}: reset: moving to 833c51bef5a92c4418ff420b6347015cf4e30ea3
+2ce884f HEAD@{1}: commit: test: disposable commit for reset --soft
+833c51b HEAD@{2}: checkout: moving from master to topic/undo-practice
+833c51b HEAD@{3}: merge origin/master: Fast-forward
+
+[exit 0]
+
+$ git branch rescue/reset-soft 2ce884f45552930e89d92060dfc23fbe3a227d33
+
+[exit 0]
+
+$ git restore --staged docs/undo-practice.txt
+
+[exit 0]
+
+$ git show rescue/reset-soft:docs/undo-practice.txt
+Tạm cho reset --soft
+
+[exit 0]
+
+$ git rev-parse HEAD
+833c51bef5a92c4418ff420b6347015cf4e30ea3
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m test: disposable commit for reset --mixed
+[topic/undo-practice 4404d45] test: disposable commit for reset --mixed
+ 1 file changed, 1 insertion(+)
+ create mode 100644 docs/undo-practice.txt
+
+[exit 0]
+
+$ git rev-parse HEAD
+4404d4562e368d5c0938930f0e9a9f795910a3c3
+
+[exit 0]
+
+$ git reset --mixed 833c51bef5a92c4418ff420b6347015cf4e30ea3
+
+[exit 0]
+
+$ git status --short
+?? docs/undo-practice.txt
+
+[exit 0]
+
+$ git reflog -4
+833c51b HEAD@{0}: reset: moving to 833c51bef5a92c4418ff420b6347015cf4e30ea3
+4404d45 HEAD@{1}: commit: test: disposable commit for reset --mixed
+833c51b HEAD@{2}: reset: moving to 833c51bef5a92c4418ff420b6347015cf4e30ea3
+2ce884f HEAD@{3}: commit: test: disposable commit for reset --soft
+
+[exit 0]
+
+$ git branch rescue/reset-mixed 4404d4562e368d5c0938930f0e9a9f795910a3c3
+
+[exit 0]
+
+$ git show rescue/reset-mixed:docs/undo-practice.txt
+Tạm cho reset --mixed
+
+[exit 0]
+
+$ git rev-parse HEAD
+833c51bef5a92c4418ff420b6347015cf4e30ea3
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m test: disposable commit for reset --hard
+[topic/undo-practice 6b3938a] test: disposable commit for reset --hard
+ 1 file changed, 1 insertion(+)
+ create mode 100644 docs/undo-practice.txt
+
+[exit 0]
+
+$ git rev-parse HEAD
+6b3938a76c123838361505d76086829084b98a70
+
+[exit 0]
+
+$ git reset --hard 833c51bef5a92c4418ff420b6347015cf4e30ea3
+HEAD is now at 833c51b Merge pull request #12 from duongtanminh1912/feature/show-added-title
+
+[exit 0]
+
+$ git status --short
+
+[exit 0]
+
+$ git reflog -4
+833c51b HEAD@{0}: reset: moving to 833c51bef5a92c4418ff420b6347015cf4e30ea3
+6b3938a HEAD@{1}: commit: test: disposable commit for reset --hard
+833c51b HEAD@{2}: reset: moving to 833c51bef5a92c4418ff420b6347015cf4e30ea3
+4404d45 HEAD@{3}: commit: test: disposable commit for reset --mixed
+
+[exit 0]
+
+$ git branch rescue/reset-hard 6b3938a76c123838361505d76086829084b98a70
+
+[exit 0]
+
+$ git show rescue/reset-hard:docs/undo-practice.txt
+Tạm cho reset --hard
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git switch -c bugfix/revert-show-added-title
+Switched to a new branch 'bugfix/revert-show-added-title'
+
+[exit 0]
+
+$ git revert -m 1 833c51bef5a92c4418ff420b6347015cf4e30ea3 --no-edit
+[bugfix/revert-show-added-title 3fc6cab] Revert "Merge pull request #12 from duongtanminh1912/feature/show-added-title"
+ Date: Thu Nov 5 22:46:45 2026 +0700
+ 2 files changed, 1 insertion(+), 48 deletions(-)
+ delete mode 100644 docs/evidence/lab03-conflict.log
+
+[exit 0]
+
+$ python3.12 main.py
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+1. DVD - The Lion King - Animation - Roger Allers - 87: 19.95 $
+2. DVD - Star Wars - Science Fiction - George Lucas - 87: 24.95 $
+3. DVD - Aladdin - Animation -  - 0: 18.99 $
+Total cost: 63.89 $
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ git branch --show-current
+bugfix/revert-show-added-title
+
+[exit 0]
+
+$ git push -u origin bugfix/revert-show-added-title
+remote: 
+remote: Create a pull request for 'bugfix/revert-show-added-title' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/bugfix/revert-show-added-title        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      bugfix/revert-show-added-title -> bugfix/revert-show-added-title
+branch 'bugfix/revert-show-added-title' set up to track 'origin/bugfix/revert-show-added-title'.
+
+[exit 0]
+
+$ gh pr create --base master --head bugfix/revert-show-added-title --title fix: thực hành revert merge hiển thị tên DVD --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/13
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/13 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   833c51b..248fee6  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating 833c51b..248fee6
+Fast-forward
+ aims/cart.py                     |  2 +-
+ docs/evidence/lab03-conflict.log | 47 ----------------------------------------
+ 2 files changed, 1 insertion(+), 48 deletions(-)
+ delete mode 100644 docs/evidence/lab03-conflict.log
+
+[exit 0]
+
+$ git switch -c topic/lab03-answers
+Switched to a new branch 'topic/lab03-answers'
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m docs: explain Lab 03 bugs conflict reset reflog and revert
+[topic/lab03-answers e274189] docs: explain Lab 03 bugs conflict reset reflog and revert
+ 2 files changed, 1427 insertions(+)
+ create mode 100644 docs/answers-lab03.md
+ create mode 100644 docs/evidence/lab03.log
+
+[exit 0]
+
+$ git branch --show-current
+topic/lab03-answers
+
+[exit 0]
+
+$ git push -u origin topic/lab03-answers
+remote: 
+remote: Create a pull request for 'topic/lab03-answers' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/topic/lab03-answers        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      topic/lab03-answers -> topic/lab03-answers
+branch 'topic/lab03-answers' set up to track 'origin/topic/lab03-answers'.
+
+[exit 0]
+
+$ gh pr create --base master --head topic/lab03-answers --title docs: tổng kết Lab 03 và bằng chứng thực hành --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/14
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/14 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   248fee6..e60daa5  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating 248fee6..e60daa5
+Fast-forward
+ docs/answers-lab03.md   |   13 +
+ docs/evidence/lab03.log | 1414 +++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 1427 insertions(+)
+ create mode 100644 docs/answers-lab03.md
+ create mode 100644 docs/evidence/lab03.log
+
+[exit 0]
+
+$ git branch release/lab03
+
+[exit 0]
+
+$ git push origin release/lab03
+remote: 
+remote: Create a pull request for 'release/lab03' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/release/lab03        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      release/lab03 -> release/lab03
+
+[exit 0]
+
+$ git switch -c topic/prepare-release-1.0.0
+Switched to a new branch 'topic/prepare-release-1.0.0'
+
+[exit 0]
+
+$ python3.12 main.py
+AIMS-mini v1.0.0
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+1. DVD - The Lion King - Animation - Roger Allers - 87: 19.95 $
+2. DVD - Star Wars - Science Fiction - George Lucas - 87: 24.95 $
+3. DVD - Aladdin - Animation -  - 0: 18.99 $
+Total cost: 63.89 $
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m chore: prepare version 1.0.0 with changelog and Lab 04 answers
+[topic/prepare-release-1.0.0 6012750] chore: prepare version 1.0.0 with changelog and Lab 04 answers
+ 5 files changed, 44 insertions(+)
+ create mode 100644 CHANGELOG.md
+ create mode 100644 docs/answers-lab04.md
+ create mode 100644 tests/test_search.py
+
+[exit 0]
+
+$ git branch --show-current
+topic/prepare-release-1.0.0
+
+[exit 0]
+
+$ git push -u origin topic/prepare-release-1.0.0
+remote: 
+remote: Create a pull request for 'topic/prepare-release-1.0.0' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/topic/prepare-release-1.0.0        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      topic/prepare-release-1.0.0 -> topic/prepare-release-1.0.0
+branch 'topic/prepare-release-1.0.0' set up to track 'origin/topic/prepare-release-1.0.0'.
+
+[exit 0]
+
+$ gh pr create --base master --head topic/prepare-release-1.0.0 --title chore: chuẩn bị baseline 1.0.0 --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/15
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/15 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   e60daa5..146e3cc  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating e60daa5..146e3cc
+Fast-forward
+ CHANGELOG.md          | 18 ++++++++++++++++++
+ aims/__init__.py      |  1 +
+ docs/answers-lab04.md | 10 ++++++++++
+ main.py               |  2 ++
+ tests/test_search.py  | 13 +++++++++++++
+ 5 files changed, 44 insertions(+)
+ create mode 100644 CHANGELOG.md
+ create mode 100644 docs/answers-lab04.md
+ create mode 100644 tests/test_search.py
+
+[exit 0]
+
+$ git branch release/lab04
+
+[exit 0]
+
+$ git push origin release/lab04
+remote: 
+remote: Create a pull request for 'release/lab04' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/release/lab04        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      release/lab04 -> release/lab04
+
+[exit 0]
+
+$ gh api graphql -f query=query { repository(owner:"duongtanminh1912",name:"it3180-202416560-aims") { id } } --jq .data.repository.id
+R_kgDOVkJPRQ
+
+[exit 0]
+
+$ gh api graphql -f query=mutation($id:ID!){createBranchProtectionRule(input:{repositoryId:$id,pattern:"release/*",requiresApprovingReviews:true,requiredApprovingReviewCount:0,dismissesStaleReviews:true,isAdminEnforced:true,allowsForcePushes:false,allowsDeletions:false}){branchProtectionRule{id pattern}}} -f id=R_kgDOVkJPRQ
+{"data":{"createBranchProtectionRule":{"branchProtectionRule":{"id":"BPR_kwDOVkJPRc4FHkZB","pattern":"release/*"}}}}
+[exit 0]
+
+$ git tag -a v0.1.0 release/lab01 -m AIMS-mini v0.1.0 — baseline IT3180
+
+[exit 0]
+
+$ git push origin refs/tags/v0.1.0
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new tag]         v0.1.0 -> v0.1.0
+
+[exit 0]
+
+$ git tag -a v0.2.0 release/lab02 -m AIMS-mini v0.2.0 — baseline IT3180
+
+[exit 0]
+
+$ git push origin refs/tags/v0.2.0
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new tag]         v0.2.0 -> v0.2.0
+
+[exit 0]
+
+$ git tag -a v0.3.0 release/lab03 -m AIMS-mini v0.3.0 — baseline IT3180
+
+[exit 0]
+
+$ git push origin refs/tags/v0.3.0
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new tag]         v0.3.0 -> v0.3.0
+
+[exit 0]
+
+$ git tag -a v1.0.0 release/lab04 -m AIMS-mini v1.0.0 — baseline IT3180
+
+[exit 0]
+
+$ git push origin refs/tags/v1.0.0
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new tag]         v1.0.0 -> v1.0.0
+
+[exit 0]
+
+$ gh release create v1.0.0 --verify-tag --title AIMS-mini 1.0.0 --notes-file /private/tmp/it3180-release-notes.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/releases/tag/v1.0.0
+
+[exit 0]
+
+$ git switch -c feature/sort-cart
+Switched to a new branch 'feature/sort-cart'
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_sort_by_cost_in_place_and_stable (test_cart.CartTests.test_sort_by_cost_in_place_and_stable) ... ok
+test_sort_by_title_in_place (test_cart.CartTests.test_sort_by_title_in_place) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m feat: sort cart in place by title and cost with tests
+[feature/sort-cart 024a04e] feat: sort cart in place by title and cost with tests
+ 3 files changed, 33 insertions(+)
+
+[exit 0]
+
+$ git branch --show-current
+feature/sort-cart
+
+[exit 0]
+
+$ git push -u origin feature/sort-cart
+remote: 
+remote: Create a pull request for 'feature/sort-cart' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/feature/sort-cart        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      feature/sort-cart -> feature/sort-cart
+branch 'feature/sort-cart' set up to track 'origin/feature/sort-cart'.
+
+[exit 0]
+
+$ gh pr create --base master --head feature/sort-cart --title feat: sắp xếp giỏ hàng cho dòng phát triển tiếp --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/16
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/16 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   146e3cc..b40152b  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating 146e3cc..b40152b
+Fast-forward
+ CHANGELOG.md       |  3 +++
+ aims/cart.py       |  8 ++++++++
+ tests/test_cart.py | 22 ++++++++++++++++++++++
+ 3 files changed, 33 insertions(+)
+
+[exit 0]
+
+$ git switch -c topic/lab04-audit
+Switched to a new branch 'topic/lab04-audit'
+
+[exit 0]
+
+$ git log --oneline release/lab04..master
+b40152b Merge pull request #16 from duongtanminh1912/feature/sort-cart
+024a04e feat: sort cart in place by title and cost with tests
+
+[exit 0]
+
+$ git log --oneline master..release/lab04
+
+[exit 0]
+
+$ git diff --stat v0.3.0 v1.0.0
+ CHANGELOG.md          | 18 ++++++++++++++++++
+ aims/__init__.py      |  1 +
+ docs/answers-lab04.md | 10 ++++++++++
+ main.py               |  2 ++
+ tests/test_search.py  | 13 +++++++++++++
+ 5 files changed, 44 insertions(+)
+
+[exit 0]
+
+$ git diff --stat v1.0.0 master
+ CHANGELOG.md       |  3 +++
+ aims/cart.py       |  8 ++++++++
+ tests/test_cart.py | 22 ++++++++++++++++++++++
+ 3 files changed, 33 insertions(+)
+
+[exit 0]
+
+$ git describe --tags
+v1.0.0-2-gb40152b
+
+[exit 0]
+
+$ git worktree add --detach /private/tmp/it3180-v1.0.0 v1.0.0
+Preparing worktree (detached HEAD 146e3cc)
+HEAD is now at 146e3cc Merge pull request #15 from duongtanminh1912/topic/prepare-release-1.0.0
+
+[exit 0]
+
+$ python3.12 /private/tmp/it3180-v1.0.0/main.py
+AIMS-mini v1.0.0
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+1. DVD - The Lion King - Animation - Roger Allers - 87: 19.95 $
+2. DVD - Star Wars - Science Fiction - George Lucas - 87: 24.95 $
+3. DVD - Aladdin - Animation -  - 0: 18.99 $
+Total cost: 63.89 $
+
+[exit 0]
+
+$ python3.12 -c import os,sys,unittest; os.chdir('/private/tmp/it3180-v1.0.0'); sys.path.insert(0,os.getcwd()); import aims; from aims.cart import Cart; print("version", aims.__version__); assert aims.__version__ == "1.0.0"; assert not hasattr(Cart,"sort_by_title"); assert not hasattr(Cart,"sort_by_cost"); result=unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.discover("tests")); sys.exit(not result.wasSuccessful())
+version 1.0.0
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ git ls-tree -r --name-only v1.0.0
+.gitattributes
+.github/pull_request_template.md
+.gitignore
+CHANGELOG.md
+README.md
+aims/__init__.py
+aims/cart.py
+aims/dvd.py
+aims/search.py
+docs/answers-lab01.md
+docs/answers-lab02.md
+docs/answers-lab03.md
+docs/answers-lab04.md
+docs/evidence/lab01.log
+docs/evidence/lab02.log
+docs/evidence/lab03-limit-fail.log
+docs/evidence/lab03-limit-pass.log
+docs/evidence/lab03.log
+docs/github-todo.md
+docs/submission-checklist.md
+docs/use-case.md
+main.py
+tests/test_cart.py
+tests/test_search.py
+
+[exit 0]
+
+$ git show v1.0.0:CHANGELOG.md
+# Changelog
+
+Theo Keep a Changelog; phiên bản tuân theo SemVer. Ngày theo Asia/Ho_Chi_Minh.
+
+## [Unreleased]
+
+## [1.0.0] - 2026-11-05
+
+### Added
+- Mô hình DVD, giỏ hàng, thêm/xóa, tính tổng và hiển thị giỏ.
+- Tìm kiếm theo tên (phân biệt hoa thường ở baseline này).
+- Tính tổng sau giảm giá với kiểm tra phần trăm 0–100.
+- Đóng gói aims, sơ đồ use case, tài liệu và kiểm thử unittest.
+
+### Fixed
+- Từ chối DVD thứ 21, giữ giới hạn 20 DVD.
+- Công thức giảm giá trả số tiền còn lại, kiểm tra phần trăm ngoài giới hạn.
+- Kết hợp xung đột thông báo, sau đó revert phần hiển thị tên DVD để thực hành; giữ thông báo tiếng Việt.
+
+[exit 0]
+
+$ python3.12 -c from aims.cart import Cart; assert hasattr(Cart,"sort_by_title"); assert hasattr(Cart,"sort_by_cost"); print("master has sorting, v1.0.0 does not")
+master has sorting, v1.0.0 does not
+
+[exit 0]
+
+$ git archive --format=tar.gz --prefix=aims-mini-1.0.0/ --output=/private/tmp/aims-mini-1.0.0.tar.gz v1.0.0
+
+[exit 0]
+
+$ gh release upload v1.0.0 /private/tmp/aims-mini-1.0.0.tar.gz
+
+[exit 0]
+
+$ git cat-file -t v1.0.0
+tag
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m docs: audit 1.0.0 worktree archive and release divergence before hotfix
+[topic/lab04-audit 60e7c5c] docs: audit 1.0.0 worktree archive and release divergence before hotfix
+ 1 file changed, 1868 insertions(+)
+ create mode 100644 docs/evidence/lab04.log
+
+[exit 0]
+
+$ git branch --show-current
+topic/lab04-audit
+
+[exit 0]
+
+$ git push -u origin topic/lab04-audit
+remote: 
+remote: Create a pull request for 'topic/lab04-audit' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/topic/lab04-audit        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      topic/lab04-audit -> topic/lab04-audit
+branch 'topic/lab04-audit' set up to track 'origin/topic/lab04-audit'.
+
+[exit 0]
+
+$ gh pr create --base master --head topic/lab04-audit --title docs: bằng chứng audit Lab 04 trước hotfix --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/17
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/17 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   b40152b..c0ac12a  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating b40152b..c0ac12a
+Fast-forward
+ docs/evidence/lab04.log | 1868 +++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 1868 insertions(+)
+ create mode 100644 docs/evidence/lab04.log
+
+[exit 0]
+
+$ git switch -c feature/search-by-category
+Switched to a new branch 'feature/search-by-category'
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_sort_by_cost_in_place_and_stable (test_cart.CartTests.test_sort_by_cost_in_place_and_stable) ... ok
+test_sort_by_title_in_place (test_cart.CartTests.test_sort_by_title_in_place) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_category_exact_case_insensitive (test_search.CategorySearchTests.test_category_exact_case_insensitive) ... ok
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m feat: search DVDs by category with regression tests
+[feature/search-by-category 2d430c6] feat: search DVDs by category with regression tests
+ 3 files changed, 16 insertions(+), 1 deletion(-)
+
+[exit 0]
+
+$ git branch --show-current
+feature/search-by-category
+
+[exit 0]
+
+$ git push -u origin feature/search-by-category
+remote: 
+remote: Create a pull request for 'feature/search-by-category' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/feature/search-by-category        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      feature/search-by-category -> feature/search-by-category
+branch 'feature/search-by-category' set up to track 'origin/feature/search-by-category'.
+
+[exit 0]
+
+$ gh pr create --base master --head feature/search-by-category --title feat: tìm DVD theo thể loại --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/18
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/18 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   c0ac12a..bc64112  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating c0ac12a..bc64112
+Fast-forward
+ CHANGELOG.md         |  1 +
+ aims/search.py       |  5 +++++
+ tests/test_search.py | 11 ++++++++++-
+ 3 files changed, 16 insertions(+), 1 deletion(-)
+
+[exit 0]
+
+$ git switch -c topic/prepare-release-1.1.0
+Switched to a new branch 'topic/prepare-release-1.1.0'
+
+[exit 0]
+
+$ python3.12 main.py
+AIMS-mini v1.1.0
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+1. DVD - The Lion King - Animation - Roger Allers - 87: 19.95 $
+2. DVD - Star Wars - Science Fiction - George Lucas - 87: 24.95 $
+3. DVD - Aladdin - Animation -  - 0: 18.99 $
+Total cost: 63.89 $
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_sort_by_cost_in_place_and_stable (test_cart.CartTests.test_sort_by_cost_in_place_and_stable) ... ok
+test_sort_by_title_in_place (test_cart.CartTests.test_sort_by_title_in_place) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_category_exact_case_insensitive (test_search.CategorySearchTests.test_category_exact_case_insensitive) ... ok
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m chore: prepare version 1.1.0 and Lab 05 maintenance answers
+[topic/prepare-release-1.1.0 5250ea2] chore: prepare version 1.1.0 and Lab 05 maintenance answers
+ 3 files changed, 16 insertions(+), 1 deletion(-)
+ create mode 100644 docs/answers-lab05.md
+
+[exit 0]
+
+$ git branch --show-current
+topic/prepare-release-1.1.0
+
+[exit 0]
+
+$ git push -u origin topic/prepare-release-1.1.0
+remote: 
+remote: Create a pull request for 'topic/prepare-release-1.1.0' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/topic/prepare-release-1.1.0        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      topic/prepare-release-1.1.0 -> topic/prepare-release-1.1.0
+branch 'topic/prepare-release-1.1.0' set up to track 'origin/topic/prepare-release-1.1.0'.
+
+[exit 0]
+
+$ gh pr create --base master --head topic/prepare-release-1.1.0 --title chore: chuẩn bị release 1.1.0 và tài liệu Lab 05 --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/19
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/19 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   bc64112..d413a5f  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating bc64112..d413a5f
+Fast-forward
+ CHANGELOG.md          |  2 ++
+ aims/__init__.py      |  2 +-
+ docs/answers-lab05.md | 13 +++++++++++++
+ 3 files changed, 16 insertions(+), 1 deletion(-)
+ create mode 100644 docs/answers-lab05.md
+
+[exit 0]
+
+$ git branch release/lab05
+
+[exit 0]
+
+$ git push origin release/lab05
+remote: 
+remote: Create a pull request for 'release/lab05' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/release/lab05        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      release/lab05 -> release/lab05
+
+[exit 0]
+
+$ gh issue create --title bug: tìm lion không thấy The Lion King tại 1.0.0 --body search_by_title phân biệt hoa thường. v1.0.0, master, release/lab04, release/lab05 bị ảnh hưởng. Mong đợi tìm lion trả đúng The Lion King.
+https://github.com/duongtanminh1912/it3180-202416560-aims/issues/20
+
+[exit 0]
+
+$ git worktree add --detach /private/tmp/it3180-before-v1-0-0 v1.0.0
+Preparing worktree (detached HEAD 146e3cc)
+HEAD is now at 146e3cc Merge pull request #15 from duongtanminh1912/topic/prepare-release-1.0.0
+
+[exit 0]
+
+$ python3.12 -c import os,sys; os.chdir('/private/tmp/it3180-before-v1-0-0'); sys.path.insert(0,os.getcwd()); from aims.search import search_by_title; from aims.dvd import DigitalVideoDisc; result=search_by_title([DigitalVideoDisc("The Lion King")],"lion"); print('v1.0.0', result); assert result == []
+v1.0.0 []
+
+[exit 0]
+
+$ git worktree add --detach /private/tmp/it3180-before-master master
+Preparing worktree (detached HEAD d413a5f)
+HEAD is now at d413a5f Merge pull request #19 from duongtanminh1912/topic/prepare-release-1.1.0
+
+[exit 0]
+
+$ python3.12 -c import os,sys; os.chdir('/private/tmp/it3180-before-master'); sys.path.insert(0,os.getcwd()); from aims.search import search_by_title; from aims.dvd import DigitalVideoDisc; result=search_by_title([DigitalVideoDisc("The Lion King")],"lion"); print('master', result); assert result == []
+master []
+
+[exit 0]
+
+$ git worktree add --detach /private/tmp/it3180-before-release-lab04 release/lab04
+Preparing worktree (detached HEAD 146e3cc)
+HEAD is now at 146e3cc Merge pull request #15 from duongtanminh1912/topic/prepare-release-1.0.0
+
+[exit 0]
+
+$ python3.12 -c import os,sys; os.chdir('/private/tmp/it3180-before-release-lab04'); sys.path.insert(0,os.getcwd()); from aims.search import search_by_title; from aims.dvd import DigitalVideoDisc; result=search_by_title([DigitalVideoDisc("The Lion King")],"lion"); print('release/lab04', result); assert result == []
+release/lab04 []
+
+[exit 0]
+
+$ git worktree add --detach /private/tmp/it3180-before-release-lab05 release/lab05
+Preparing worktree (detached HEAD d413a5f)
+HEAD is now at d413a5f Merge pull request #19 from duongtanminh1912/topic/prepare-release-1.1.0
+
+[exit 0]
+
+$ python3.12 -c import os,sys; os.chdir('/private/tmp/it3180-before-release-lab05'); sys.path.insert(0,os.getcwd()); from aims.search import search_by_title; from aims.dvd import DigitalVideoDisc; result=search_by_title([DigitalVideoDisc("The Lion King")],"lion"); print('release/lab05', result); assert result == []
+release/lab05 []
+
+[exit 0]
+
+$ git switch -c hotfix/search-case-insensitive release/lab04
+Switched to a new branch 'hotfix/search-case-insensitive'
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_lowercase_keyword_matches_title (test_search.TitleSearchTests.test_lowercase_keyword_matches_title) ... FAIL
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+======================================================================
+FAIL: test_lowercase_keyword_matches_title (test_search.TitleSearchTests.test_lowercase_keyword_matches_title)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/duongtanminh/Downloads/aims-mini-starter/tests/test_search.py", line 17, in test_lowercase_keyword_matches_title
+    self.assertEqual(search_by_title([dvd], "lion"), [dvd])
+AssertionError: Lists differ: [] != [<aims.dvd.DigitalVideoDisc object at 0x10a11fe60>]
+
+Second list contains 1 additional elements.
+First extra element 0:
+<aims.dvd.DigitalVideoDisc object at 0x10a11fe60>
+
+- []
++ [<aims.dvd.DigitalVideoDisc object at 0x10a11fe60>]
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.001s
+
+FAILED (failures=1)
+
+[exit 1]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_lowercase_keyword_matches_title (test_search.TitleSearchTests.test_lowercase_keyword_matches_title) ... ok
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m fix: make title search case insensitive with regression test
+[hotfix/search-case-insensitive e8a185b] fix: make title search case insensitive with regression test
+ 2 files changed, 7 insertions(+), 2 deletions(-)
+
+[exit 0]
+
+$ git rev-parse HEAD
+e8a185b82f140029cd2cfc4dcba9ac79cca2b743
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m chore: release patch version 1.0.1
+[hotfix/search-case-insensitive 2e0b434] chore: release patch version 1.0.1
+ 2 files changed, 6 insertions(+), 1 deletion(-)
+
+[exit 0]
+
+$ git branch --show-current
+hotfix/search-case-insensitive
+
+[exit 0]
+
+$ git push -u origin hotfix/search-case-insensitive
+remote: 
+remote: Create a pull request for 'hotfix/search-case-insensitive' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/hotfix/search-case-insensitive        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      hotfix/search-case-insensitive -> hotfix/search-case-insensitive
+branch 'hotfix/search-case-insensitive' set up to track 'origin/hotfix/search-case-insensitive'.
+
+[exit 0]
+
+$ gh pr create --base release/lab04 --head hotfix/search-case-insensitive --title fix: vá tìm kiếm cho dòng 1.0.x --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/21
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/21 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   146e3cc..c15ec06  release/lab04 -> origin/release/lab04
+
+[exit 0]
+
+$ git switch release/lab04
+Switched to branch 'release/lab04'
+
+[exit 0]
+
+$ git merge --ff-only origin/release/lab04
+Updating 146e3cc..c15ec06
+Fast-forward
+ CHANGELOG.md         | 5 +++++
+ aims/__init__.py     | 2 +-
+ aims/search.py       | 4 ++--
+ tests/test_search.py | 5 +++++
+ 4 files changed, 13 insertions(+), 3 deletions(-)
+
+[exit 0]
+
+$ git diff --name-only v1.0.0 release/lab04
+CHANGELOG.md
+aims/__init__.py
+aims/search.py
+tests/test_search.py
+
+[exit 0]
+
+$ git tag -a v1.0.1 release/lab04 -m AIMS-mini 1.0.1 — case-insensitive search hotfix
+
+[exit 0]
+
+$ git push origin refs/tags/v1.0.1
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new tag]         v1.0.1 -> v1.0.1
+
+[exit 0]
+
+$ gh release create v1.0.1 --verify-tag --title AIMS-mini 1.0.1 --notes-file /private/tmp/it3180-patch-notes.md --latest=false
+https://github.com/duongtanminh1912/it3180-202416560-aims/releases/tag/v1.0.1
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git switch -c hotfix/search-case-insensitive-master
+Switched to a new branch 'hotfix/search-case-insensitive-master'
+
+[exit 0]
+
+$ git cherry-pick -x e8a185b82f140029cd2cfc4dcba9ac79cca2b743
+Auto-merging aims/search.py
+Auto-merging tests/test_search.py
+[hotfix/search-case-insensitive-master 6604524] fix: make title search case insensitive with regression test
+ Date: Thu Nov 5 22:49:57 2026 +0700
+ 2 files changed, 7 insertions(+), 2 deletions(-)
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m docs: record forward-ported 1.0.1 patch without changing 1.1.0 version
+[hotfix/search-case-insensitive-master f181751] docs: record forward-ported 1.0.1 patch without changing 1.1.0 version
+ 1 file changed, 8 insertions(+)
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_sort_by_cost_in_place_and_stable (test_cart.CartTests.test_sort_by_cost_in_place_and_stable) ... ok
+test_sort_by_title_in_place (test_cart.CartTests.test_sort_by_title_in_place) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_category_exact_case_insensitive (test_search.CategorySearchTests.test_category_exact_case_insensitive) ... ok
+test_lowercase_keyword_matches_title (test_search.TitleSearchTests.test_lowercase_keyword_matches_title) ... ok
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ git branch --show-current
+hotfix/search-case-insensitive-master
+
+[exit 0]
+
+$ git push -u origin hotfix/search-case-insensitive-master
+remote: 
+remote: Create a pull request for 'hotfix/search-case-insensitive-master' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/hotfix/search-case-insensitive-master        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      hotfix/search-case-insensitive-master -> hotfix/search-case-insensitive-master
+branch 'hotfix/search-case-insensitive-master' set up to track 'origin/hotfix/search-case-insensitive-master'.
+
+[exit 0]
+
+$ gh pr create --base master --head hotfix/search-case-insensitive-master --title fix: chuyển bản vá tìm kiếm lên master --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/22
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/22 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   d413a5f..eaa7613  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating d413a5f..eaa7613
+Fast-forward
+ CHANGELOG.md         | 8 ++++++++
+ aims/search.py       | 4 ++--
+ tests/test_search.py | 5 +++++
+ 3 files changed, 15 insertions(+), 2 deletions(-)
+
+[exit 0]
+
+$ gh issue view 20 --json state,closedAt,url
+{"closedAt":null,"state":"OPEN","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/issues/20"}
+
+[exit 0]
+
+$ git switch -c hotfix/search-case-insensitive-lab05 release/lab05
+Switched to a new branch 'hotfix/search-case-insensitive-lab05'
+
+[exit 0]
+
+$ git cherry-pick -x e8a185b82f140029cd2cfc4dcba9ac79cca2b743
+Auto-merging aims/search.py
+Auto-merging tests/test_search.py
+[hotfix/search-case-insensitive-lab05 df7abd3] fix: make title search case insensitive with regression test
+ Date: Thu Nov 5 22:49:57 2026 +0700
+ 2 files changed, 7 insertions(+), 2 deletions(-)
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m docs: record title search patch in 1.1.0 release changelog
+[hotfix/search-case-insensitive-lab05 65ed8dc] docs: record title search patch in 1.1.0 release changelog
+ 1 file changed, 4 insertions(+)
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_sort_by_cost_in_place_and_stable (test_cart.CartTests.test_sort_by_cost_in_place_and_stable) ... ok
+test_sort_by_title_in_place (test_cart.CartTests.test_sort_by_title_in_place) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_category_exact_case_insensitive (test_search.CategorySearchTests.test_category_exact_case_insensitive) ... ok
+test_lowercase_keyword_matches_title (test_search.TitleSearchTests.test_lowercase_keyword_matches_title) ... ok
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ git branch --show-current
+hotfix/search-case-insensitive-lab05
+
+[exit 0]
+
+$ git push -u origin hotfix/search-case-insensitive-lab05
+remote: 
+remote: Create a pull request for 'hotfix/search-case-insensitive-lab05' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/hotfix/search-case-insensitive-lab05        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      hotfix/search-case-insensitive-lab05 -> hotfix/search-case-insensitive-lab05
+branch 'hotfix/search-case-insensitive-lab05' set up to track 'origin/hotfix/search-case-insensitive-lab05'.
+
+[exit 0]
+
+$ gh pr create --base release/lab05 --head hotfix/search-case-insensitive-lab05 --title fix: chuyển bản vá tìm kiếm sang release/lab05 --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/23
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/23 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   d413a5f..dd0a56c  release/lab05 -> origin/release/lab05
+
+[exit 0]
+
+$ git switch release/lab05
+Switched to branch 'release/lab05'
+
+[exit 0]
+
+$ git merge --ff-only origin/release/lab05
+Updating d413a5f..dd0a56c
+Fast-forward
+ CHANGELOG.md         | 4 ++++
+ aims/search.py       | 4 ++--
+ tests/test_search.py | 5 +++++
+ 3 files changed, 11 insertions(+), 2 deletions(-)
+
+[exit 0]
+
+$ git tag -a v1.1.0 release/lab05 -m AIMS-mini 1.1.0 — sorting category and search fix
+
+[exit 0]
+
+$ git push origin refs/tags/v1.1.0
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new tag]         v1.1.0 -> v1.1.0
+
+[exit 0]
+
+$ gh release create v1.1.0 --verify-tag --title AIMS-mini 1.1.0 --notes-file /private/tmp/it3180-1.1-notes.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/releases/tag/v1.1.0
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git switch -c topic/hotfix-audit
+Switched to a new branch 'topic/hotfix-audit'
+
+[exit 0]
+
+$ git log --all --oneline --grep=cherry picked from commit
+df7abd3 fix: make title search case insensitive with regression test
+6604524 fix: make title search case insensitive with regression test
+
+[exit 0]
+
+$ git tag --contains e8a185b82f140029cd2cfc4dcba9ac79cca2b743
+v1.0.1
+
+[exit 0]
+
+$ git cherry -v master release/lab04
+- e8a185b82f140029cd2cfc4dcba9ac79cca2b743 fix: make title search case insensitive with regression test
++ 2e0b4342d319e1c65d180cfe6a6d6c89e4ba0a0a chore: release patch version 1.0.1
+
+[exit 0]
+
+$ git worktree add --detach /private/tmp/it3180-final-v1-0-1 v1.0.1
+Preparing worktree (detached HEAD c15ec06)
+HEAD is now at c15ec06 Merge pull request #21 from duongtanminh1912/hotfix/search-case-insensitive
+
+[exit 0]
+
+$ python3.12 -c import os,sys,unittest
+os.chdir('/private/tmp/it3180-final-v1-0-1');sys.path.insert(0,os.getcwd())
+import aims
+from aims.cart import Cart
+from aims.dvd import DigitalVideoDisc
+from aims.search import search_by_title
+import aims.search as search
+print('v1.0.1', "version", aims.__version__)
+assert aims.__version__=='1.0.1'
+result=search_by_title([DigitalVideoDisc("The Lion King")],"lion")
+print("lion:", [dvd.title for dvd in result]);assert len(result)==1
+assert hasattr(Cart,"sort_by_title")==('1.0.1'=="1.1.0")
+assert hasattr(search,"search_by_category")==('1.0.1'=="1.1.0")
+suite=unittest.defaultTestLoader.discover("tests");print("tests",suite.countTestCases());result=unittest.TextTestRunner(verbosity=2).run(suite);sys.exit(not result.wasSuccessful())
+
+v1.0.1 version 1.0.1
+lion: ['The Lion King']
+tests 7
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_lowercase_keyword_matches_title (test_search.TitleSearchTests.test_lowercase_keyword_matches_title) ... ok
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ python3.12 /private/tmp/it3180-final-v1-0-1/main.py
+AIMS-mini v1.0.1
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+1. DVD - The Lion King - Animation - Roger Allers - 87: 19.95 $
+2. DVD - Star Wars - Science Fiction - George Lucas - 87: 24.95 $
+3. DVD - Aladdin - Animation -  - 0: 18.99 $
+Total cost: 63.89 $
+
+[exit 0]
+
+$ git worktree add --detach /private/tmp/it3180-final-v1-1-0 v1.1.0
+Preparing worktree (detached HEAD dd0a56c)
+HEAD is now at dd0a56c Merge pull request #23 from duongtanminh1912/hotfix/search-case-insensitive-lab05
+
+[exit 0]
+
+$ python3.12 -c import os,sys,unittest
+os.chdir('/private/tmp/it3180-final-v1-1-0');sys.path.insert(0,os.getcwd())
+import aims
+from aims.cart import Cart
+from aims.dvd import DigitalVideoDisc
+from aims.search import search_by_title
+import aims.search as search
+print('v1.1.0', "version", aims.__version__)
+assert aims.__version__=='1.1.0'
+result=search_by_title([DigitalVideoDisc("The Lion King")],"lion")
+print("lion:", [dvd.title for dvd in result]);assert len(result)==1
+assert hasattr(Cart,"sort_by_title")==('1.1.0'=="1.1.0")
+assert hasattr(search,"search_by_category")==('1.1.0'=="1.1.0")
+suite=unittest.defaultTestLoader.discover("tests");print("tests",suite.countTestCases());result=unittest.TextTestRunner(verbosity=2).run(suite);sys.exit(not result.wasSuccessful())
+
+v1.1.0 version 1.1.0
+lion: ['The Lion King']
+tests 10
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_sort_by_cost_in_place_and_stable (test_cart.CartTests.test_sort_by_cost_in_place_and_stable) ... ok
+test_sort_by_title_in_place (test_cart.CartTests.test_sort_by_title_in_place) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_category_exact_case_insensitive (test_search.CategorySearchTests.test_category_exact_case_insensitive) ... ok
+test_lowercase_keyword_matches_title (test_search.TitleSearchTests.test_lowercase_keyword_matches_title) ... ok
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ python3.12 /private/tmp/it3180-final-v1-1-0/main.py
+AIMS-mini v1.1.0
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+1. DVD - The Lion King - Animation - Roger Allers - 87: 19.95 $
+2. DVD - Star Wars - Science Fiction - George Lucas - 87: 24.95 $
+3. DVD - Aladdin - Animation -  - 0: 18.99 $
+Total cost: 63.89 $
+
+[exit 0]
+
+$ git worktree add --detach /private/tmp/it3180-final-master master
+Preparing worktree (detached HEAD eaa7613)
+HEAD is now at eaa7613 Merge pull request #22 from duongtanminh1912/hotfix/search-case-insensitive-master
+
+[exit 0]
+
+$ python3.12 -c import os,sys,unittest
+os.chdir('/private/tmp/it3180-final-master');sys.path.insert(0,os.getcwd())
+import aims
+from aims.cart import Cart
+from aims.dvd import DigitalVideoDisc
+from aims.search import search_by_title
+import aims.search as search
+print('master', "version", aims.__version__)
+assert aims.__version__=='1.1.0'
+result=search_by_title([DigitalVideoDisc("The Lion King")],"lion")
+print("lion:", [dvd.title for dvd in result]);assert len(result)==1
+assert hasattr(Cart,"sort_by_title")==('1.1.0'=="1.1.0")
+assert hasattr(search,"search_by_category")==('1.1.0'=="1.1.0")
+suite=unittest.defaultTestLoader.discover("tests");print("tests",suite.countTestCases());result=unittest.TextTestRunner(verbosity=2).run(suite);sys.exit(not result.wasSuccessful())
+
+master version 1.1.0
+lion: ['The Lion King']
+tests 10
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_sort_by_cost_in_place_and_stable (test_cart.CartTests.test_sort_by_cost_in_place_and_stable) ... ok
+test_sort_by_title_in_place (test_cart.CartTests.test_sort_by_title_in_place) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_category_exact_case_insensitive (test_search.CategorySearchTests.test_category_exact_case_insensitive) ... ok
+test_lowercase_keyword_matches_title (test_search.TitleSearchTests.test_lowercase_keyword_matches_title) ... ok
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ python3.12 /private/tmp/it3180-final-master/main.py
+AIMS-mini v1.1.0
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+1. DVD - The Lion King - Animation - Roger Allers - 87: 19.95 $
+2. DVD - Star Wars - Science Fiction - George Lucas - 87: 24.95 $
+3. DVD - Aladdin - Animation -  - 0: 18.99 $
+Total cost: 63.89 $
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m docs: record real hotfix SHA and cross-version worktree audit
+[topic/hotfix-audit 7c4efcb] docs: record real hotfix SHA and cross-version worktree audit
+ 2 files changed, 2711 insertions(+)
+ create mode 100644 docs/evidence/lab05-hotfix.log
+ create mode 100644 docs/hotfix-audit.md
+
+[exit 0]
+
+$ git branch --show-current
+topic/hotfix-audit
+
+[exit 0]
+
+$ git push -u origin topic/hotfix-audit
+remote: 
+remote: Create a pull request for 'topic/hotfix-audit' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/topic/hotfix-audit        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      topic/hotfix-audit -> topic/hotfix-audit
+branch 'topic/hotfix-audit' set up to track 'origin/topic/hotfix-audit'.
+
+[exit 0]
+
+$ gh pr create --base master --head topic/hotfix-audit --title docs: audit bản vá trên ba dòng phiên bản --body-file /private/tmp/it3180-pr-body.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/24
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/24 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   eaa7613..73329f1  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating eaa7613..73329f1
+Fast-forward
+ docs/evidence/lab05-hotfix.log | 2695 ++++++++++++++++++++++++++++++++++++++++
+ docs/hotfix-audit.md           |   16 +
+ 2 files changed, 2711 insertions(+)
+ create mode 100644 docs/evidence/lab05-hotfix.log
+ create mode 100644 docs/hotfix-audit.md
+
+[exit 0]
+
+$ gh api repos/actions/checkout/git/ref/tags/v7.0.1
+{"ref":"refs/tags/v7.0.1","node_id":"MDM6UmVmMTk3ODE0NjI5OnJlZnMvdGFncy92Ny4wLjE=","url":"https://api.github.com/repos/actions/checkout/git/refs/tags/v7.0.1","object":{"sha":"3d3c42e5aac5ba805825da76410c181273ba90b1","type":"commit","url":"https://api.github.com/repos/actions/checkout/git/commits/3d3c42e5aac5ba805825da76410c181273ba90b1"}}
+[exit 0]
+
+$ gh api repos/actions/checkout/contents/action.yml?ref=v7.0.1 --jq .content
+bmFtZTogJ0NoZWNrb3V0Jw0KZGVzY3JpcHRpb246ICdDaGVja291dCBhIEdp
+dCByZXBvc2l0b3J5IGF0IGEgcGFydGljdWxhciB2ZXJzaW9uJw0KaW5wdXRz
+Og0KICByZXBvc2l0b3J5Og0KICAgIGRlc2NyaXB0aW9uOiAnUmVwb3NpdG9y
+eSBuYW1lIHdpdGggb3duZXIuIEZvciBleGFtcGxlLCBhY3Rpb25zL2NoZWNr
+b3V0Jw0KICAgIGRlZmF1bHQ6ICR7eyBnaXRodWIucmVwb3NpdG9yeSB9fQ0K
+ICByZWY6DQogICAgZGVzY3JpcHRpb246ID4NCiAgICAgIFRoZSBicmFuY2gs
+IHRhZyBvciBTSEEgdG8gY2hlY2tvdXQuIFdoZW4gY2hlY2tpbmcgb3V0IHRo
+ZSByZXBvc2l0b3J5IHRoYXQNCiAgICAgIHRyaWdnZXJlZCBhIHdvcmtmbG93
+LCB0aGlzIGRlZmF1bHRzIHRvIHRoZSByZWZlcmVuY2Ugb3IgU0hBIGZvciB0
+aGF0DQogICAgICBldmVudC4gIE90aGVyd2lzZSwgdXNlcyB0aGUgZGVmYXVs
+dCBicmFuY2guDQogIHRva2VuOg0KICAgIGRlc2NyaXB0aW9uOiA+DQogICAg
+ICBQZXJzb25hbCBhY2Nlc3MgdG9rZW4gKFBBVCkgdXNlZCB0byBmZXRjaCB0
+aGUgcmVwb3NpdG9yeS4gVGhlIFBBVCBpcyBjb25maWd1cmVkDQogICAgICB3
+aXRoIHRoZSBsb2NhbCBnaXQgY29uZmlnLCB3aGljaCBlbmFibGVzIHlvdXIg
+c2NyaXB0cyB0byBydW4gYXV0aGVudGljYXRlZCBnaXQNCiAgICAgIGNvbW1h
+bmRzLiBUaGUgcG9zdC1qb2Igc3RlcCByZW1vdmVzIHRoZSBQQVQuDQoNCg0K
+ICAgICAgV2UgcmVjb21tZW5kIHVzaW5nIGEgc2VydmljZSBhY2NvdW50IHdp
+dGggdGhlIGxlYXN0IHBlcm1pc3Npb25zIG5lY2Vzc2FyeS4NCiAgICAgIEFs
+c28gd2hlbiBnZW5lcmF0aW5nIGEgbmV3IFBBVCwgc2VsZWN0IHRoZSBsZWFz
+dCBzY29wZXMgbmVjZXNzYXJ5Lg0KDQoNCiAgICAgIFtMZWFybiBtb3JlIGFi
+b3V0IGNyZWF0aW5nIGFuZCB1c2luZyBlbmNyeXB0ZWQgc2VjcmV0c10oaHR0
+cHM6Ly9oZWxwLmdpdGh1Yi5jb20vZW4vYWN0aW9ucy9hdXRvbWF0aW5nLXlv
+dXItd29ya2Zsb3ctd2l0aC1naXRodWItYWN0aW9ucy9jcmVhdGluZy1hbmQt
+dXNpbmctZW5jcnlwdGVkLXNlY3JldHMpDQogICAgZGVmYXVsdDogJHt7IGdp
+dGh1Yi50b2tlbiB9fQ0KICBzc2gta2V5Og0KICAgIGRlc2NyaXB0aW9uOiA+
+DQogICAgICBTU0gga2V5IHVzZWQgdG8gZmV0Y2ggdGhlIHJlcG9zaXRvcnku
+IFRoZSBTU0gga2V5IGlzIGNvbmZpZ3VyZWQgd2l0aCB0aGUgbG9jYWwNCiAg
+ICAgIGdpdCBjb25maWcsIHdoaWNoIGVuYWJsZXMgeW91ciBzY3JpcHRzIHRv
+IHJ1biBhdXRoZW50aWNhdGVkIGdpdCBjb21tYW5kcy4NCiAgICAgIFRoZSBw
+b3N0LWpvYiBzdGVwIHJlbW92ZXMgdGhlIFNTSCBrZXkuDQoNCg0KICAgICAg
+V2UgcmVjb21tZW5kIHVzaW5nIGEgc2VydmljZSBhY2NvdW50IHdpdGggdGhl
+IGxlYXN0IHBlcm1pc3Npb25zIG5lY2Vzc2FyeS4NCg0KDQogICAgICBbTGVh
+cm4gbW9yZSBhYm91dCBjcmVhdGluZyBhbmQgdXNpbmcNCiAgICAgIGVuY3J5
+cHRlZCBzZWNyZXRzXShodHRwczovL2hlbHAuZ2l0aHViLmNvbS9lbi9hY3Rp
+b25zL2F1dG9tYXRpbmcteW91ci13b3JrZmxvdy13aXRoLWdpdGh1Yi1hY3Rp
+b25zL2NyZWF0aW5nLWFuZC11c2luZy1lbmNyeXB0ZWQtc2VjcmV0cykNCiAg
+c3NoLWtub3duLWhvc3RzOg0KICAgIGRlc2NyaXB0aW9uOiA+DQogICAgICBL
+bm93biBob3N0cyBpbiBhZGRpdGlvbiB0byB0aGUgdXNlciBhbmQgZ2xvYmFs
+IGhvc3Qga2V5IGRhdGFiYXNlLiBUaGUgcHVibGljDQogICAgICBTU0gga2V5
+cyBmb3IgYSBob3N0IG1heSBiZSBvYnRhaW5lZCB1c2luZyB0aGUgdXRpbGl0
+eSBgc3NoLWtleXNjYW5gLiBGb3IgZXhhbXBsZSwNCiAgICAgIGBzc2gta2V5
+c2NhbiBnaXRodWIuY29tYC4gVGhlIHB1YmxpYyBrZXkgZm9yIGdpdGh1Yi5j
+b20gaXMgYWx3YXlzIGltcGxpY2l0bHkgYWRkZWQuDQogIHNzaC1zdHJpY3Q6
+DQogICAgZGVzY3JpcHRpb246ID4NCiAgICAgIFdoZXRoZXIgdG8gcGVyZm9y
+bSBzdHJpY3QgaG9zdCBrZXkgY2hlY2tpbmcuIFdoZW4gdHJ1ZSwgYWRkcyB0
+aGUgb3B0aW9ucyBgU3RyaWN0SG9zdEtleUNoZWNraW5nPXllc2ANCiAgICAg
+IGFuZCBgQ2hlY2tIb3N0SVA9bm9gIHRvIHRoZSBTU0ggY29tbWFuZCBsaW5l
+LiBVc2UgdGhlIGlucHV0IGBzc2gta25vd24taG9zdHNgIHRvDQogICAgICBj
+b25maWd1cmUgYWRkaXRpb25hbCBob3N0cy4NCiAgICBkZWZhdWx0OiB0cnVl
+DQogIHNzaC11c2VyOg0KICAgIGRlc2NyaXB0aW9uOiA+DQogICAgICBUaGUg
+dXNlciB0byB1c2Ugd2hlbiBjb25uZWN0aW5nIHRvIHRoZSByZW1vdGUgU1NI
+IGhvc3QuIEJ5IGRlZmF1bHQgJ2dpdCcgaXMgdXNlZC4NCiAgICBkZWZhdWx0
+OiBnaXQNCiAgcGVyc2lzdC1jcmVkZW50aWFsczoNCiAgICBkZXNjcmlwdGlv
+bjogJ1doZXRoZXIgdG8gY29uZmlndXJlIHRoZSB0b2tlbiBvciBTU0gga2V5
+IHdpdGggdGhlIGxvY2FsIGdpdCBjb25maWcnDQogICAgZGVmYXVsdDogdHJ1
+ZQ0KICBwYXRoOg0KICAgIGRlc2NyaXB0aW9uOiAnUmVsYXRpdmUgcGF0aCB1
+bmRlciAkR0lUSFVCX1dPUktTUEFDRSB0byBwbGFjZSB0aGUgcmVwb3NpdG9y
+eScNCiAgY2xlYW46DQogICAgZGVzY3JpcHRpb246ICdXaGV0aGVyIHRvIGV4
+ZWN1dGUgYGdpdCBjbGVhbiAtZmZkeCAmJiBnaXQgcmVzZXQgLS1oYXJkIEhF
+QURgIGJlZm9yZSBmZXRjaGluZycNCiAgICBkZWZhdWx0OiB0cnVlDQogIGZp
+bHRlcjoNCiAgICBkZXNjcmlwdGlvbjogPg0KICAgICAgUGFydGlhbGx5IGNs
+b25lIGFnYWluc3QgYSBnaXZlbiBmaWx0ZXIuDQogICAgICBPdmVycmlkZXMg
+c3BhcnNlLWNoZWNrb3V0IGlmIHNldC4NCiAgICBkZWZhdWx0OiBudWxsDQog
+IHNwYXJzZS1jaGVja291dDoNCiAgICBkZXNjcmlwdGlvbjogPg0KICAgICAg
+RG8gYSBzcGFyc2UgY2hlY2tvdXQgb24gZ2l2ZW4gcGF0dGVybnMuDQogICAg
+ICBFYWNoIHBhdHRlcm4gc2hvdWxkIGJlIHNlcGFyYXRlZCB3aXRoIG5ldyBs
+aW5lcy4NCiAgICBkZWZhdWx0OiBudWxsDQogIHNwYXJzZS1jaGVja291dC1j
+b25lLW1vZGU6DQogICAgZGVzY3JpcHRpb246ID4NCiAgICAgIFNwZWNpZmll
+cyB3aGV0aGVyIHRvIHVzZSBjb25lLW1vZGUgd2hlbiBkb2luZyBhIHNwYXJz
+ZSBjaGVja291dC4NCiAgICBkZWZhdWx0OiB0cnVlDQogIGZldGNoLWRlcHRo
+Og0KICAgIGRlc2NyaXB0aW9uOiAnTnVtYmVyIG9mIGNvbW1pdHMgdG8gZmV0
+Y2guIDAgaW5kaWNhdGVzIGFsbCBoaXN0b3J5IGZvciBhbGwgYnJhbmNoZXMg
+YW5kIHRhZ3MuJw0KICAgIGRlZmF1bHQ6IDENCiAgZmV0Y2gtdGFnczoNCiAg
+ICBkZXNjcmlwdGlvbjogJ1doZXRoZXIgdG8gZmV0Y2ggdGFncywgZXZlbiBp
+ZiBmZXRjaC1kZXB0aCA+IDAuJw0KICAgIGRlZmF1bHQ6IGZhbHNlDQogIHNo
+b3ctcHJvZ3Jlc3M6DQogICAgZGVzY3JpcHRpb246ICdXaGV0aGVyIHRvIHNo
+b3cgcHJvZ3Jlc3Mgc3RhdHVzIG91dHB1dCB3aGVuIGZldGNoaW5nLicNCiAg
+ICBkZWZhdWx0OiB0cnVlDQogIGxmczoNCiAgICBkZXNjcmlwdGlvbjogJ1do
+ZXRoZXIgdG8gZG93bmxvYWQgR2l0LUxGUyBmaWxlcycNCiAgICBkZWZhdWx0
+OiBmYWxzZQ0KICBzdWJtb2R1bGVzOg0KICAgIGRlc2NyaXB0aW9uOiA+DQog
+ICAgICBXaGV0aGVyIHRvIGNoZWNrb3V0IHN1Ym1vZHVsZXM6IGB0cnVlYCB0
+byBjaGVja291dCBzdWJtb2R1bGVzIG9yIGByZWN1cnNpdmVgIHRvDQogICAg
+ICByZWN1cnNpdmVseSBjaGVja291dCBzdWJtb2R1bGVzLg0KDQoNCiAgICAg
+IFdoZW4gdGhlIGBzc2gta2V5YCBpbnB1dCBpcyBub3QgcHJvdmlkZWQsIFNT
+SCBVUkxzIGJlZ2lubmluZyB3aXRoIGBnaXRAZ2l0aHViLmNvbTpgIGFyZQ0K
+ICAgICAgY29udmVydGVkIHRvIEhUVFBTLg0KICAgIGRlZmF1bHQ6IGZhbHNl
+DQogIHNldC1zYWZlLWRpcmVjdG9yeToNCiAgICBkZXNjcmlwdGlvbjogQWRk
+IHJlcG9zaXRvcnkgcGF0aCBhcyBzYWZlLmRpcmVjdG9yeSBmb3IgR2l0IGds
+b2JhbCBjb25maWcgYnkgcnVubmluZyBgZ2l0IGNvbmZpZyAtLWdsb2JhbCAt
+LWFkZCBzYWZlLmRpcmVjdG9yeSA8cGF0aD5gDQogICAgZGVmYXVsdDogdHJ1
+ZQ0KICBnaXRodWItc2VydmVyLXVybDoNCiAgICBkZXNjcmlwdGlvbjogVGhl
+IGJhc2UgVVJMIGZvciB0aGUgR2l0SHViIGluc3RhbmNlIHRoYXQgeW91IGFy
+ZSB0cnlpbmcgdG8gY2xvbmUgZnJvbSwgd2lsbCB1c2UgZW52aXJvbm1lbnQg
+ZGVmYXVsdHMgdG8gZmV0Y2ggZnJvbSB0aGUgc2FtZSBpbnN0YW5jZSB0aGF0
+IHRoZSB3b3JrZmxvdyBpcyBydW5uaW5nIGZyb20gdW5sZXNzIHNwZWNpZmll
+ZC4gRXhhbXBsZSBVUkxzIGFyZSBodHRwczovL2dpdGh1Yi5jb20gb3IgaHR0
+cHM6Ly9teS1naGVzLXNlcnZlci5leGFtcGxlLmNvbQ0KICAgIHJlcXVpcmVk
+OiBmYWxzZQ0KICBhbGxvdy11bnNhZmUtcHItY2hlY2tvdXQ6DQogICAgZGVz
+Y3JpcHRpb246ID4NCiAgICAgIFJlcXVpcmVkIHRvIGNoZWNrIG91dCBmb3Jr
+IHB1bGwgcmVxdWVzdCBjb2RlIGZyb20gYSB3b3JrZmxvdyB0cmlnZ2VyZWQg
+YnkNCiAgICAgIGBwdWxsX3JlcXVlc3RfdGFyZ2V0YCBvciBgd29ya2Zsb3df
+cnVuYC4gVGhlc2Ugd29ya2Zsb3dzIHJ1biB3aXRoIHRoZQ0KICAgICAgYmFz
+ZSByZXBvc2l0b3J5J3MgR0lUSFVCX1RPS0VOLCBzZWNyZXRzLCBkZWZhdWx0
+LWJyYW5jaCBjYWNoZSBzY29wZSwgYW5kDQogICAgICBydW5uZXIgYWNjZXNz
+OyBmZXRjaGluZyBhbmQgZXhlY3V0aW5nIGEgZm9yaydzIGNvZGUgaW4gdGhh
+dCB0cnVzdGVkDQogICAgICBjb250ZXh0IGNvbW1vbmx5IGxlYWRzIHRvICJw
+d24gcmVxdWVzdCIgdnVsbmVyYWJpbGl0aWVzLiBTZXQgdG8gYHRydWVgDQog
+ICAgICBvbmx5IGFmdGVyIHJldmlld2luZyB0aGUgcmlza3MgYXQgaHR0cHM6
+Ly9naC5pby9zZWN1cmVseS11c2luZy1wdWxsX3JlcXVlc3RfdGFyZ2V0Lg0K
+ICAgIGRlZmF1bHQ6IGZhbHNlDQpvdXRwdXRzOg0KICByZWY6DQogICAgZGVz
+Y3JpcHRpb246ICdUaGUgYnJhbmNoLCB0YWcgb3IgU0hBIHRoYXQgd2FzIGNo
+ZWNrZWQgb3V0Jw0KICBjb21taXQ6DQogICAgZGVzY3JpcHRpb246ICdUaGUg
+Y29tbWl0IFNIQSB0aGF0IHdhcyBjaGVja2VkIG91dCcNCnJ1bnM6DQogIHVz
+aW5nOiBub2RlMjQNCiAgbWFpbjogZGlzdC9pbmRleC5qcw0KICBwb3N0OiBk
+aXN0L2luZGV4LmpzDQo=
+
+
+[exit 0]
+
+$ gh api repos/actions/setup-python/git/ref/tags/v7.1.0
+{"ref":"refs/tags/v7.1.0","node_id":"MDM6UmVmMTkyNjI1NTI1OnJlZnMvdGFncy92Ny4xLjA=","url":"https://api.github.com/repos/actions/setup-python/git/refs/tags/v7.1.0","object":{"sha":"6d4fd22b20465ccc0f7354476588e8df7c9ca0e0","type":"commit","url":"https://api.github.com/repos/actions/setup-python/git/commits/6d4fd22b20465ccc0f7354476588e8df7c9ca0e0"}}
+[exit 0]
+
+$ gh api repos/actions/setup-python/contents/action.yml?ref=v7.1.0 --jq .content
+LS0tCm5hbWU6ICJTZXR1cCBQeXRob24iCmRlc2NyaXB0aW9uOiAiU2V0IHVw
+IGEgc3BlY2lmaWMgdmVyc2lvbiBvZiBQeXRob24gYW5kIGFkZCB0aGUgY29t
+bWFuZC1saW5lIHRvb2xzIHRvIHRoZSBQQVRILiIKYXV0aG9yOiAiR2l0SHVi
+IgppbnB1dHM6CiAgcHl0aG9uLXZlcnNpb246CiAgICBkZXNjcmlwdGlvbjog
+IlZlcnNpb24gcmFuZ2Ugb3IgZXhhY3QgdmVyc2lvbiBvZiBQeXRob24gb3Ig
+UHlQeSB0byB1c2UsIHVzaW5nIFNlbVZlcidzIHZlcnNpb24gcmFuZ2Ugc3lu
+dGF4LiBSZWFkcyBmcm9tIC5weXRob24tdmVyc2lvbiBpZiB1bnNldC4iCiAg
+cHl0aG9uLXZlcnNpb24tZmlsZToKICAgIGRlc2NyaXB0aW9uOiAiRmlsZSBj
+b250YWluaW5nIHRoZSBQeXRob24gdmVyc2lvbiB0byB1c2UuIEV4YW1wbGU6
+IC5weXRob24tdmVyc2lvbiIKICBjYWNoZToKICAgIGRlc2NyaXB0aW9uOiAi
+VXNlZCB0byBzcGVjaWZ5IGEgcGFja2FnZSBtYW5hZ2VyIGZvciBjYWNoaW5n
+IGluIHRoZSBkZWZhdWx0IGRpcmVjdG9yeS4gU3VwcG9ydGVkIHZhbHVlczog
+cGlwLCBwaXBlbnYsIHBvZXRyeS4iCiAgICByZXF1aXJlZDogZmFsc2UKICBh
+cmNoaXRlY3R1cmU6CiAgICBkZXNjcmlwdGlvbjogIlRoZSB0YXJnZXQgYXJj
+aGl0ZWN0dXJlICh4ODYsIHg2NCwgYXJtNjQpIG9mIHRoZSBQeXRob24gb3Ig
+UHlQeSBpbnRlcnByZXRlci4iCiAgY2hlY2stbGF0ZXN0OgogICAgZGVzY3Jp
+cHRpb246ICJTZXQgdGhpcyBvcHRpb24gaWYgeW91IHdhbnQgdGhlIGFjdGlv
+biB0byBjaGVjayBmb3IgdGhlIGxhdGVzdCBhdmFpbGFibGUgdmVyc2lvbiB0
+aGF0IHNhdGlzZmllcyB0aGUgdmVyc2lvbiBzcGVjLiIKICAgIGRlZmF1bHQ6
+IGZhbHNlCiAgdG9rZW46CiAgICBkZXNjcmlwdGlvbjogIlRoZSB0b2tlbiB1
+c2VkIHRvIGF1dGhlbnRpY2F0ZSB3aGVuIGZldGNoaW5nIFB5dGhvbiBkaXN0
+cmlidXRpb25zIGZyb20gaHR0cHM6Ly9naXRodWIuY29tL2FjdGlvbnMvcHl0
+aG9uLXZlcnNpb25zLiBXaGVuIHJ1bm5pbmcgdGhpcyBhY3Rpb24gb24gZ2l0
+aHViLmNvbSwgdGhlIGRlZmF1bHQgdmFsdWUgaXMgc3VmZmljaWVudC4gV2hl
+biBydW5uaW5nIG9uIEdIRVMsIHlvdSBjYW4gcGFzcyBhIHBlcnNvbmFsIGFj
+Y2VzcyB0b2tlbiBmb3IgZ2l0aHViLmNvbSBpZiB5b3UgYXJlIGV4cGVyaWVu
+Y2luZyByYXRlIGxpbWl0aW5nLiBUaGlzIHRva2VuIGlzIG9ubHkgc2VudCB0
+byBHaXRIdWItb3duZWQgaG9zdHMsIG5ldmVyIHRvIGEgY3VzdG9tICdtaXJy
+b3InLiIKICAgIGRlZmF1bHQ6ICR7eyBnaXRodWIuc2VydmVyX3VybCA9PSAn
+aHR0cHM6Ly9naXRodWIuY29tJyAmJiBnaXRodWIudG9rZW4gfHwgJycgfX0K
+ICBtaXJyb3I6CiAgICBkZXNjcmlwdGlvbjogIkJhc2UgVVJMIGZvciBkb3du
+bG9hZGluZyBQeXRob24gZGlzdHJpYnV0aW9ucyAob25seSBhcHBsaWVzIHRv
+IENQeXRob247IFB5UHkgYW5kIEdyYWFsUHkgYXJlIHVuYWZmZWN0ZWQpLiBE
+ZWZhdWx0cyB0byBodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20v
+YWN0aW9ucy9weXRob24tdmVyc2lvbnMvbWFpbi4gU2VlIGRvY3MvYWR2YW5j
+ZWQtdXNhZ2UubWQgZm9yIGRldGFpbHMuIgogICAgZGVmYXVsdDogImh0dHBz
+Oi8vcmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbS9hY3Rpb25zL3B5dGhvbi12
+ZXJzaW9ucy9tYWluIgogIG1pcnJvci10b2tlbjoKICAgIGRlc2NyaXB0aW9u
+OiAiVG9rZW4gdXNlZCB0byBhdXRoZW50aWNhdGUgcmVxdWVzdHMgdG8gdGhl
+IGhvc3QgbmFtZWQgaW4gJ21pcnJvcicuIFNlbnQgdmVyYmF0aW0gYXMgdGhl
+IEF1dGhvcml6YXRpb24gaGVhZGVyLCBzbyBpbmNsdWRlIGEgc2NoZW1lIGlm
+IHlvdXIgbWlycm9yIG5lZWRzIG9uZSAoZS5nLiAnQmVhcmVyIDx0b2tlbj4n
+KS4iCiAgICByZXF1aXJlZDogZmFsc2UKICBjYWNoZS1kZXBlbmRlbmN5LXBh
+dGg6CiAgICBkZXNjcmlwdGlvbjogIlVzZWQgdG8gc3BlY2lmeSB0aGUgcGF0
+aCB0byBkZXBlbmRlbmN5IGZpbGVzLiBTdXBwb3J0cyB3aWxkY2FyZHMgb3Ig
+YSBsaXN0IG9mIGZpbGUgbmFtZXMgZm9yIGNhY2hpbmcgbXVsdGlwbGUgZGVw
+ZW5kZW5jaWVzLiIKICB1cGRhdGUtZW52aXJvbm1lbnQ6CiAgICBkZXNjcmlw
+dGlvbjogIlNldCB0aGlzIG9wdGlvbiBpZiB5b3Ugd2FudCB0aGUgYWN0aW9u
+IHRvIHVwZGF0ZSBlbnZpcm9ubWVudCB2YXJpYWJsZXMuIgogICAgZGVmYXVs
+dDogdHJ1ZQogIGFsbG93LXByZXJlbGVhc2VzOgogICAgZGVzY3JpcHRpb246
+ICJXaGVuICd0cnVlJywgYSB2ZXJzaW9uIHJhbmdlIHBhc3NlZCB0byAncHl0
+aG9uLXZlcnNpb24nIGlucHV0IHdpbGwgbWF0Y2ggcHJlcmVsZWFzZSB2ZXJz
+aW9ucyBpZiBubyBHQSB2ZXJzaW9ucyBhcmUgZm91bmQuIE9ubHkgJ3gueScg
+dmVyc2lvbiByYW5nZSBpcyBzdXBwb3J0ZWQgZm9yIENQeXRob24uIgogICAg
+ZGVmYXVsdDogZmFsc2UKICBmcmVldGhyZWFkZWQ6CiAgICBkZXNjcmlwdGlv
+bjogIldoZW4gJ3RydWUnLCB1c2UgdGhlIGZyZWV0aHJlYWRlZCB2ZXJzaW9u
+IG9mIFB5dGhvbi4iCiAgICBkZWZhdWx0OiBmYWxzZQogIHBpcC12ZXJzaW9u
+OgogICAgZGVzY3JpcHRpb246ICJVc2VkIHRvIHNwZWNpZnkgdGhlIHZlcnNp
+b24gb2YgcGlwIHRvIGluc3RhbGwgd2l0aCB0aGUgUHl0aG9uLiBTdXBwb3J0
+ZWQgZm9ybWF0OiBtYWpvclsubWlub3JdWy5wYXRjaF0uIgpvdXRwdXRzOgog
+IHB5dGhvbi12ZXJzaW9uOgogICAgZGVzY3JpcHRpb246ICJUaGUgaW5zdGFs
+bGVkIFB5dGhvbiBvciBQeVB5IHZlcnNpb24uIFVzZWZ1bCB3aGVuIGdpdmVu
+IGEgdmVyc2lvbiByYW5nZSBhcyBpbnB1dC4iCiAgY2FjaGUtaGl0OgogICAg
+ZGVzY3JpcHRpb246ICJBIGJvb2xlYW4gdmFsdWUgdG8gaW5kaWNhdGUgYSBj
+YWNoZSBlbnRyeSB3YXMgZm91bmQiCiAgcHl0aG9uLXBhdGg6CiAgICBkZXNj
+cmlwdGlvbjogIlRoZSBhYnNvbHV0ZSBwYXRoIHRvIHRoZSBQeXRob24gb3Ig
+UHlQeSBleGVjdXRhYmxlLiIKcnVuczoKICB1c2luZzogJ25vZGUyNCcKICBt
+YWluOiAnZGlzdC9zZXR1cC9pbmRleC5qcycKICBwb3N0OiAnZGlzdC9jYWNo
+ZS1zYXZlL2luZGV4LmpzJwogIHBvc3QtaWY6IHN1Y2Nlc3MoKQpicmFuZGlu
+ZzoKICBpY29uOiAnY29kZScKICBjb2xvcjogJ3llbGxvdycK
+
+
+[exit 0]
+
+$ git switch -c topic/ci-unit-tests
+Switched to a new branch 'topic/ci-unit-tests'
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_sort_by_cost_in_place_and_stable (test_cart.CartTests.test_sort_by_cost_in_place_and_stable) ... ok
+test_sort_by_title_in_place (test_cart.CartTests.test_sort_by_title_in_place) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_category_exact_case_insensitive (test_search.CategorySearchTests.test_category_exact_case_insensitive) ... ok
+test_lowercase_keyword_matches_title (test_search.TitleSearchTests.test_lowercase_keyword_matches_title) ... ok
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m ci: run Python 3.12 unittest for master and release pull requests
+[topic/ci-unit-tests 8ea0543] ci: run Python 3.12 unittest for master and release pull requests
+ 1 file changed, 19 insertions(+)
+ create mode 100644 .github/workflows/ci.yml
+
+[exit 0]
+
+$ git branch --show-current
+topic/ci-unit-tests
+
+[exit 0]
+
+$ git push -u origin topic/ci-unit-tests
+remote: 
+remote: Create a pull request for 'topic/ci-unit-tests' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/topic/ci-unit-tests        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      topic/ci-unit-tests -> topic/ci-unit-tests
+branch 'topic/ci-unit-tests' set up to track 'origin/topic/ci-unit-tests'.
+
+[exit 0]
+
+$ gh pr create --base master --head topic/ci-unit-tests --title ci: chạy unittest qua GitHub Actions --body-file /private/tmp/it3180-ci-pr.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/25
+
+[exit 0]
+
+$ gh pr checks https://github.com/duongtanminh1912/it3180-202416560-aims/pull/25 --json name,state,link
+no checks reported on the 'topic/ci-unit-tests' branch
+
+[exit 1]
+
+$ gh pr checks https://github.com/duongtanminh1912/it3180-202416560-aims/pull/25 --json name,state,link
+[{"link":"https://github.com/duongtanminh1912/it3180-202416560-aims/actions/runs/42059334488/job/127356317293","name":"unit-tests","state":"IN_PROGRESS"}]
+
+[exit 0]
+
+$ gh pr checks https://github.com/duongtanminh1912/it3180-202416560-aims/pull/25 --json name,state,link
+[{"link":"https://github.com/duongtanminh1912/it3180-202416560-aims/actions/runs/42059334488/job/127356317293","name":"unit-tests","state":"SUCCESS"}]
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/25 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   73329f1..abd13f5  master     -> origin/master
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git merge --ff-only origin/master
+Updating 73329f1..abd13f5
+Fast-forward
+ .github/workflows/ci.yml | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+ create mode 100644 .github/workflows/ci.yml
+
+[exit 0]
+
+$ git switch -c topic/ci-release-lab04 release/lab04
+Switched to a new branch 'topic/ci-release-lab04'
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m ci: validate maintained release pull requests with unittest
+[topic/ci-release-lab04 f51df6c] ci: validate maintained release pull requests with unittest
+ 1 file changed, 19 insertions(+)
+ create mode 100644 .github/workflows/ci.yml
+
+[exit 0]
+
+$ git branch --show-current
+topic/ci-release-lab04
+
+[exit 0]
+
+$ git push -u origin topic/ci-release-lab04
+remote: 
+remote: Create a pull request for 'topic/ci-release-lab04' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/topic/ci-release-lab04        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      topic/ci-release-lab04 -> topic/ci-release-lab04
+branch 'topic/ci-release-lab04' set up to track 'origin/topic/ci-release-lab04'.
+
+[exit 0]
+
+$ gh pr create --base release/lab04 --head topic/ci-release-lab04 --title ci: kiểm thử dòng release/lab04 --body-file /private/tmp/it3180-ci-pr.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/27
+
+[exit 0]
+
+$ gh pr checks https://github.com/duongtanminh1912/it3180-202416560-aims/pull/27 --json name,state,link
+no checks reported on the 'topic/ci-release-lab04' branch
+
+[exit 1]
+
+$ gh pr checks https://github.com/duongtanminh1912/it3180-202416560-aims/pull/27 --json name,state,link
+[{"link":"https://github.com/duongtanminh1912/it3180-202416560-aims/actions/runs/42059436666/job/127356682754","name":"unit-tests","state":"SUCCESS"}]
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/27 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   c15ec06..f5b076d  release/lab04 -> origin/release/lab04
+
+[exit 0]
+
+$ git switch release/lab04
+Switched to branch 'release/lab04'
+
+[exit 0]
+
+$ git merge --ff-only origin/release/lab04
+Updating c15ec06..f5b076d
+Fast-forward
+ .github/workflows/ci.yml | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+ create mode 100644 .github/workflows/ci.yml
+
+[exit 0]
+
+$ git switch -c topic/ci-release-lab05 release/lab05
+Switched to a new branch 'topic/ci-release-lab05'
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m ci: validate maintained release pull requests with unittest
+[topic/ci-release-lab05 d0c3e38] ci: validate maintained release pull requests with unittest
+ 1 file changed, 19 insertions(+)
+ create mode 100644 .github/workflows/ci.yml
+
+[exit 0]
+
+$ git branch --show-current
+topic/ci-release-lab05
+
+[exit 0]
+
+$ git push -u origin topic/ci-release-lab05
+remote: 
+remote: Create a pull request for 'topic/ci-release-lab05' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/topic/ci-release-lab05        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      topic/ci-release-lab05 -> topic/ci-release-lab05
+branch 'topic/ci-release-lab05' set up to track 'origin/topic/ci-release-lab05'.
+
+[exit 0]
+
+$ gh pr create --base release/lab05 --head topic/ci-release-lab05 --title ci: kiểm thử dòng release/lab05 --body-file /private/tmp/it3180-ci-pr.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/29
+
+[exit 0]
+
+$ gh pr checks https://github.com/duongtanminh1912/it3180-202416560-aims/pull/29 --json name,state,link
+no checks reported on the 'topic/ci-release-lab05' branch
+
+[exit 1]
+
+$ gh pr checks https://github.com/duongtanminh1912/it3180-202416560-aims/pull/29 --json name,state,link
+[{"link":"https://github.com/duongtanminh1912/it3180-202416560-aims/actions/runs/42059508312/job/127356933940","name":"unit-tests","state":"SUCCESS"}]
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/29 --merge
+
+[exit 0]
+
+$ git fetch origin
+From https://github.com/duongtanminh1912/it3180-202416560-aims
+   dd0a56c..9b7148a  release/lab05 -> origin/release/lab05
+
+[exit 0]
+
+$ git switch release/lab05
+Switched to branch 'release/lab05'
+
+[exit 0]
+
+$ git merge --ff-only origin/release/lab05
+Updating dd0a56c..9b7148a
+Fast-forward
+ .github/workflows/ci.yml | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+ create mode 100644 .github/workflows/ci.yml
+
+[exit 0]
+
+$ gh api --method PATCH repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection/required_status_checks --input /private/tmp/it3180-status.json
+{"message":"Required status checks not enabled","documentation_url":"https://docs.github.com/rest/branches/branch-protection#update-status-check-protection","status":"404"}gh: Required status checks not enabled (HTTP 404)
+
+[exit 1]
+
+$ gh api --method PUT repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection --input /private/tmp/it3180-full-protection.json
+{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection","required_status_checks":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection/required_status_checks","strict":true,"contexts":["unit-tests"],"contexts_url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection/required_status_checks/contexts","checks":[{"context":"unit-tests","app_id":15368}]},"required_pull_request_reviews":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection/required_pull_request_reviews","dismiss_stale_reviews":true,"require_code_owner_reviews":false,"require_last_push_approval":false,"required_approving_review_count":0},"required_signatures":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection/required_signatures","enabled":false},"enforce_admins":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection/enforce_admins","enabled":true},"required_linear_history":{"enabled":false},"allow_force_pushes":{"enabled":false},"allow_deletions":{"enabled":false},"block_creations":{"enabled":false},"required_conversation_resolution":{"enabled":false},"lock_branch":{"enabled":false},"allow_fork_syncing":{"enabled":false}}
+[exit 0]
+
+$ gh api graphql -f query=query { repository(owner:"duongtanminh1912",name:"it3180-202416560-aims") { branchProtectionRules(first:20) { nodes { id pattern } } } }
+{"data":{"repository":{"branchProtectionRules":{"nodes":[{"id":"BPR_kwDOVkJPRc4FHkWS","pattern":"master"},{"id":"BPR_kwDOVkJPRc4FHkZB","pattern":"release/*"}]}}}}
+[exit 0]
+
+$ gh api graphql -f query=mutation($id:ID!){updateBranchProtectionRule(input:{branchProtectionRuleId:$id,requiresStatusChecks:true,requiresStrictStatusChecks:true,requiredStatusCheckContexts:["unit-tests"]}){branchProtectionRule{id pattern requiredStatusCheckContexts requiresStrictStatusChecks}}} -f id=BPR_kwDOVkJPRc4FHkZB
+{"data":{"updateBranchProtectionRule":{"branchProtectionRule":{"id":"BPR_kwDOVkJPRc4FHkZB","pattern":"release/*","requiredStatusCheckContexts":["unit-tests"],"requiresStrictStatusChecks":true}}}}
+[exit 0]
+
+$ gh api repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection
+{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection","required_status_checks":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection/required_status_checks","strict":true,"contexts":["unit-tests"],"contexts_url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection/required_status_checks/contexts","checks":[{"context":"unit-tests","app_id":15368}]},"required_pull_request_reviews":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection/required_pull_request_reviews","dismiss_stale_reviews":true,"require_code_owner_reviews":false,"require_last_push_approval":false,"required_approving_review_count":0},"required_signatures":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection/required_signatures","enabled":false},"enforce_admins":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection/enforce_admins","enabled":true},"required_linear_history":{"enabled":false},"allow_force_pushes":{"enabled":false},"allow_deletions":{"enabled":false},"block_creations":{"enabled":false},"required_conversation_resolution":{"enabled":false},"lock_branch":{"enabled":false},"allow_fork_syncing":{"enabled":false}}
+[exit 0]
+
+$ gh api repos/duongtanminh1912/it3180-202416560-aims/branches/release%2Flab04/protection
+{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/release/lab04/protection","required_status_checks":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/release/lab04/protection/required_status_checks","strict":true,"contexts":["unit-tests"],"contexts_url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/release/lab04/protection/required_status_checks/contexts","checks":[{"context":"unit-tests","app_id":15368}]},"required_pull_request_reviews":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/release/lab04/protection/required_pull_request_reviews","dismiss_stale_reviews":true,"require_code_owner_reviews":false,"require_last_push_approval":false,"required_approving_review_count":0},"required_signatures":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/release/lab04/protection/required_signatures","enabled":false},"enforce_admins":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/release/lab04/protection/enforce_admins","enabled":true},"required_linear_history":{"enabled":false},"allow_force_pushes":{"enabled":false},"allow_deletions":{"enabled":false},"block_creations":{"enabled":false},"required_conversation_resolution":{"enabled":false},"lock_branch":{"enabled":false},"allow_fork_syncing":{"enabled":false}}
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git switch -c bugfix/ci-demo
+Switched to a new branch 'bugfix/ci-demo'
+
+[exit 0]
+
+$ git add .
+
+[exit 0]
+
+$ git commit -m test: deliberately break cart total to demonstrate failing CI
+[bugfix/ci-demo 8d9dfbb] test: deliberately break cart total to demonstrate failing CI
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+[exit 0]
+
+$ git branch --show-current
+bugfix/ci-demo
+
+[exit 0]
+
+$ git push -u origin bugfix/ci-demo
+remote: 
+remote: Create a pull request for 'bugfix/ci-demo' on GitHub by visiting:        
+remote:      https://github.com/duongtanminh1912/it3180-202416560-aims/pull/new/bugfix/ci-demo        
+remote: 
+To https://github.com/duongtanminh1912/it3180-202416560-aims.git
+ * [new branch]      bugfix/ci-demo -> bugfix/ci-demo
+branch 'bugfix/ci-demo' set up to track 'origin/bugfix/ci-demo'.
+
+[exit 0]
+
+$ gh pr create --base master --head bugfix/ci-demo --title test: demo CI thất bại — không merge --body-file /private/tmp/it3180-ci-pr.md
+https://github.com/duongtanminh1912/it3180-202416560-aims/pull/30
+
+[exit 0]
+
+$ gh pr checks https://github.com/duongtanminh1912/it3180-202416560-aims/pull/30 --json name,state,link
+no checks reported on the 'bugfix/ci-demo' branch
+
+[exit 1]
+
+$ gh pr checks https://github.com/duongtanminh1912/it3180-202416560-aims/pull/30 --json name,state,link
+[{"link":"https://github.com/duongtanminh1912/it3180-202416560-aims/actions/runs/42059944666/job/127358487308","name":"unit-tests","state":"FAILURE"}]
+
+[exit 0]
+
+$ gh pr view https://github.com/duongtanminh1912/it3180-202416560-aims/pull/30 --json mergeStateStatus,statusCheckRollup,state,url
+{"mergeStateStatus":"BLOCKED","state":"OPEN","statusCheckRollup":[{"__typename":"CheckRun","completedAt":"2026-11-05T15:55:58Z","conclusion":"FAILURE","detailsUrl":"https://github.com/duongtanminh1912/it3180-202416560-aims/actions/runs/42059944666/job/127358487308","name":"unit-tests","startedAt":"2026-11-05T15:55:52Z","status":"COMPLETED","workflowName":"CI"}],"url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/30"}
+
+[exit 0]
+
+$ gh pr merge https://github.com/duongtanminh1912/it3180-202416560-aims/pull/30 --merge
+X Pull request duongtanminh1912/it3180-202416560-aims#30 is not mergeable: the base branch policy prohibits the merge.
+To have the pull request merged after all the requirements have been met, add the `--auto` flag.
+To use administrator privileges to immediately merge the pull request, add the `--admin` flag.
+
+[exit 1]
+
+$ gh pr view https://github.com/duongtanminh1912/it3180-202416560-aims/pull/30 --json state,mergedAt
+{"mergedAt":null,"state":"OPEN"}
+
+[exit 0]
+
+$ gh pr close https://github.com/duongtanminh1912/it3180-202416560-aims/pull/30
+✓ Closed pull request duongtanminh1912/it3180-202416560-aims#30 (test: demo CI thất bại — không merge)
+
+[exit 0]
+
+$ gh run view 42059944666 --log-failed
+unit-tests	Run unittest	﻿2026-11-05T15:55:56.0652409Z ##[group]Run python -m unittest discover -s tests -v
+unit-tests	Run unittest	2026-11-05T15:55:56.0654053Z ^[[36;1mpython -m unittest discover -s tests -v^[[0m
+unit-tests	Run unittest	2026-11-05T15:55:56.0739521Z shell: /usr/bin/bash -e {0}
+unit-tests	Run unittest	2026-11-05T15:55:56.0740539Z env:
+unit-tests	Run unittest	2026-11-05T15:55:56.0741553Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+unit-tests	Run unittest	2026-11-05T15:55:56.0743258Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+unit-tests	Run unittest	2026-11-05T15:55:56.0745183Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+unit-tests	Run unittest	2026-11-05T15:55:56.0746710Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+unit-tests	Run unittest	2026-11-05T15:55:56.0748250Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+unit-tests	Run unittest	2026-11-05T15:55:56.0749815Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+unit-tests	Run unittest	2026-11-05T15:55:56.0751145Z ##[endgroup]
+unit-tests	Run unittest	2026-11-05T15:55:56.7366639Z test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... FAIL
+unit-tests	Run unittest	2026-11-05T15:55:56.7368003Z test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+unit-tests	Run unittest	2026-11-05T15:55:56.7369157Z test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+unit-tests	Run unittest	2026-11-05T15:55:56.7370948Z test_sort_by_cost_in_place_and_stable (test_cart.CartTests.test_sort_by_cost_in_place_and_stable) ... ok
+unit-tests	Run unittest	2026-11-05T15:55:56.7372432Z test_sort_by_title_in_place (test_cart.CartTests.test_sort_by_title_in_place) ... ok
+unit-tests	Run unittest	2026-11-05T15:55:56.7373607Z test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... FAIL
+unit-tests	Run unittest	2026-11-05T15:55:56.7375361Z test_category_exact_case_insensitive (test_search.CategorySearchTests.test_category_exact_case_insensitive) ... ok
+unit-tests	Run unittest	2026-11-05T15:55:56.7377119Z test_lowercase_keyword_matches_title (test_search.TitleSearchTests.test_lowercase_keyword_matches_title) ... ok
+unit-tests	Run unittest	2026-11-05T15:55:56.7378610Z test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+unit-tests	Run unittest	2026-11-05T15:55:56.7379717Z test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+unit-tests	Run unittest	2026-11-05T15:55:56.7380339Z 
+unit-tests	Run unittest	2026-11-05T15:55:56.7380598Z ======================================================================
+unit-tests	Run unittest	2026-11-05T15:55:56.7381413Z FAIL: test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds)
+unit-tests	Run unittest	2026-11-05T15:55:56.7382280Z ----------------------------------------------------------------------
+unit-tests	Run unittest	2026-11-05T15:55:56.7382987Z Traceback (most recent call last):
+unit-tests	Run unittest	2026-11-05T15:55:56.7392303Z   File "/home/runner/work/it3180-202416560-aims/it3180-202416560-aims/tests/test_cart.py", line 36, in test_discount_and_bounds
+unit-tests	Run unittest	2026-11-05T15:55:56.7393679Z     self.assertAlmostEqual(cart.total_cost_with_discount(20), 80)
+unit-tests	Run unittest	2026-11-05T15:55:56.7394799Z AssertionError: 0.0 != 80 within 7 places (80.0 difference)
+unit-tests	Run unittest	2026-11-05T15:55:56.7395324Z 
+unit-tests	Run unittest	2026-11-05T15:55:56.7395568Z ======================================================================
+unit-tests	Run unittest	2026-11-05T15:55:56.7396339Z FAIL: test_total_and_remove (test_cart.CartTests.test_total_and_remove)
+unit-tests	Run unittest	2026-11-05T15:55:56.7397159Z ----------------------------------------------------------------------
+unit-tests	Run unittest	2026-11-05T15:55:56.7397870Z Traceback (most recent call last):
+unit-tests	Run unittest	2026-11-05T15:55:56.7399051Z   File "/home/runner/work/it3180-202416560-aims/it3180-202416560-aims/tests/test_cart.py", line 22, in test_total_and_remove
+unit-tests	Run unittest	2026-11-05T15:55:56.7400258Z     self.assertAlmostEqual(cart.total_cost(), 19.95)
+unit-tests	Run unittest	2026-11-05T15:55:56.7401106Z AssertionError: 0.0 != 19.95 within 7 places (19.95 difference)
+unit-tests	Run unittest	2026-11-05T15:55:56.7401592Z 
+unit-tests	Run unittest	2026-11-05T15:55:56.7401887Z ----------------------------------------------------------------------
+unit-tests	Run unittest	2026-11-05T15:55:56.7402539Z Ran 10 tests in 0.006s
+unit-tests	Run unittest	2026-11-05T15:55:56.7402903Z 
+unit-tests	Run unittest	2026-11-05T15:55:56.7403101Z FAILED (failures=2)
+unit-tests	Run unittest	2026-11-05T15:55:56.7478978Z ##[error]Process completed with exit code 1.
+
+[exit 0]
+
+$ git switch master
+Switched to branch 'master'
+
+[exit 0]
+
+$ git switch -c topic/final-lab-audit
+Switched to a new branch 'topic/final-lab-audit'
+
+[exit 0]
+
+$ python3.12 --version
+Python 3.12.16
+
+[exit 0]
+
+$ git --version
+git version 2.54.0 (Apple Git-157)
+
+[exit 0]
+
+$ gh --version
+gh version 2.101.0 (2026-09-15)
+https://github.com/cli/cli/releases/tag/v2.101.0
+
+[exit 0]
+
+$ git remote -v
+origin	https://github.com/duongtanminh1912/it3180-202416560-aims.git (fetch)
+origin	https://github.com/duongtanminh1912/it3180-202416560-aims.git (push)
+
+[exit 0]
+
+$ git config --local --get-regexp user.*
+user.name duongtanminh1912
+user.email duongtanminh1912@gmail.com
+
+[exit 0]
+
+$ git status --short
+?? docs/evidence/ci-demo-failed-job.log
+?? docs/evidence/lab05-ci.log
+
+[exit 0]
+
+$ git show release/lab01:docs/answers-lab01.md
+# Lab 01 — Thiết lập và refactor
+
+MSSV: 202416560. Ngày thực hiện: 2026-11-05 (Asia/Ho_Chi_Minh).
+
+- Working directory là các file đang làm việc; staging area (index) giữ nội dung dự kiến cho commit tiếp theo; local repository (.git) lưu object, commit và refs.
+- `git config --global` thường lưu ở ~/.gitconfig hoặc $XDG_CONFIG_HOME/git/config, áp dụng cho người dùng. `--local` lưu .git/config, chỉ áp dụng repo hiện tại và ưu tiên hơn global. Bài này chỉ cấu hình local.
+- `git mv` chuyển file và stage việc chuyển. Git lưu snapshot, nhận diện rename bằng độ giống nhau khi diff/log, không lưu một object rename riêng. Commit chuyển file độc lập giữ khả năng xem xét rõ ràng; `git log --follow -- aims/cart.py` theo lịch sử trước rename.
+- release/lab01 được tạo từ master sau khi PR refactor và tài liệu đã merged, làm baseline để đối chiếu; những sửa đổi sau phải qua PR, không chỉnh baseline để thêm bằng chứng.
+- Làm một mình vẫn dùng PR để xem diff, kiểm thử, ghi lý do và giữ dấu tích hợp. Không có partner nên chưa thực hiện review độc lập hay approval.
+
+## Hoàn tác thực tế
+
+Đã thêm dòng TEMP vào README rồi `git restore README.md`; diff trở về sạch. Đã stage file tạm, `git restore --staged docs/amend-practice.txt` để đưa khỏi index nhưng giữ working file. Đã commit file tạm, ghi SHA cũ, `git commit --amend -m ...` trên commit chưa push và ghi SHA mới, sau đó xóa file tạm bằng commit riêng. Không sửa lịch sử đã công bố. Xem log thực tế trong docs/evidence/lab01.log.
+
+## Kiểm chứng
+
+Mã ban đầu ở thư mục gốc chạy bằng Python 3.12 in tổng 63.89 $. Refactor dùng git mv, commit chuyển file và sửa import riêng; chạy lại vẫn cùng tổng. Lỗi giới hạn `>` được cố ý giữ đến Lab 03.
+
+[exit 0]
+
+$ git show release/lab02:docs/answers-lab02.md
+# Lab 02 — Feature/topic và PR
+
+- Fetch và merge master trước PR giúp phát hiện conflict, kiểm thử với thay đổi mới, giảm rủi ro lúc tích hợp. Hai nhánh feature/cart-print và feature/search-by-title được tạo từ cùng baseline; nhánh search đã fetch + merge master trước PR.
+- Không rebase nhánh master/release hoặc nhánh đã chia sẻ khi chưa có đồng thuận: rebase thay SHA, làm lịch sử người khác phân kỳ. Nhánh cá nhân chưa push phù hợp hơn.
+- feature/* chứa chức năng sản phẩm; topic/* thường dùng cho tài liệu, cấu hình hoặc thay đổi chuyên biệt. Đây là quy ước, Git xử lý chúng như nhau.
+
+| Kiểu | SHA/lịch sử | Truy vết và revert |
+|---|---|---|
+| Merge commit | Giữ SHA commit nguồn, thêm commit hai cha | Giữ cấu trúc nhánh/PR, revert merge bằng -m 1 |
+| Squash | Tạo commit mới chứa tổng diff, không giữ ancestry từng commit nguồn | Dễ revert cả tính năng, lịch sử chi tiết còn trong PR |
+| Rebase merge | Viết lại SHA trên đầu nhánh đích, lịch sử thẳng | Từng commit được giữ nội dung; revert theo từng commit, không có merge commit |
+
+- Dismiss stale approvals làm approval cũ mất sau push mới để reviewer xem lại thay đổi. Làm một mình cấu hình 0 approval, bắt buộc PR, enforce_admins, không force push/deletion; không tự approve.
+- GitHub private ban đầu trả 403 cho protection; sau khi người dùng cho phép chuyển công khai đã thiết lập protection. Đã thử push một commit mới thực sự từ topic/protection-probe vào master và xác nhận server từ chối; commit tạm giữ trên nhánh riêng.
+- Chưa có reviewer thật: chuỗi Request changes → sửa → re-request → Approve chưa thực hiện.
+- Trước PR tài liệu này đã có ít nhất 5 PR merged: refactor, template, cart-print (merge), search (squash), use-case (rebase). SHA và URL thực tế có trong evidence/lab02.log.
+
+[exit 0]
+
+$ git show release/lab03:docs/answers-lab03.md
+# Lab 03 — Bugfix, conflict và hoàn tác
+
+- Merge base là tổ tiên chung tốt nhất của hai commit, dùng làm gốc so sánh ba chiều khi merge.
+- Test phải FAIL trước fix để chứng minh nó bắt đúng lỗi hiện có; PASS sau fix giúp chứng minh sửa lỗi. Test giỏ 20 DVD và test giảm 100 còn 80 đã chạy trước/sau, không giả lập kết quả.
+- Bugfix tạo từ feature phải PR vào feature vì nó phụ thuộc thay đổi chưa có trên master; PR thẳng master có thể mang theo tính năng chưa sẵn sàng. Sau đó mới PR feature/discount đã sửa vào master.
+- Reset dịch chuyển HEAD/nhánh: --soft giữ index và working tree; --mixed reset index, giữ working tree; --hard reset cả index và working tree, làm mất thay đổi tracked chưa lưu. Mỗi ví dụ dùng commit tạm riêng, lưu SHA và tạo rescue/reset-*; không reset commit bài lab.
+- Revert tạo commit đảo thay đổi, không viết lại lịch sử. Master/release dùng revert vì đã chia sẻ và phải đi qua PR.
+- `git revert -m 1 833c51bef5a92c4418ff420b6347015cf4e30ea3` chọn cha thứ nhất làm mainline; đảo phần thay đổi merge so với master trước merge. Thông báo sau revert trở lại “Đã thêm đĩa vào giỏ hàng”.
+- Reflog là lịch sử cập nhật refs trong repo local, không tự push; có hạn giữ và chịu garbage collection. Cần tạo rescue branch trước khi object không còn reachable bị dọn.
+- Conflict thật xuất hiện khi hai nhánh cùng baseline sửa cùng dòng thêm DVD. Merge master vào feature/show-added-title sau khi nhánh Việt hóa đã merged, rồi kết hợp thành `Đã thêm đĩa '<title>' vào giỏ hàng`, chạy test và commit giải quyết. SHA merge PR thực tế: `833c51bef5a92c4418ff420b6347015cf4e30ea3`.
+- Cách khác trên nhánh riêng: fetch, `git rebase origin/master`, sửa conflict, git add, git rebase --continue; dùng --abort để hủy khi cần. Không rebase nhánh đã chia sẻ khi chưa được đồng thuận.
+
+Issue giới hạn: https://github.com/duongtanminh1912/it3180-202416560-aims/issues/7. Đã kiểm tra state sau merge default branch. Nhật ký thực tế: evidence/lab03.log và lab03-limit-*.log.
+
+[exit 0]
+
+$ git show release/lab04:docs/answers-lab04.md
+# Lab 04 — Release flow và baseline
+
+- SemVer MAJOR.MINOR.PATCH: tăng MAJOR khi thay API không tương thích; MINOR khi thêm tính năng tương thích; PATCH khi sửa lỗi tương thích. Với 0.y.z API chưa ổn định. Bài chọn 1.0.0 để đánh dấu baseline chức năng ổn định, không phải cứ Lab 04 là phải thành 0.4.0.
+- Tag là tên trỏ commit, annotated tag thêm metadata/message, không di chuyển tag đã công bố. Release branch là ref có thể tiến qua các PR bảo trì. GitHub Release là mô tả và asset gắn tag, khác cả hai.
+- Chuẩn bị version, CHANGELOG và tài liệu trên master qua PR trước rồi tạo release/lab04 để baseline có đủ nội dung đã được kiểm tra.
+- Không merge release ngược master vì có commit version và thay đổi bảo trì riêng dòng; chuyển commit fix cần thiết bằng cherry-pick -x qua PR.
+- `git log A..B` liệt kê commit reachable từ B nhưng không reachable từ A. `git diff A B` so nội dung snapshot hai đầu, không liệt kê tập commit. Trước hotfix, master..release/lab04 rỗng; release/lab04..master có các commit phát triển tiếp.
+- Detached HEAD nghĩa là HEAD trỏ trực tiếp commit, không bám nhánh; commit mới có thể mất tên tham chiếu nếu không tạo branch. Worktree là working directory bổ sung chia sẻ object database; worktree có thể checkout branch hoặc detached HEAD. Dùng worktree --detach tại tag để kiểm tra baseline mà không đổi working tree chính.
+- Bốn annotated tag được tạo sau khi baseline đã chốt: v0.1.0, v0.2.0, v0.3.0, v1.0.0. Không di chuyển tag.
+- Audit worktree sẽ chạy main, unittest, kiểm tra version/file/CHANGELOG, git archive. Vì bằng chứng phát sinh sau baseline, được bổ sung bằng PR tiếp theo trước hotfix, không sửa tag/baseline để đưa log vào.
+
+[exit 0]
+
+$ git show release/lab05:docs/answers-lab05.md
+# Lab 05 — Hotfix và bảo trì nhiều phiên bản
+
+- Hotfix tạo từ release/lab04 để chỉ sửa nền 1.0.x; tạo từ master sẽ lẫn sort/category của dòng 1.1.0. Không merge release ngược master.
+- Commit sửa search và regression test tách khỏi commit version/CHANGELOG để cherry-pick đúng patch lên các dòng khác, không hạ version master xuống 1.0.1.
+- `git cherry-pick -x FIX_SHA` tạo commit mới, ghi nguồn patch trong message. Merge toàn hotfix có thể mang version/changelog của dòng cũ và quan hệ lịch sử không mong muốn.
+- Nếu v1.1.0 đã công bố thì sửa lỗi bằng v1.1.1; không đổi tag v1.1.0. Trong bài release/lab05 chưa gắn tag nên có thể đưa fix qua PR trước tag v1.1.0.
+- Release-first: sửa ở dòng phát hành bị ảnh hưởng rồi forward-port lên master/dòng mới. Upstream-first: sửa master rồi backport dòng cũ. Chọn theo nguồn lỗi, phụ thuộc và mức khẩn cấp; cả hai cần ma trận phiên bản và regression test.
+- Phát hiện sót patch trên release/lab05 bằng tìm nguồn cherry-pick trong log, so patch bằng git cherry, và chạy test tìm “lion” trên từng worktree. Cần kiểm tra cả hành vi và version.
+- `git cherry -v master release/lab04`: dấu “-” là patch có tương đương trên upstream; “+” chưa có patch tương đương (ví dụ commit version 1.0.1). Với commit merge, patch-id không đủ thay thế audit nội dung.
+- `git tag --contains FIX_SHA` chỉ xét ancestry: tag chứa commit nguồn; tag có cherry-pick tương đương nhưng SHA khác có thể không xuất hiện. Không thể từ thiếu tên tag mà kết luận thiếu patch.
+- GitHub Actions dùng Python 3.12, chạy unittest cho PR vào master/release/** và push master. Required check chỉ cấu hình sau khi job thật đã chạy. PR demo phá tổng phải fail và đóng, không merge; chỉ kết luận chặn merge khi đã kiểm tra rule và thực sự thử merge.
+
+SHA, PR, ma trận kiểm thử và log phát sinh sau baseline được thêm bằng topic/PR tiếp theo trong docs/evidence và docs/hotfix-audit.md, không sửa tag đã phát hành. Review độc lập chưa có partner nên chưa thực hiện.
+
+[exit 0]
+
+$ git cat-file -t v0.1.0
+tag
+
+[exit 0]
+
+$ git rev-parse v0.1.0^{}
+eb8c64edaf40949178573c8f950ff7437afc1c6f
+
+[exit 0]
+
+$ git cat-file -t v0.2.0
+tag
+
+[exit 0]
+
+$ git rev-parse v0.2.0^{}
+92531fb4ea535cc7398ccfbf1663486f4b14bc8b
+
+[exit 0]
+
+$ git cat-file -t v0.3.0
+tag
+
+[exit 0]
+
+$ git rev-parse v0.3.0^{}
+e60daa59e61d1f098f663f49afd6b8957b03cb36
+
+[exit 0]
+
+$ git cat-file -t v1.0.0
+tag
+
+[exit 0]
+
+$ git rev-parse v1.0.0^{}
+146e3ccceb0a7b63d28823cf2d596301dcce087f
+
+[exit 0]
+
+$ git cat-file -t v1.0.1
+tag
+
+[exit 0]
+
+$ git rev-parse v1.0.1^{}
+c15ec06e745e6e38a6ade88d8de572de57eed93d
+
+[exit 0]
+
+$ git cat-file -t v1.1.0
+tag
+
+[exit 0]
+
+$ git rev-parse v1.1.0^{}
+dd0a56c40adf4a6f48b8e6184c25215d362edbcc
+
+[exit 0]
+
+$ git diff --name-only v1.0.0 v1.0.1
+CHANGELOG.md
+aims/__init__.py
+aims/search.py
+tests/test_search.py
+
+[exit 0]
+
+$ git diff --stat v1.0.1 release/lab04
+ .github/workflows/ci.yml | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+[exit 0]
+
+$ git diff --stat v1.1.0 release/lab05
+ .github/workflows/ci.yml | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+[exit 0]
+
+$ git log master --merges --format=%H %P %s
+abd13f52e5ed35fb0a8ddafbbb2de022e69ebf20 73329f1085cc1a028dbc6151ed664a60f596c586 8ea054346734ae954f0e92ba5261a79d9efe94f8 Merge pull request #25 from duongtanminh1912/topic/ci-unit-tests
+73329f1085cc1a028dbc6151ed664a60f596c586 eaa7613a4f13fda195e4cd1ac5d477b7a7a90759 7c4efcb14c1622b43bad8d4f751272eaf1940554 Merge pull request #24 from duongtanminh1912/topic/hotfix-audit
+eaa7613a4f13fda195e4cd1ac5d477b7a7a90759 d413a5f3700dc497dcdc1528dd56f912ebeea5b3 f181751416b7642a52936f3a18538cf265ce842e Merge pull request #22 from duongtanminh1912/hotfix/search-case-insensitive-master
+d413a5f3700dc497dcdc1528dd56f912ebeea5b3 bc6411232e55446e04386879d603618380e107bd 5250ea20c67aa81322628503cbdfef93492ebfeb Merge pull request #19 from duongtanminh1912/topic/prepare-release-1.1.0
+bc6411232e55446e04386879d603618380e107bd c0ac12a98ae46d2093ec8e699eac0788a5671149 2d430c6a3fc6aedd4eb3b8b2e2642720740560d9 Merge pull request #18 from duongtanminh1912/feature/search-by-category
+c0ac12a98ae46d2093ec8e699eac0788a5671149 b40152bdae05edbd812a638f3b3028db462ac291 60e7c5c2e6b2a7692a88e2ad688dca52fc12c06c Merge pull request #17 from duongtanminh1912/topic/lab04-audit
+b40152bdae05edbd812a638f3b3028db462ac291 146e3ccceb0a7b63d28823cf2d596301dcce087f 024a04ec0dd47779ba62800dcf89ba4d6d473d6a Merge pull request #16 from duongtanminh1912/feature/sort-cart
+146e3ccceb0a7b63d28823cf2d596301dcce087f e60daa59e61d1f098f663f49afd6b8957b03cb36 601275082b929b0d5eba7785ebb23910591be011 Merge pull request #15 from duongtanminh1912/topic/prepare-release-1.0.0
+e60daa59e61d1f098f663f49afd6b8957b03cb36 248fee67dcec9eec1f56ca97202ecd4b8b387229 e274189bbeb3762d90bcdced90b10b1fe252bf31 Merge pull request #14 from duongtanminh1912/topic/lab03-answers
+248fee67dcec9eec1f56ca97202ecd4b8b387229 833c51bef5a92c4418ff420b6347015cf4e30ea3 3fc6cab5d603738040d03b3ec1e59b064150f45a Merge pull request #13 from duongtanminh1912/bugfix/revert-show-added-title
+833c51bef5a92c4418ff420b6347015cf4e30ea3 ba3ca5ed73afd939b1492508e8871cf58e807322 698a815a9402efa17805ebfe03365cdf510c8d95 Merge pull request #12 from duongtanminh1912/feature/show-added-title
+698a815a9402efa17805ebfe03365cdf510c8d95 c658b90f0c8e304c98756e9358ac86b4faf7b5d4 ba3ca5ed73afd939b1492508e8871cf58e807322 merge: resolve conflict by combining language and DVD title
+ba3ca5ed73afd939b1492508e8871cf58e807322 8ff4e1e1c989f4ba974781f1a6e5bcad4e330fcc 0d45c1dc0ff83169f6441d107bccbe3878929d11 Merge pull request #11 from duongtanminh1912/feature/vietnamese-messages
+8ff4e1e1c989f4ba974781f1a6e5bcad4e330fcc 8378fef6daf5f403354d008525e9ad560dc2d02e 57824fdb3986be7db932a2fc8184ae3bf4d0708e Merge pull request #10 from duongtanminh1912/feature/discount
+57824fdb3986be7db932a2fc8184ae3bf4d0708e ec180c925190c09bdab1269837cc8aea6f77b559 c9325036709d9adf35bd26cbe7f65338b7e36cfc Merge pull request #9 from duongtanminh1912/bugfix/discount-calculation
+8378fef6daf5f403354d008525e9ad560dc2d02e 92531fb4ea535cc7398ccfbf1663486f4b14bc8b d1dd5999c78296654dda5d0e78fb312b0944595b Merge pull request #8 from duongtanminh1912/bugfix/cart-limit-off-by-one
+92531fb4ea535cc7398ccfbf1663486f4b14bc8b fb4c6207366eba5db639e23a1eec9118c0c04ba7 5741c61a6dc35126c3156405467c7d93c7fe3f6e Merge pull request #6 from duongtanminh1912/topic/lab02-answers
+42f9ef3078c5d7e760084df09f9828964560ed23 bb191c78ad263e13a6ba7be0858a439dfdf1a44f 5fa7ce5662da6f21521644e392026e6887a401d0 Merge pull request #3 from duongtanminh1912/feature/cart-print
+bb191c78ad263e13a6ba7be0858a439dfdf1a44f eb8c64edaf40949178573c8f950ff7437afc1c6f b08771ad2f329a1b451975bd636f92c3ef82dd9a Merge pull request #2 from duongtanminh1912/topic/pr-template
+eb8c64edaf40949178573c8f950ff7437afc1c6f fbf6f8d38ec3ad3b4d3c88fb26830595acff4051 4a4a8827ea117a77d699cf6449965c0df1c054e1 Merge pull request #1 from duongtanminh1912/refactor/apply-release-flow
+
+[exit 0]
+
+$ git show 833c51bef5a92c4418ff420b6347015cf4e30ea3:docs/evidence/lab03-conflict.log
+Auto-merging aims/cart.py
+CONFLICT (content): Merge conflict in aims/cart.py
+Automatic merge failed; fix conflicts and then commit the result.
+MAX_NUMBERS_ORDERED = 20
+
+
+class Cart:
+    """Giỏ hàng chứa tối đa MAX_NUMBERS_ORDERED đĩa DVD."""
+
+    def __init__(self):
+        self.items = []
+
+    def add_dvd(self, dvd):
+        if len(self.items) >= MAX_NUMBERS_ORDERED:
+            print("The cart is almost full")
+            return False
+        self.items.append(dvd)
+<<<<<<< HEAD
+        print(f"The disc '{dvd.title}' has been added")
+=======
+        print("Đã thêm đĩa vào giỏ hàng")
+>>>>>>> origin/master
+        return True
+
+    def remove_dvd(self, dvd):
+        if dvd in self.items:
+            self.items.remove(dvd)
+            print("The disc has been removed")
+            return True
+        print("The disc is not in the cart")
+        return False
+
+    def total_cost(self):
+        return sum(item.cost for item in self.items)
+
+    def print_cart(self):
+        if not self.items:
+            print("The cart is empty.")
+            return
+        for index, dvd in enumerate(self.items, 1):
+            print(f"{index}. {dvd}")
+        print(f"Total cost: {self.total_cost():.2f} $")
+
+    def total_cost_with_discount(self, percent):
+        if not 0 <= percent <= 100:
+            raise ValueError("percent must be between 0 and 100")
+        return self.total_cost() * (1 - percent / 100)
+
+[exit 0]
+
+$ git worktree add --detach /private/tmp/it3180-audit-v0-1-0 v0.1.0
+Preparing worktree (detached HEAD eb8c64e)
+HEAD is now at eb8c64e Merge pull request #1 from duongtanminh1912/refactor/apply-release-flow
+
+[exit 0]
+
+$ python3.12 /private/tmp/it3180-audit-v0-1-0/main.py
+The disc has been added
+The disc has been added
+The disc has been added
+Total cost: 63.89 $
+
+[exit 0]
+
+$ git worktree add --detach /private/tmp/it3180-audit-v0-2-0 v0.2.0
+Preparing worktree (detached HEAD 92531fb)
+HEAD is now at 92531fb Merge pull request #6 from duongtanminh1912/topic/lab02-answers
+
+[exit 0]
+
+$ python3.12 /private/tmp/it3180-audit-v0-2-0/main.py
+The disc has been added
+The disc has been added
+The disc has been added
+1. DVD - The Lion King - Animation - Roger Allers - 87: 19.95 $
+2. DVD - Star Wars - Science Fiction - George Lucas - 87: 24.95 $
+3. DVD - Aladdin - Animation -  - 0: 18.99 $
+Total cost: 63.89 $
+
+[exit 0]
+
+$ git worktree add --detach /private/tmp/it3180-audit-v0-3-0 v0.3.0
+Preparing worktree (detached HEAD e60daa5)
+HEAD is now at e60daa5 Merge pull request #14 from duongtanminh1912/topic/lab03-answers
+
+[exit 0]
+
+$ python3.12 /private/tmp/it3180-audit-v0-3-0/main.py
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+1. DVD - The Lion King - Animation - Roger Allers - 87: 19.95 $
+2. DVD - Star Wars - Science Fiction - George Lucas - 87: 24.95 $
+3. DVD - Aladdin - Animation -  - 0: 18.99 $
+Total cost: 63.89 $
+
+[exit 0]
+
+$ python3.12 -c import os,sys,unittest; os.chdir('/private/tmp/it3180-audit-v0-3-0'); sys.path.insert(0,os.getcwd()); suite=unittest.defaultTestLoader.discover("tests"); assert suite.countTestCases()==4; result=unittest.TextTestRunner(verbosity=2).run(suite); sys.exit(not result.wasSuccessful())
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ python3.12 main.py
+AIMS-mini v1.1.0
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+Đã thêm đĩa vào giỏ hàng
+1. DVD - The Lion King - Animation - Roger Allers - 87: 19.95 $
+2. DVD - Star Wars - Science Fiction - George Lucas - 87: 24.95 $
+3. DVD - Aladdin - Animation -  - 0: 18.99 $
+Total cost: 63.89 $
+
+[exit 0]
+
+$ python3.12 -m unittest discover -s tests -v
+test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... ok
+test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+test_sort_by_cost_in_place_and_stable (test_cart.CartTests.test_sort_by_cost_in_place_and_stable) ... ok
+test_sort_by_title_in_place (test_cart.CartTests.test_sort_by_title_in_place) ... ok
+test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... ok
+test_category_exact_case_insensitive (test_search.CategorySearchTests.test_category_exact_case_insensitive) ... ok
+test_lowercase_keyword_matches_title (test_search.TitleSearchTests.test_lowercase_keyword_matches_title) ... ok
+test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.000s
+
+OK
+
+[exit 0]
+
+$ gh issue view 7 --json url,state,closedAt
+{"closedAt":"2026-11-05T15:45:57Z","state":"CLOSED","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/issues/7"}
+
+[exit 0]
+
+$ gh issue view 20 --json url,state,closedAt
+{"closedAt":"2026-11-05T15:52:59Z","state":"CLOSED","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/issues/20"}
+
+[exit 0]
+
+$ gh pr list --state all --limit 100 --json number,title,url,state,baseRefName,headRefName,mergeCommit,mergedAt
+[{"baseRefName":"master","headRefName":"bugfix/ci-demo","mergeCommit":null,"mergedAt":null,"number":30,"state":"CLOSED","title":"test: demo CI thất bại — không merge","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/30"},{"baseRefName":"release/lab05","headRefName":"topic/ci-release-lab05","mergeCommit":{"oid":"9b7148ad21d528f3bacabcffb88f417be264fa82"},"mergedAt":"2026-11-05T15:53:26Z","number":29,"state":"MERGED","title":"ci: kiểm thử dòng release/lab05","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/29"},{"baseRefName":"master","headRefName":"release/lab04","mergeCommit":null,"mergedAt":null,"number":28,"state":"CLOSED","title":"Release/lab04","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/28"},{"baseRefName":"release/lab04","headRefName":"topic/ci-release-lab04","mergeCommit":{"oid":"f5b076d5c47057f48d825ed7a01ed4324e1455d4"},"mergedAt":"2026-11-05T15:53:00Z","number":27,"state":"MERGED","title":"ci: kiểm thử dòng release/lab04","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/27"},{"baseRefName":"master","headRefName":"release/lab05","mergeCommit":null,"mergedAt":null,"number":26,"state":"CLOSED","title":"Release/lab05","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/26"},{"baseRefName":"master","headRefName":"topic/ci-unit-tests","mergeCommit":{"oid":"abd13f52e5ed35fb0a8ddafbbb2de022e69ebf20"},"mergedAt":"2026-11-05T15:52:36Z","number":25,"state":"MERGED","title":"ci: chạy unittest qua GitHub Actions","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/25"},{"baseRefName":"master","headRefName":"topic/hotfix-audit","mergeCommit":{"oid":"73329f1085cc1a028dbc6151ed664a60f596c586"},"mergedAt":"2026-11-05T15:50:57Z","number":24,"state":"MERGED","title":"docs: audit bản vá trên ba dòng phiên bản","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/24"},{"baseRefName":"release/lab05","headRefName":"hotfix/search-case-insensitive-lab05","mergeCommit":{"oid":"dd0a56c40adf4a6f48b8e6184c25215d362edbcc"},"mergedAt":"2026-11-05T15:50:37Z","number":23,"state":"MERGED","title":"fix: chuyển bản vá tìm kiếm sang release/lab05","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/23"},{"baseRefName":"master","headRefName":"hotfix/search-case-insensitive-master","mergeCommit":{"oid":"eaa7613a4f13fda195e4cd1ac5d477b7a7a90759"},"mergedAt":"2026-11-05T15:50:24Z","number":22,"state":"MERGED","title":"fix: chuyển bản vá tìm kiếm lên master","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/22"},{"baseRefName":"release/lab04","headRefName":"hotfix/search-case-insensitive","mergeCommit":{"oid":"c15ec06e745e6e38a6ade88d8de572de57eed93d"},"mergedAt":"2026-11-05T15:50:08Z","number":21,"state":"MERGED","title":"fix: vá tìm kiếm cho dòng 1.0.x","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/21"},{"baseRefName":"master","headRefName":"topic/prepare-release-1.1.0","mergeCommit":{"oid":"d413a5f3700dc497dcdc1528dd56f912ebeea5b3"},"mergedAt":"2026-11-05T15:49:50Z","number":19,"state":"MERGED","title":"chore: chuẩn bị release 1.1.0 và tài liệu Lab 05","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/19"},{"baseRefName":"master","headRefName":"feature/search-by-category","mergeCommit":{"oid":"bc6411232e55446e04386879d603618380e107bd"},"mergedAt":"2026-11-05T15:49:38Z","number":18,"state":"MERGED","title":"feat: tìm DVD theo thể loại","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/18"},{"baseRefName":"master","headRefName":"topic/lab04-audit","mergeCommit":{"oid":"c0ac12a98ae46d2093ec8e699eac0788a5671149"},"mergedAt":"2026-11-05T15:48:26Z","number":17,"state":"MERGED","title":"docs: bằng chứng audit Lab 04 trước hotfix","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/17"},{"baseRefName":"master","headRefName":"feature/sort-cart","mergeCommit":{"oid":"b40152bdae05edbd812a638f3b3028db462ac291"},"mergedAt":"2026-11-05T15:48:13Z","number":16,"state":"MERGED","title":"feat: sắp xếp giỏ hàng cho dòng phát triển tiếp","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/16"},{"baseRefName":"master","headRefName":"topic/prepare-release-1.0.0","mergeCommit":{"oid":"146e3ccceb0a7b63d28823cf2d596301dcce087f"},"mergedAt":"2026-11-05T15:47:42Z","number":15,"state":"MERGED","title":"chore: chuẩn bị baseline 1.0.0","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/15"},{"baseRefName":"master","headRefName":"topic/lab03-answers","mergeCommit":{"oid":"e60daa59e61d1f098f663f49afd6b8957b03cb36"},"mergedAt":"2026-11-05T15:47:04Z","number":14,"state":"MERGED","title":"docs: tổng kết Lab 03 và bằng chứng thực hành","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/14"},{"baseRefName":"master","headRefName":"bugfix/revert-show-added-title","mergeCommit":{"oid":"248fee67dcec9eec1f56ca97202ecd4b8b387229"},"mergedAt":"2026-11-05T15:46:53Z","number":13,"state":"MERGED","title":"fix: thực hành revert merge hiển thị tên DVD","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/13"},{"baseRefName":"master","headRefName":"feature/show-added-title","mergeCommit":{"oid":"833c51bef5a92c4418ff420b6347015cf4e30ea3"},"mergedAt":"2026-11-05T15:46:41Z","number":12,"state":"MERGED","title":"feat: kết hợp thông báo tiếng Việt và tên DVD","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/12"},{"baseRefName":"master","headRefName":"feature/vietnamese-messages","mergeCommit":{"oid":"ba3ca5ed73afd939b1492508e8871cf58e807322"},"mergedAt":"2026-11-05T15:46:30Z","number":11,"state":"MERGED","title":"feat: Việt hóa thông báo thêm DVD","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/11"},{"baseRefName":"master","headRefName":"feature/discount","mergeCommit":{"oid":"8ff4e1e1c989f4ba974781f1a6e5bcad4e330fcc"},"mergedAt":"2026-11-05T15:46:20Z","number":10,"state":"MERGED","title":"feat: tính tổng sau giảm giá","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/10"},{"baseRefName":"feature/discount","headRefName":"bugfix/discount-calculation","mergeCommit":{"oid":"57824fdb3986be7db932a2fc8184ae3bf4d0708e"},"mergedAt":"2026-11-05T15:46:10Z","number":9,"state":"MERGED","title":"fix: sửa công thức giảm giá trên feature","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/9"},{"baseRefName":"master","headRefName":"bugfix/cart-limit-off-by-one","mergeCommit":{"oid":"8378fef6daf5f403354d008525e9ad560dc2d02e"},"mergedAt":"2026-11-05T15:45:55Z","number":8,"state":"MERGED","title":"fix: sửa lỗi giới hạn giỏ","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/8"},{"baseRefName":"master","headRefName":"topic/lab02-answers","mergeCommit":{"oid":"92531fb4ea535cc7398ccfbf1663486f4b14bc8b"},"mergedAt":"2026-11-05T15:45:13Z","number":6,"state":"MERGED","title":"docs: tổng kết Lab 02 và chứng minh bảo vệ nhánh","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/6"},{"baseRefName":"master","headRefName":"topic/use-case-diagram","mergeCommit":{"oid":"fb4c6207366eba5db639e23a1eec9118c0c04ba7"},"mergedAt":"2026-11-05T15:44:57Z","number":5,"state":"MERGED","title":"docs: sơ đồ use case AIMS-mini","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/5"},{"baseRefName":"master","headRefName":"feature/search-by-title","mergeCommit":{"oid":"76cc23130955e2c42395f28554a80f61ef4770e2"},"mergedAt":"2026-11-05T15:44:46Z","number":4,"state":"MERGED","title":"feat: tìm kiếm DVD theo tên","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/4"},{"baseRefName":"master","headRefName":"feature/cart-print","mergeCommit":{"oid":"42f9ef3078c5d7e760084df09f9828964560ed23"},"mergedAt":"2026-11-05T15:44:20Z","number":3,"state":"MERGED","title":"feat: hiển thị giỏ hàng và tổng tiền","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/3"},{"baseRefName":"master","headRefName":"topic/pr-template","mergeCommit":{"oid":"bb191c78ad263e13a6ba7be0858a439dfdf1a44f"},"mergedAt":"2026-11-05T15:44:06Z","number":2,"state":"MERGED","title":"docs: thêm template pull request","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/2"},{"baseRefName":"master","headRefName":"refactor/apply-release-flow","mergeCommit":{"oid":"eb8c64edaf40949178573c8f950ff7437afc1c6f"},"mergedAt":"2026-11-05T15:41:25Z","number":1,"state":"MERGED","title":"refactor: đóng gói aims và hoàn thành tài liệu Lab 01","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/pull/1"}]
+
+[exit 0]
+
+$ gh api repos/duongtanminh1912/it3180-202416560-aims/releases
+[{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/releases/435406538","assets_url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/releases/435406538/assets","upload_url":"https://uploads.github.com/repos/duongtanminh1912/it3180-202416560-aims/releases/435406538/assets{?name,label}","html_url":"https://github.com/duongtanminh1912/it3180-202416560-aims/releases/tag/v1.1.0","id":435406538,"author":{"login":"duongtanminh1912","id":252709305,"node_id":"U_kgDODxAJuQ","avatar_url":"https://avatars.githubusercontent.com/u/252709305?v=4","gravatar_id":"","url":"https://api.github.com/users/duongtanminh1912","html_url":"https://github.com/duongtanminh1912","followers_url":"https://api.github.com/users/duongtanminh1912/followers","following_url":"https://api.github.com/users/duongtanminh1912/following{/other_user}","gists_url":"https://api.github.com/users/duongtanminh1912/gists{/gist_id}","starred_url":"https://api.github.com/users/duongtanminh1912/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/duongtanminh1912/subscriptions","organizations_url":"https://api.github.com/users/duongtanminh1912/orgs","repos_url":"https://api.github.com/users/duongtanminh1912/repos","events_url":"https://api.github.com/users/duongtanminh1912/events{/privacy}","received_events_url":"https://api.github.com/users/duongtanminh1912/received_events","type":"User","user_view_type":"public","site_admin":false},"node_id":"RE_kwDOVkJPRc4Z88bK","tag_name":"v1.1.0","target_commitish":"master","name":"AIMS-mini 1.1.0","draft":false,"immutable":false,"prerelease":false,"created_at":"2026-11-05T15:50:41Z","updated_at":"2026-11-05T15:50:46Z","published_at":"2026-11-05T15:50:46Z","assets":[],"tarball_url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/tarball/v1.1.0","zipball_url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/zipball/v1.1.0","body":"Thêm sắp giỏ và tìm category; gồm bản sửa tìm tên không phân biệt hoa thường từ 1.0.1. Python >= 3.10.\n"},{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/releases/435405995","assets_url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/releases/435405995/assets","upload_url":"https://uploads.github.com/repos/duongtanminh1912/it3180-202416560-aims/releases/435405995/assets{?name,label}","html_url":"https://github.com/duongtanminh1912/it3180-202416560-aims/releases/tag/v1.0.1","id":435405995,"author":{"login":"duongtanminh1912","id":252709305,"node_id":"U_kgDODxAJuQ","avatar_url":"https://avatars.githubusercontent.com/u/252709305?v=4","gravatar_id":"","url":"https://api.github.com/users/duongtanminh1912","html_url":"https://github.com/duongtanminh1912","followers_url":"https://api.github.com/users/duongtanminh1912/followers","following_url":"https://api.github.com/users/duongtanminh1912/following{/other_user}","gists_url":"https://api.github.com/users/duongtanminh1912/gists{/gist_id}","starred_url":"https://api.github.com/users/duongtanminh1912/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/duongtanminh1912/subscriptions","organizations_url":"https://api.github.com/users/duongtanminh1912/orgs","repos_url":"https://api.github.com/users/duongtanminh1912/repos","events_url":"https://api.github.com/users/duongtanminh1912/events{/privacy}","received_events_url":"https://api.github.com/users/duongtanminh1912/received_events","type":"User","user_view_type":"public","site_admin":false},"node_id":"RE_kwDOVkJPRc4Z88Sr","tag_name":"v1.0.1","target_commitish":"master","name":"AIMS-mini 1.0.1","draft":false,"immutable":false,"prerelease":false,"created_at":"2026-11-05T15:50:11Z","updated_at":"2026-11-05T15:50:15Z","published_at":"2026-11-05T15:50:15Z","assets":[],"tarball_url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/tarball/v1.0.1","zipball_url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/zipball/v1.0.1","body":"Sửa tìm tên không phân biệt hoa thường. Không thêm sort/category. FIX_SHA: e8a185b82f140029cd2cfc4dcba9ac79cca2b743. Diff chỉ bốn file yêu cầu, regression đã pass.\n"},{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/releases/435403533","assets_url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/releases/435403533/assets","upload_url":"https://uploads.github.com/repos/duongtanminh1912/it3180-202416560-aims/releases/435403533/assets{?name,label}","html_url":"https://github.com/duongtanminh1912/it3180-202416560-aims/releases/tag/v1.0.0","id":435403533,"author":{"login":"duongtanminh1912","id":252709305,"node_id":"U_kgDODxAJuQ","avatar_url":"https://avatars.githubusercontent.com/u/252709305?v=4","gravatar_id":"","url":"https://api.github.com/users/duongtanminh1912","html_url":"https://github.com/duongtanminh1912","followers_url":"https://api.github.com/users/duongtanminh1912/followers","following_url":"https://api.github.com/users/duongtanminh1912/following{/other_user}","gists_url":"https://api.github.com/users/duongtanminh1912/gists{/gist_id}","starred_url":"https://api.github.com/users/duongtanminh1912/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/duongtanminh1912/subscriptions","organizations_url":"https://api.github.com/users/duongtanminh1912/orgs","repos_url":"https://api.github.com/users/duongtanminh1912/repos","events_url":"https://api.github.com/users/duongtanminh1912/events{/privacy}","received_events_url":"https://api.github.com/users/duongtanminh1912/received_events","type":"User","user_view_type":"public","site_admin":false},"node_id":"RE_kwDOVkJPRc4Z87sN","tag_name":"v1.0.0","target_commitish":"master","name":"AIMS-mini 1.0.0","draft":false,"immutable":false,"prerelease":false,"created_at":"2026-11-05T15:47:55Z","updated_at":"2026-11-05T15:48:18Z","published_at":"2026-11-05T15:48:04Z","assets":[{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/releases/assets/713921241","id":713921241,"node_id":"RA_kwDOVkJPRc4qjZLZ","name":"aims-mini-1.0.0.tar.gz","label":"","uploader":{"login":"duongtanminh1912","id":252709305,"node_id":"U_kgDODxAJuQ","avatar_url":"https://avatars.githubusercontent.com/u/252709305?v=4","gravatar_id":"","url":"https://api.github.com/users/duongtanminh1912","html_url":"https://github.com/duongtanminh1912","followers_url":"https://api.github.com/users/duongtanminh1912/followers","following_url":"https://api.github.com/users/duongtanminh1912/following{/other_user}","gists_url":"https://api.github.com/users/duongtanminh1912/gists{/gist_id}","starred_url":"https://api.github.com/users/duongtanminh1912/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/duongtanminh1912/subscriptions","organizations_url":"https://api.github.com/users/duongtanminh1912/orgs","repos_url":"https://api.github.com/users/duongtanminh1912/repos","events_url":"https://api.github.com/users/duongtanminh1912/events{/privacy}","received_events_url":"https://api.github.com/users/duongtanminh1912/received_events","type":"User","user_view_type":"public","site_admin":false},"content_type":"application/x-gtar","state":"uploaded","size":14112,"digest":"sha256:8a8b4154275c3fe1f01b5af3399978a236afe8e41e10bd12313581c4773c46fe","download_count":0,"created_at":"2026-11-05T15:48:17Z","updated_at":"2026-11-05T15:48:18Z","browser_download_url":"https://github.com/duongtanminh1912/it3180-202416560-aims/releases/download/v1.0.0/aims-mini-1.0.0.tar.gz"}],"tarball_url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/tarball/v1.0.0","zipball_url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/zipball/v1.0.0","body":"AIMS-mini 1.0.0: DVD, giỏ hàng tối đa 20 đĩa, in giỏ, tìm theo tên và giảm giá. Sửa lỗi off-by-one và công thức giảm giá. Python >= 3.10, chỉ thư viện chuẩn. Tìm theo tên tại bản này còn phân biệt hoa thường; regression hotfix thực hiện ở Lab 05. Xem CHANGELOG và docs/answers-lab04.md.\n"}]
+[exit 0]
+
+$ gh run list --limit 50 --json databaseId,url,status,conclusion,headBranch,event,workflowName
+[{"conclusion":"failure","databaseId":42059944666,"event":"pull_request","headBranch":"bugfix/ci-demo","status":"completed","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/actions/runs/42059944666","workflowName":"CI"},{"conclusion":"success","databaseId":42059508312,"event":"pull_request","headBranch":"topic/ci-release-lab05","status":"completed","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/actions/runs/42059508312","workflowName":"CI"},{"conclusion":"success","databaseId":42059436666,"event":"pull_request","headBranch":"topic/ci-release-lab04","status":"completed","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/actions/runs/42059436666","workflowName":"CI"},{"conclusion":"success","databaseId":42059412535,"event":"push","headBranch":"master","status":"completed","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/actions/runs/42059412535","workflowName":"CI"},{"conclusion":"success","databaseId":42059334488,"event":"pull_request","headBranch":"topic/ci-unit-tests","status":"completed","url":"https://github.com/duongtanminh1912/it3180-202416560-aims/actions/runs/42059334488","workflowName":"CI"}]
+
+[exit 0]
+
+$ gh api repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection
+{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection","required_status_checks":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection/required_status_checks","strict":true,"contexts":["unit-tests"],"contexts_url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection/required_status_checks/contexts","checks":[{"context":"unit-tests","app_id":15368}]},"required_pull_request_reviews":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection/required_pull_request_reviews","dismiss_stale_reviews":true,"require_code_owner_reviews":false,"require_last_push_approval":false,"required_approving_review_count":0},"required_signatures":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection/required_signatures","enabled":false},"enforce_admins":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/master/protection/enforce_admins","enabled":true},"required_linear_history":{"enabled":false},"allow_force_pushes":{"enabled":false},"allow_deletions":{"enabled":false},"block_creations":{"enabled":false},"required_conversation_resolution":{"enabled":false},"lock_branch":{"enabled":false},"allow_fork_syncing":{"enabled":false}}
+[exit 0]
+
+$ gh api repos/duongtanminh1912/it3180-202416560-aims/branches/release%2Flab04/protection
+{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/release/lab04/protection","required_status_checks":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/release/lab04/protection/required_status_checks","strict":true,"contexts":["unit-tests"],"contexts_url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/release/lab04/protection/required_status_checks/contexts","checks":[{"context":"unit-tests","app_id":15368}]},"required_pull_request_reviews":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/release/lab04/protection/required_pull_request_reviews","dismiss_stale_reviews":true,"require_code_owner_reviews":false,"require_last_push_approval":false,"required_approving_review_count":0},"required_signatures":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/release/lab04/protection/required_signatures","enabled":false},"enforce_admins":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/release/lab04/protection/enforce_admins","enabled":true},"required_linear_history":{"enabled":false},"allow_force_pushes":{"enabled":false},"allow_deletions":{"enabled":false},"block_creations":{"enabled":false},"required_conversation_resolution":{"enabled":false},"lock_branch":{"enabled":false},"allow_fork_syncing":{"enabled":false}}
+[exit 0]
+
+$ gh api repos/duongtanminh1912/it3180-202416560-aims/branches/release%2Flab05/protection
+{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/release/lab05/protection","required_status_checks":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/release/lab05/protection/required_status_checks","strict":true,"contexts":["unit-tests"],"contexts_url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/release/lab05/protection/required_status_checks/contexts","checks":[{"context":"unit-tests","app_id":15368}]},"required_pull_request_reviews":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/release/lab05/protection/required_pull_request_reviews","dismiss_stale_reviews":true,"require_code_owner_reviews":false,"require_last_push_approval":false,"required_approving_review_count":0},"required_signatures":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/release/lab05/protection/required_signatures","enabled":false},"enforce_admins":{"url":"https://api.github.com/repos/duongtanminh1912/it3180-202416560-aims/branches/release/lab05/protection/enforce_admins","enabled":true},"required_linear_history":{"enabled":false},"allow_force_pushes":{"enabled":false},"allow_deletions":{"enabled":false},"block_creations":{"enabled":false},"required_conversation_resolution":{"enabled":false},"lock_branch":{"enabled":false},"allow_fork_syncing":{"enabled":false}}
+[exit 0]
