@@ -1,0 +1,43 @@
+unit-tests	Run unittest	﻿2026-11-05T15:55:56.0652409Z ##[group]Run python -m unittest discover -s tests -v
+unit-tests	Run unittest	2026-11-05T15:55:56.0654053Z ^[[36;1mpython -m unittest discover -s tests -v^[[0m
+unit-tests	Run unittest	2026-11-05T15:55:56.0739521Z shell: /usr/bin/bash -e {0}
+unit-tests	Run unittest	2026-11-05T15:55:56.0740539Z env:
+unit-tests	Run unittest	2026-11-05T15:55:56.0741553Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+unit-tests	Run unittest	2026-11-05T15:55:56.0743258Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+unit-tests	Run unittest	2026-11-05T15:55:56.0745183Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+unit-tests	Run unittest	2026-11-05T15:55:56.0746710Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+unit-tests	Run unittest	2026-11-05T15:55:56.0748250Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+unit-tests	Run unittest	2026-11-05T15:55:56.0749815Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+unit-tests	Run unittest	2026-11-05T15:55:56.0751145Z ##[endgroup]
+unit-tests	Run unittest	2026-11-05T15:55:56.7366639Z test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds) ... FAIL
+unit-tests	Run unittest	2026-11-05T15:55:56.7368003Z test_limit_twenty (test_cart.CartTests.test_limit_twenty) ... ok
+unit-tests	Run unittest	2026-11-05T15:55:56.7369157Z test_print_empty (test_cart.CartTests.test_print_empty) ... ok
+unit-tests	Run unittest	2026-11-05T15:55:56.7370948Z test_sort_by_cost_in_place_and_stable (test_cart.CartTests.test_sort_by_cost_in_place_and_stable) ... ok
+unit-tests	Run unittest	2026-11-05T15:55:56.7372432Z test_sort_by_title_in_place (test_cart.CartTests.test_sort_by_title_in_place) ... ok
+unit-tests	Run unittest	2026-11-05T15:55:56.7373607Z test_total_and_remove (test_cart.CartTests.test_total_and_remove) ... FAIL
+unit-tests	Run unittest	2026-11-05T15:55:56.7375361Z test_category_exact_case_insensitive (test_search.CategorySearchTests.test_category_exact_case_insensitive) ... ok
+unit-tests	Run unittest	2026-11-05T15:55:56.7377119Z test_lowercase_keyword_matches_title (test_search.TitleSearchTests.test_lowercase_keyword_matches_title) ... ok
+unit-tests	Run unittest	2026-11-05T15:55:56.7378610Z test_no_match_and_empty_items (test_search.TitleSearchTests.test_no_match_and_empty_items) ... ok
+unit-tests	Run unittest	2026-11-05T15:55:56.7379717Z test_title_substring (test_search.TitleSearchTests.test_title_substring) ... ok
+unit-tests	Run unittest	2026-11-05T15:55:56.7380339Z 
+unit-tests	Run unittest	2026-11-05T15:55:56.7380598Z ======================================================================
+unit-tests	Run unittest	2026-11-05T15:55:56.7381413Z FAIL: test_discount_and_bounds (test_cart.CartTests.test_discount_and_bounds)
+unit-tests	Run unittest	2026-11-05T15:55:56.7382280Z ----------------------------------------------------------------------
+unit-tests	Run unittest	2026-11-05T15:55:56.7382987Z Traceback (most recent call last):
+unit-tests	Run unittest	2026-11-05T15:55:56.7392303Z   File "/home/runner/work/it3180-202416560-aims/it3180-202416560-aims/tests/test_cart.py", line 36, in test_discount_and_bounds
+unit-tests	Run unittest	2026-11-05T15:55:56.7393679Z     self.assertAlmostEqual(cart.total_cost_with_discount(20), 80)
+unit-tests	Run unittest	2026-11-05T15:55:56.7394799Z AssertionError: 0.0 != 80 within 7 places (80.0 difference)
+unit-tests	Run unittest	2026-11-05T15:55:56.7395324Z 
+unit-tests	Run unittest	2026-11-05T15:55:56.7395568Z ======================================================================
+unit-tests	Run unittest	2026-11-05T15:55:56.7396339Z FAIL: test_total_and_remove (test_cart.CartTests.test_total_and_remove)
+unit-tests	Run unittest	2026-11-05T15:55:56.7397159Z ----------------------------------------------------------------------
+unit-tests	Run unittest	2026-11-05T15:55:56.7397870Z Traceback (most recent call last):
+unit-tests	Run unittest	2026-11-05T15:55:56.7399051Z   File "/home/runner/work/it3180-202416560-aims/it3180-202416560-aims/tests/test_cart.py", line 22, in test_total_and_remove
+unit-tests	Run unittest	2026-11-05T15:55:56.7400258Z     self.assertAlmostEqual(cart.total_cost(), 19.95)
+unit-tests	Run unittest	2026-11-05T15:55:56.7401106Z AssertionError: 0.0 != 19.95 within 7 places (19.95 difference)
+unit-tests	Run unittest	2026-11-05T15:55:56.7401592Z 
+unit-tests	Run unittest	2026-11-05T15:55:56.7401887Z ----------------------------------------------------------------------
+unit-tests	Run unittest	2026-11-05T15:55:56.7402539Z Ran 10 tests in 0.006s
+unit-tests	Run unittest	2026-11-05T15:55:56.7402903Z 
+unit-tests	Run unittest	2026-11-05T15:55:56.7403101Z FAILED (failures=2)
+unit-tests	Run unittest	2026-11-05T15:55:56.7478978Z ##[error]Process completed with exit code 1.

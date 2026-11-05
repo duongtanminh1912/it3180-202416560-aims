@@ -1,0 +1,332 @@
+[
+  {
+    "baseRefName": "master",
+    "headRefName": "bugfix/ci-demo",
+    "mergeCommit": null,
+    "mergedAt": null,
+    "number": 30,
+    "state": "CLOSED",
+    "title": "test: demo CI thất bại — không merge",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/30"
+  },
+  {
+    "baseRefName": "release/lab05",
+    "headRefName": "topic/ci-release-lab05",
+    "mergeCommit": {
+      "oid": "9b7148ad21d528f3bacabcffb88f417be264fa82"
+    },
+    "mergedAt": "2026-11-05T15:53:26Z",
+    "number": 29,
+    "state": "MERGED",
+    "title": "ci: kiểm thử dòng release/lab05",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/29"
+  },
+  {
+    "baseRefName": "master",
+    "headRefName": "release/lab04",
+    "mergeCommit": null,
+    "mergedAt": null,
+    "number": 28,
+    "state": "CLOSED",
+    "title": "Release/lab04",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/28"
+  },
+  {
+    "baseRefName": "release/lab04",
+    "headRefName": "topic/ci-release-lab04",
+    "mergeCommit": {
+      "oid": "f5b076d5c47057f48d825ed7a01ed4324e1455d4"
+    },
+    "mergedAt": "2026-11-05T15:53:00Z",
+    "number": 27,
+    "state": "MERGED",
+    "title": "ci: kiểm thử dòng release/lab04",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/27"
+  },
+  {
+    "baseRefName": "master",
+    "headRefName": "release/lab05",
+    "mergeCommit": null,
+    "mergedAt": null,
+    "number": 26,
+    "state": "CLOSED",
+    "title": "Release/lab05",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/26"
+  },
+  {
+    "baseRefName": "master",
+    "headRefName": "topic/ci-unit-tests",
+    "mergeCommit": {
+      "oid": "abd13f52e5ed35fb0a8ddafbbb2de022e69ebf20"
+    },
+    "mergedAt": "2026-11-05T15:52:36Z",
+    "number": 25,
+    "state": "MERGED",
+    "title": "ci: chạy unittest qua GitHub Actions",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/25"
+  },
+  {
+    "baseRefName": "master",
+    "headRefName": "topic/hotfix-audit",
+    "mergeCommit": {
+      "oid": "73329f1085cc1a028dbc6151ed664a60f596c586"
+    },
+    "mergedAt": "2026-11-05T15:50:57Z",
+    "number": 24,
+    "state": "MERGED",
+    "title": "docs: audit bản vá trên ba dòng phiên bản",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/24"
+  },
+  {
+    "baseRefName": "release/lab05",
+    "headRefName": "hotfix/search-case-insensitive-lab05",
+    "mergeCommit": {
+      "oid": "dd0a56c40adf4a6f48b8e6184c25215d362edbcc"
+    },
+    "mergedAt": "2026-11-05T15:50:37Z",
+    "number": 23,
+    "state": "MERGED",
+    "title": "fix: chuyển bản vá tìm kiếm sang release/lab05",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/23"
+  },
+  {
+    "baseRefName": "master",
+    "headRefName": "hotfix/search-case-insensitive-master",
+    "mergeCommit": {
+      "oid": "eaa7613a4f13fda195e4cd1ac5d477b7a7a90759"
+    },
+    "mergedAt": "2026-11-05T15:50:24Z",
+    "number": 22,
+    "state": "MERGED",
+    "title": "fix: chuyển bản vá tìm kiếm lên master",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/22"
+  },
+  {
+    "baseRefName": "release/lab04",
+    "headRefName": "hotfix/search-case-insensitive",
+    "mergeCommit": {
+      "oid": "c15ec06e745e6e38a6ade88d8de572de57eed93d"
+    },
+    "mergedAt": "2026-11-05T15:50:08Z",
+    "number": 21,
+    "state": "MERGED",
+    "title": "fix: vá tìm kiếm cho dòng 1.0.x",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/21"
+  },
+  {
+    "baseRefName": "master",
+    "headRefName": "topic/prepare-release-1.1.0",
+    "mergeCommit": {
+      "oid": "d413a5f3700dc497dcdc1528dd56f912ebeea5b3"
+    },
+    "mergedAt": "2026-11-05T15:49:50Z",
+    "number": 19,
+    "state": "MERGED",
+    "title": "chore: chuẩn bị release 1.1.0 và tài liệu Lab 05",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/19"
+  },
+  {
+    "baseRefName": "master",
+    "headRefName": "feature/search-by-category",
+    "mergeCommit": {
+      "oid": "bc6411232e55446e04386879d603618380e107bd"
+    },
+    "mergedAt": "2026-11-05T15:49:38Z",
+    "number": 18,
+    "state": "MERGED",
+    "title": "feat: tìm DVD theo thể loại",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/18"
+  },
+  {
+    "baseRefName": "master",
+    "headRefName": "topic/lab04-audit",
+    "mergeCommit": {
+      "oid": "c0ac12a98ae46d2093ec8e699eac0788a5671149"
+    },
+    "mergedAt": "2026-11-05T15:48:26Z",
+    "number": 17,
+    "state": "MERGED",
+    "title": "docs: bằng chứng audit Lab 04 trước hotfix",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/17"
+  },
+  {
+    "baseRefName": "master",
+    "headRefName": "feature/sort-cart",
+    "mergeCommit": {
+      "oid": "b40152bdae05edbd812a638f3b3028db462ac291"
+    },
+    "mergedAt": "2026-11-05T15:48:13Z",
+    "number": 16,
+    "state": "MERGED",
+    "title": "feat: sắp xếp giỏ hàng cho dòng phát triển tiếp",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/16"
+  },
+  {
+    "baseRefName": "master",
+    "headRefName": "topic/prepare-release-1.0.0",
+    "mergeCommit": {
+      "oid": "146e3ccceb0a7b63d28823cf2d596301dcce087f"
+    },
+    "mergedAt": "2026-11-05T15:47:42Z",
+    "number": 15,
+    "state": "MERGED",
+    "title": "chore: chuẩn bị baseline 1.0.0",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/15"
+  },
+  {
+    "baseRefName": "master",
+    "headRefName": "topic/lab03-answers",
+    "mergeCommit": {
+      "oid": "e60daa59e61d1f098f663f49afd6b8957b03cb36"
+    },
+    "mergedAt": "2026-11-05T15:47:04Z",
+    "number": 14,
+    "state": "MERGED",
+    "title": "docs: tổng kết Lab 03 và bằng chứng thực hành",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/14"
+  },
+  {
+    "baseRefName": "master",
+    "headRefName": "bugfix/revert-show-added-title",
+    "mergeCommit": {
+      "oid": "248fee67dcec9eec1f56ca97202ecd4b8b387229"
+    },
+    "mergedAt": "2026-11-05T15:46:53Z",
+    "number": 13,
+    "state": "MERGED",
+    "title": "fix: thực hành revert merge hiển thị tên DVD",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/13"
+  },
+  {
+    "baseRefName": "master",
+    "headRefName": "feature/show-added-title",
+    "mergeCommit": {
+      "oid": "833c51bef5a92c4418ff420b6347015cf4e30ea3"
+    },
+    "mergedAt": "2026-11-05T15:46:41Z",
+    "number": 12,
+    "state": "MERGED",
+    "title": "feat: kết hợp thông báo tiếng Việt và tên DVD",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/12"
+  },
+  {
+    "baseRefName": "master",
+    "headRefName": "feature/vietnamese-messages",
+    "mergeCommit": {
+      "oid": "ba3ca5ed73afd939b1492508e8871cf58e807322"
+    },
+    "mergedAt": "2026-11-05T15:46:30Z",
+    "number": 11,
+    "state": "MERGED",
+    "title": "feat: Việt hóa thông báo thêm DVD",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/11"
+  },
+  {
+    "baseRefName": "master",
+    "headRefName": "feature/discount",
+    "mergeCommit": {
+      "oid": "8ff4e1e1c989f4ba974781f1a6e5bcad4e330fcc"
+    },
+    "mergedAt": "2026-11-05T15:46:20Z",
+    "number": 10,
+    "state": "MERGED",
+    "title": "feat: tính tổng sau giảm giá",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/10"
+  },
+  {
+    "baseRefName": "feature/discount",
+    "headRefName": "bugfix/discount-calculation",
+    "mergeCommit": {
+      "oid": "57824fdb3986be7db932a2fc8184ae3bf4d0708e"
+    },
+    "mergedAt": "2026-11-05T15:46:10Z",
+    "number": 9,
+    "state": "MERGED",
+    "title": "fix: sửa công thức giảm giá trên feature",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/9"
+  },
+  {
+    "baseRefName": "master",
+    "headRefName": "bugfix/cart-limit-off-by-one",
+    "mergeCommit": {
+      "oid": "8378fef6daf5f403354d008525e9ad560dc2d02e"
+    },
+    "mergedAt": "2026-11-05T15:45:55Z",
+    "number": 8,
+    "state": "MERGED",
+    "title": "fix: sửa lỗi giới hạn giỏ",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/8"
+  },
+  {
+    "baseRefName": "master",
+    "headRefName": "topic/lab02-answers",
+    "mergeCommit": {
+      "oid": "92531fb4ea535cc7398ccfbf1663486f4b14bc8b"
+    },
+    "mergedAt": "2026-11-05T15:45:13Z",
+    "number": 6,
+    "state": "MERGED",
+    "title": "docs: tổng kết Lab 02 và chứng minh bảo vệ nhánh",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/6"
+  },
+  {
+    "baseRefName": "master",
+    "headRefName": "topic/use-case-diagram",
+    "mergeCommit": {
+      "oid": "fb4c6207366eba5db639e23a1eec9118c0c04ba7"
+    },
+    "mergedAt": "2026-11-05T15:44:57Z",
+    "number": 5,
+    "state": "MERGED",
+    "title": "docs: sơ đồ use case AIMS-mini",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/5"
+  },
+  {
+    "baseRefName": "master",
+    "headRefName": "feature/search-by-title",
+    "mergeCommit": {
+      "oid": "76cc23130955e2c42395f28554a80f61ef4770e2"
+    },
+    "mergedAt": "2026-11-05T15:44:46Z",
+    "number": 4,
+    "state": "MERGED",
+    "title": "feat: tìm kiếm DVD theo tên",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/4"
+  },
+  {
+    "baseRefName": "master",
+    "headRefName": "feature/cart-print",
+    "mergeCommit": {
+      "oid": "42f9ef3078c5d7e760084df09f9828964560ed23"
+    },
+    "mergedAt": "2026-11-05T15:44:20Z",
+    "number": 3,
+    "state": "MERGED",
+    "title": "feat: hiển thị giỏ hàng và tổng tiền",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/3"
+  },
+  {
+    "baseRefName": "master",
+    "headRefName": "topic/pr-template",
+    "mergeCommit": {
+      "oid": "bb191c78ad263e13a6ba7be0858a439dfdf1a44f"
+    },
+    "mergedAt": "2026-11-05T15:44:06Z",
+    "number": 2,
+    "state": "MERGED",
+    "title": "docs: thêm template pull request",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/2"
+  },
+  {
+    "baseRefName": "master",
+    "headRefName": "refactor/apply-release-flow",
+    "mergeCommit": {
+      "oid": "eb8c64edaf40949178573c8f950ff7437afc1c6f"
+    },
+    "mergedAt": "2026-11-05T15:41:25Z",
+    "number": 1,
+    "state": "MERGED",
+    "title": "refactor: đóng gói aims và hoàn thành tài liệu Lab 01",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/pull/1"
+  }
+]

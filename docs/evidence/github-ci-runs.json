@@ -1,0 +1,47 @@
+[
+  {
+    "conclusion": "failure",
+    "databaseId": 42059944666,
+    "event": "pull_request",
+    "headBranch": "bugfix/ci-demo",
+    "status": "completed",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/actions/runs/42059944666",
+    "workflowName": "CI"
+  },
+  {
+    "conclusion": "success",
+    "databaseId": 42059508312,
+    "event": "pull_request",
+    "headBranch": "topic/ci-release-lab05",
+    "status": "completed",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/actions/runs/42059508312",
+    "workflowName": "CI"
+  },
+  {
+    "conclusion": "success",
+    "databaseId": 42059436666,
+    "event": "pull_request",
+    "headBranch": "topic/ci-release-lab04",
+    "status": "completed",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/actions/runs/42059436666",
+    "workflowName": "CI"
+  },
+  {
+    "conclusion": "success",
+    "databaseId": 42059412535,
+    "event": "push",
+    "headBranch": "master",
+    "status": "completed",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/actions/runs/42059412535",
+    "workflowName": "CI"
+  },
+  {
+    "conclusion": "success",
+    "databaseId": 42059334488,
+    "event": "pull_request",
+    "headBranch": "topic/ci-unit-tests",
+    "status": "completed",
+    "url": "https://github.com/duongtanminh1912/it3180-202416560-aims/actions/runs/42059334488",
+    "workflowName": "CI"
+  }
+]
